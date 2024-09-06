@@ -1,0 +1,23 @@
+# ignore folders
+exports/
+superceded/
+iam/
+ruby/
+draft/
+images/
+excel/
+
+# ignore files ext
+**/*.log
+*.zip
+*.recover
+
+# infoasset snapshot files
+**/*.isfd
+**/*.isfc
+
+# ignore files
+#*.gitignore
+github_pull.bat
+github_push.bat
+github_notes.txt

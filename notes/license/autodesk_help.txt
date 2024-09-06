@@ -1,0 +1,32 @@
+Product:	InfoAsset Manager
+Version:	32.0.366 (32 bit) March 2024
+License name:	Queenstown Lakes District Council
+	c8c6268b-d019-427e-a076-eb1124b26f7b
+Expiry date:	Program: 7, Feature: 19, 2500-12-31T13:00+1300
+Operating system:	10.0.22621.4036 BuildLabEx=22621.1.amd64fre.ni_release.220506-1250
+Internet Explorer:	9.11.22621.0
+Physical memory:	32GB
+User name:	hywell
+Database:	C:\Users\hywell\Downloads\qldc-pi-ia-databases_from_veolia-prod\veolia-ia-review.icmm
+Database version:	2025.0
+Available disk space:	334.69GB
+Remote roots below database:	Yes
+User rights enabled for this database:	No
+Network roles enabled for this database:	No
+Working Folder:	C:\Users\hywell\AppData\Local\Innovyze\Working Folder
+Results Folder	C:\Users\hywell\AppData\Local\Innovyze\Results Folder
+Database identifier:	182E2A5A-54C7-4254-AA2D-FCDF7A9681DB
+NEP (iws) Folder:	C:\Users\hywell\AppData\Roaming\Innovyze\WorkgroupClient
+Available disk space:	334.69GB
+Current GIS:	MapXtreme
+Pathname:	C:\Program Files (x86)\Innovyze Workgroup Client 2025.0\InnovyzeWC.exe
+Property editor local timestamp:	 
+Property editor master timestamp:	 
+Default Printer:	\\SQLDCSVRPRN\QLDC_PRINT
+\\SQLDCSVRPRN\QLDC_PRINT:	CNS30M_D9EE6.DLL, 102.60, 2021/11/18 13:00, 2908160, 192.168.122.115:QLDC_PRINT_INPUT
+OneNote for Windows 10:	, Microsoft.Office.OneNote_16001.14326.22008.0_x64__8wekyb3d8bbwe_microsoft.onenoteim_S-1-5-21-1474892542-1883448526-1353397897-56005
+OneNote (Desktop):	, nul:
+Microsoft XPS Document Writer:	, PORTPROMPT:
+Microsoft Print to PDF:	, PORTPROMPT:
+Fax:	FXSDRV.DLL, 10.0.22621.3880, 2024/08/27 23:07, 90112, SHRFAX:
+Adobe PDF:	PSCRIPT5.DLL, 10.0.22621.3810, 2024/08/27 23:06, 667648, Documents\*.pdf

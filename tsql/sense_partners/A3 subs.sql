@@ -1,0 +1,1 @@
+//SET user_text_1=spatial.polygon_id, user_text_1_flag = '#I' WHERE user_number_1 is null;

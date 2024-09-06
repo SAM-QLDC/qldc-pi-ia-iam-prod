@@ -1,0 +1,1 @@
+SELECT WHERE cover_locked = TRUE
