@@ -1,0 +1,14 @@
+Currently data for IAM is sitting on my C drive
+I'd like to have IAM to look at a Workgroup Data Server.
+
+The workgroup Data Server is a server component which manages access the workgroup databases by InfoAsset (IAM). The data server is designed to improve the performance and reliability of database operations in a Worgroup environment.
+
+The data server is normally installed on a different computer to those used to run InfoWorks ICM. The same data server can be used for many different databases.
+
+To connect to the data server, Workgroup Clients need to know the hostname of the machine running the data server and the port to connect to. This information can be specified when you open an existing workgroup database or create a new workgroup database.
+
+Workgroup Data Server - Administration:
+https://downloads-emea.info360.com/WorkgroupProducts/Platypus/2023.2/WorkgroupDataServerAdministrationAug2023.pdf
+
+System Requirements - Workgroup Data Server
+https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/System-Requirements-for-InfoWorks-ICM.html#:~:text=ICM-,Workgroup%20Data%20Server,-*%C2%B2
