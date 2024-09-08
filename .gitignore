@@ -6,6 +6,7 @@ ruby/
 draft/
 images/
 excel/
+temp/
 
 # ignore files ext
 **/*.log
