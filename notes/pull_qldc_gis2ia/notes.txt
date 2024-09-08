@@ -1,0 +1,6 @@
+Karelias work
+\\sqldcfile01\P&I\3Waters\Asset Management\Data\Asset Data Management
+
+script
+O:\Projects\EAM
+
