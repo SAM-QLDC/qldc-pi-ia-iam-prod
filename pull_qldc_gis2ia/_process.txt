@@ -1,0 +1,24 @@
+outline general process to how the data flows
+
+current
+1. developers submit as built drawings to QGIS
+2. fme workbench picks up the latest data since the last time the process was run
+3. CSV file created that can be imported into Tech 1
+4. CSV file is checked for errors and manually updated to make sure Tech1 accepts the data without errors
+
+future
+1. developers submit as built drawings to QGIS
+2. GIS data is imported into IAM
+3. processes run to clean up data
+ a. missing data such as ground levels, inverts etc
+ b. condition data updated 
+ c. maybe risk
+ d. new assets identified - exported to GIS (as and when)
+ e. network connectivity check
+ f. Tech1 lookup lists checked
+4. export to CSV for Tech 1
+
+other
+A. check whats in Tech1 against GIS
+B. find out how good the GIS data is - perhaphs there are alot of updates
+C. if lots of updates then perhaps need to look at the hydraulic models
