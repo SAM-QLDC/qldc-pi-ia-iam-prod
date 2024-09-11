@@ -1,0 +1,530 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\ArcGIS\Data Interoperability for ArcGIS Pro\fme.exe" C:\Github\qldc-pi-ia-iam-prod\pull_agol\features.fmw
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGISPRO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="1716.77 1233.63"
+#!   DOC_TOP_LEFT="-579.255 -1762.51"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="23636"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="f4f4470d-2e31-477a-b409-a4a62b6c5c60"
+#!   FME_DOCUMENT_PRIORGUID=""
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="ESRI"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2023.1.1.1 (20231011 - Build 23636 - WIN64)"
+#!   LAST_SAVE_DATE="2024-09-10T12:21:06"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="ArcGISPro30"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-1012.51 -568.756"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <CONNECTIONS>
+#! <CONNECTION
+#!   NAME="hywell Esri ArcGIS Online"
+#!   TYPE="WEB"
+#!   FAMILY="Esri ArcGIS Online"
+#!   USAGE="INTERNAL"
+#! />
+#! </CONNECTIONS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbXX0="
+#! >
+#! <PARAMETER_INFO>
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="15"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;hr { height: 1px; border-width: 0; }&#10;li.unchecked::marker { content: &quot;\2610&quot;; }&#10;li.checked::marker { content: &quot;\2612&quot;; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;need to have publishing privilages in AGOL&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="464.50709819598183 -1434.3893438934388"
+#!   TOP_LEFT="464.50709819598183 -1434.3893438934388"
+#!   BOTTOM_RIGHT="762.509029968253 -1639.3910939109389"
+#!   BOUNDING_RECT="464.50709819598183 -1434.3893438934388 298.00193177227118 205.00175001750017"
+#!   ORDER="500000000000011"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{d59d3515-5d71-423e-8355-e37b5bb758ae}"
+#!   COLOUR="0.83529411764705885,0.71764705882352942,0.58039215686274515,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="8"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="6"
+#!   NAME="extract: scheme boundaries"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-579.25474430039662 -528.87909379093753"
+#!   ORDER="500000000000003"
+#!   PALETTE_COLOR="Reader/Writer"
+#!   BOTTOM_RIGHT="1137.5113751137512 -1150.0115001150011"
+#!   BOUNDING_RECT="-579.25474430039662 -528.87909379093753 1716.7661194141479 621.13240632406348"
+#!   STICKY="true"
+#!   COLOUR="0.83529411764705885,0.71764705882352942,0.58039215686274515,1"
+#!   CONTENTS="5 4 10 2 11 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="7"
+#!   NAME="load: my content in agol (test)"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-579.25474430039662 -1287.5128751287511"
+#!   ORDER="500000000000004"
+#!   PALETTE_COLOR="Reader/Writer"
+#!   BOTTOM_RIGHT="846.8834688346883 -1762.5126251262514"
+#!   BOUNDING_RECT="-579.25474430039662 -1287.5128751287511 1426.1382131350849 474.9997499975002"
+#!   STICKY="true"
+#!   COLOUR="0.83529411764705885,0.71764705882352942,0.58039215686274515,1"
+#!   CONTENTS="15 13 12 8 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="2"
+#!   TYPE="Creator"
+#!   VERSION="6"
+#!   POSITION="-487.25474430039662 -657.37909379093753"
+#!   BOUNDING_RECT="-487.25474430039662 -657.37909379093753 430 71"
+#!   ORDER="500000000000001"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="CREATED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATEND" PARM_VALUE="no"/>
+#!     <XFORM_PARM PARM_NAME="COORDS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="CRE_ATTR" PARM_VALUE="_creation_instance"/>
+#!     <XFORM_PARM PARM_NAME="GEOM" PARM_VALUE="&lt;lt&gt;?xml&lt;space&gt;version=&lt;quote&gt;1.0&lt;quote&gt;&lt;space&gt;encoding=&lt;quote&gt;US_ASCII&lt;quote&gt;&lt;space&gt;standalone=&lt;quote&gt;no&lt;quote&gt;&lt;space&gt;?&lt;gt&gt;&lt;lt&gt;geometry&lt;space&gt;dimension=&lt;quote&gt;2&lt;quote&gt;&lt;gt&gt;&lt;lt&gt;null&lt;solidus&gt;&lt;gt&gt;&lt;lt&gt;&lt;solidus&gt;geometry&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOMTYPE" PARM_VALUE="Geometry Object"/>
+#!     <XFORM_PARM PARM_NAME="NUM" PARM_VALUE="1"/>
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Creator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="4"
+#!   TYPE="FeatureReader"
+#!   VERSION="14"
+#!   POSITION="215.62715627156285 -657.37909379093753"
+#!   BOUNDING_RECT="215.62715627156285 -657.37909379093753 546.88046880468778 71"
+#!   ORDER="500000000000002"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="&lt;SCHEMA&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.fme_data_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="attribute{}.native_data_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_format_short_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_format_long_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_schema_handling" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="Scheme&lt;space&gt;Boundaries"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="OBJECTID" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="WaterType" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Ownership" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Delivery" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Maintenance" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="DecisionDate" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="VolumeRestrictions" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Notes" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="GlobalID" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="created_user" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="created_date" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_user" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_date" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Area" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Length" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;OTHER&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <OUTPUT_FEAT NAME="INITIATOR"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_matched_records" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="4"/>
+#!     <XFORM_ATTR ATTR_NAME="_creation_instance" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="_reader_error" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_AGOL_ADV_PARM_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_ARCGISONLINEFEATURES_EXPOSE_FORMAT_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_CREATE_FEATURE_TABLES_FROM_DATA" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_EXPOSE_ATTRS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURESERVICE" PARM_VALUE="Queenstown Lakes District Council Open Data/Three Waters Schemes(c2b563e7c41f44a6ad5d04efd337d118)"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURES_PER_REQUEST" PARM_VALUE="1000"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FORMAT_GUID" PARM_VALUE="YES"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_NC" PARM_VALUE="hywell&lt;space&gt;Esri&lt;space&gt;ArcGIS&lt;space&gt;Online"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_RESOLVE_DOMAINS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_TABLELIST" PARM_VALUE="&quot;Scheme Boundaries&quot;"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_USE_SEARCH_ENVELOPE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTES" PARM_VALUE="&quot;Scheme Boundaries&quot;,&quot;OBJECTID,WaterType,Name,Ownership,Delivery,Maintenance,DecisionDate,VolumeRestrictions,Notes,GlobalID,created_user,created_date,last_edited_user,last_edited_date,Shape__Area,Shape__Length&quot;"/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_TYPES" PARM_VALUE="&quot;Scheme Boundaries&quot;,&quot;int32,int16,varchar(255),varchar(255),varchar(255),varchar(255),datetime,int32,varchar(255),varchar(38),varchar(255),datetime,varchar(255),datetime,real64,real64&quot;"/>
+#!     <XFORM_PARM PARM_NAME="ATTRS_TO_EXPOSE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="Only Use Result"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_IGNORE_NULLS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="AVAILABLE_FEATURE_TYPES" PARM_VALUE="_FEATUREREADER_OPTIONAL_FTTR_%&quot;Scheme Boundaries&quot;"/>
+#!     <XFORM_PARM PARM_NAME="CACHE_TIMEOUT_HRS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="COMBINE_GEOM" PARM_VALUE="Use Result"/>
+#!     <XFORM_PARM PARM_NAME="CONSTRAINTS_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DATASET" PARM_VALUE="&lt;lt&gt;Unused&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="DYNGROUP_0" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ENABLE_CACHE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="FEATURETYPES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="FORCE_REFRESH_OUTPUTS" PARM_VALUE="on_parm_change"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT" PARM_VALUE="ARCGISONLINEFEATURES"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_ATTRIBUTE_TYPES" PARM_VALUE="&quot;Scheme Boundaries&quot;,"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_DIRECTIVES" PARM_VALUE="METAFILE,ARCGISONLINEFEATURES"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_PARAMS" PARM_VALUE="ARCGISONLINEFEATURES_USE_SEARCH_ENVELOPE,&quot;OPTIONAL ACTIVEDISCLOSUREGROUP SEARCH_ENVELOPE_MINX%SEARCH_ENVELOPE_MINY%SEARCH_ENVELOPE_MAXX%SEARCH_ENVELOPE_MAXY%SEARCH_ENVELOPE_COORDINATE_SYSTEM%CLIP_TO_ENVELOPE%SEARCH_METHOD%SEARCH_METHOD_FILTER%SEARCH_ORDER%SEARCH_FEATURE%DUMMY_SEARCH_ENVELOPE_PARAMETER&quot;,ARCGISONLINEFEATURES&lt;space&gt;Use&lt;space&gt;Search&lt;space&gt;Envelope,ARCGISONLINEFEATURES_FORMAT_GUID,&quot;OPTIONAL NO_EDIT TEXT&quot;,ARCGISONLINEFEATURES&lt;space&gt;,ARCGISONLINEFEATURES_RESOLVE_DOMAINS,&quot;OPTIONAL CHOICE Yes%No&quot;,ARCGISONLINEFEATURES&lt;space&gt;Resolve&lt;space&gt;Domains:,ARCGISONLINEFEATURES_FEATURES_PER_REQUEST,&quot;OPTIONAL INTEGER&quot;,ARCGISONLINEFEATURES&lt;space&gt;Features&lt;space&gt;Per&lt;space&gt;Request:,ARCGISONLINEFEATURES_AGOL_ADV_PARM_GROUP,&quot;OPTIONAL DISCLOSUREGROUP FEATURES_PER_REQUEST&quot;,ARCGISONLINEFEATURES&lt;space&gt;Advanced,ARCGISONLINEFEATURES_ARCGISONLINEFEATURES_EXPOSE_FORMAT_ATTRS,&quot;OPTIONAL LITERAL EXPOSED_ATTRS ARCGISONLINEFEATURES%Source&quot;,ARCGISONLINEFEATURES&lt;space&gt;Additional&lt;space&gt;Attributes&lt;space&gt;to&lt;space&gt;Expose:,ARCGISONLINEFEATURES_FEATURESERVICE,&quot;OPTIONAL WEB_SELECT DEPENDENT_PARAMETERS:NC%MODULE:arcgisonlinefeatures.arcgisonlinefeatureswebselector%SELECTION:ITEMS_ONLY%SHOWID%KEYVALS:mode,onlinereader%NO_SEARCH&quot;,ARCGISONLINEFEATURES&lt;space&gt;Feature&lt;space&gt;Service:,ARCGISONLINEFEATURES_TABLELIST,&quot;IGNORE TEXT&quot;,ARCGISONLINEFEATURES&lt;space&gt;Layers:,ARCGISONLINEFEATURES_NC,&quot;OPTIONAL NAMED_CONNECTION_ENCODED &quot;&quot;Esri ArcGIS Online&quot;&quot;&quot;,ARCGISONLINEFEATURES&lt;space&gt;ArcGIS&lt;space&gt;Online&lt;space&gt;Connection:,ARCGISONLINEFEATURES_QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,&quot;OPTIONAL NO_EDIT TEXT&quot;,ARCGISONLINEFEATURES&lt;space&gt;,ARCGISONLINEFEATURES_EXPOSE_ATTRS_GROUP,&quot;OPTIONAL DISCLOSUREGROUP ARCGISONLINEFEATURES_EXPOSE_FORMAT_ATTRS&quot;,ARCGISONLINEFEATURES&lt;space&gt;Schema&lt;space&gt;Attributes,ARCGISONLINEFEATURES_CREATE_FEATURE_TABLES_FROM_DATA,&quot;OPTIONAL NO_EDIT TEXT&quot;,ARCGISONLINEFEATURES&lt;space&gt;"/>
+#!     <XFORM_PARM PARM_NAME="FTTR_SEPARATOR" PARM_VALUE="SPACE"/>
+#!     <XFORM_PARM PARM_NAME="GENERIC_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="INTERACT" PARM_VALUE="NONE"/>
+#!     <XFORM_PARM PARM_NAME="MAX_FEATURES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="MERGE_HANDLING_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ORDER_RESULTS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUTPORTS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_FEATURES_DISPLAY" PARM_VALUE="Schema and Data Features"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_FEATURES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_PORTS_MODE" PARM_VALUE="PORTS_FROM_FTTR"/>
+#!     <XFORM_PARM PARM_NAME="PORTS_FROM_FTTR" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="READ_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="SELECTED_PORTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SINGLE_PORT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SUPPORTED_SPATIAL_INTERACTIONS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WHERE" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="FeatureReader"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="8"
+#!   TYPE="FeatureWriter"
+#!   VERSION="0"
+#!   POSITION="-210.50105676352109 -1434.3893438934388"
+#!   BOUNDING_RECT="-210.50105676352109 -1434.3893438934388 481.00418179477128 71"
+#!   ORDER="500000000000005"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="SUMMARY"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="_feature_types{}.count" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_feature_types{}.name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_dataset" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_total_features_written" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_AGOL_ADV_PARM_GROUP" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_ASYNC_WRITE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_DESTINATION_DATASETTYPE_VALIDATION" PARM_VALUE="Yes"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURESERVICE" PARM_VALUE="Scheme&lt;space&gt;Boundaries"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURES_PER_REQUEST" PARM_VALUE="1000"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURE_SERVICE_HANDLING" PARM_VALUE="CREATE_IF_MISSING"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FEATURE_SERVICE_SELECTION_SOURCE" PARM_VALUE="User"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_FOLDER_NAME" PARM_VALUE="IAM"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_NC" PARM_VALUE="hywell&lt;space&gt;Esri&lt;space&gt;ArcGIS&lt;space&gt;Online"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_TARGET_WKID" PARM_VALUE="102100"/>
+#!     <XFORM_PARM PARM_NAME="ARCGISONLINEFEATURES_USE_GLOBAL_ID" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="COORDSYS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="DATASET" PARM_VALUE="&lt;lt&gt;Unused&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="DATASET_ATTR" PARM_VALUE="_dataset"/>
+#!     <XFORM_PARM PARM_NAME="DYNGROUP_0" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="FEATURE_TYPES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="FEATURE_TYPE_LIST_ATTR" PARM_VALUE="_feature_types"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT" PARM_VALUE="ARCGISONLINEFEATURES"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_DIRECTIVES" PARM_VALUE="RUNTIME_MACROS,NC&lt;comma&gt;hywell&lt;lt&gt;space&lt;gt&gt;Esri&lt;lt&gt;space&lt;gt&gt;ArcGIS&lt;lt&gt;space&lt;gt&gt;Online&lt;comma&gt;FEATURE_SERVICE_SELECTION_SOURCE&lt;comma&gt;User&lt;comma&gt;FOLDER_NAME&lt;comma&gt;IAM&lt;comma&gt;GROUP_ID&lt;comma&gt;&lt;lt&gt;Unused&lt;gt&gt;&lt;comma&gt;FEATURESERVICE&lt;comma&gt;Scheme&lt;lt&gt;space&lt;gt&gt;Boundaries&lt;comma&gt;FEATURE_SERVICE_HANDLING&lt;comma&gt;CREATE_IF_MISSING&lt;comma&gt;TARGET_WKID&lt;comma&gt;102100&lt;comma&gt;AGOL_ADV_PARM_GROUP&lt;comma&gt;FME_DISCLOSURE_CLOSED&lt;comma&gt;FEATURES_PER_REQUEST&lt;comma&gt;1000&lt;comma&gt;USE_GLOBAL_ID&lt;comma&gt;No&lt;comma&gt;PRESERVE_GLOBALID&lt;comma&gt;&lt;lt&gt;Unused&lt;gt&gt;&lt;comma&gt;ASYNC_WRITE&lt;comma&gt;NO&lt;comma&gt;ASYNC_WRITE_WAIT&lt;comma&gt;&lt;lt&gt;Unused&lt;gt&gt;&lt;comma&gt;ASYNC_WRITE_TIMEOUT&lt;comma&gt;&lt;lt&gt;Unused&lt;gt&gt;&lt;comma&gt;DESTINATION_DATASETTYPE_VALIDATION&lt;comma&gt;Yes,METAFILE,ARCGISONLINEFEATURES"/>
+#!     <XFORM_PARM PARM_NAME="FORMAT_PARAMS" PARM_VALUE="ARCGISONLINEFEATURES_DESTINATION_DATASETTYPE_VALIDATION,&quot;OPTIONAL NO_EDIT TEXT&quot;,ARCGISONLINEFEATURES&lt;space&gt;,ARCGISONLINEFEATURES_FOLDER_NAME,&quot;OPTIONAL WEB_SELECT_ENCODED DEPENDENT_PARAMETERS:NC%SHOWID%PROMPTFORTITLE%NO_SEARCH%SINGLEDEPTH%ITEM_ICON:%MODULE:arcgisonlinefeatures.arcgisonlinefeatureswebselector%KEYVALS:mode,onlinewriter,target,folders&quot;,ARCGISONLINEFEATURES&lt;space&gt;Folder,ARCGISONLINEFEATURES_FEATURES_PER_REQUEST,&quot;OPTIONAL INTEGER&quot;,ARCGISONLINEFEATURES&lt;space&gt;Features&lt;space&gt;Per&lt;space&gt;Request:,ARCGISONLINEFEATURES_TARGET_WKID,&quot;OPTIONAL RANGE_SLIDER 2000%105000%0%OFF&quot;,ARCGISONLINEFEATURES&lt;space&gt;Target&lt;space&gt;WKID:,ARCGISONLINEFEATURES_ASYNC_WRITE,&quot;OPTIONAL ACTIVECHOICE_LOOKUP Yes,YES%No,NO,ASYNC_WRITE_WAIT,ASYNC_WRITE_TIMEOUT&quot;,ARCGISONLINEFEATURES&lt;space&gt;Asynchronous&lt;space&gt;Writes:,ARCGISONLINEFEATURES_FEATURE_SERVICE_HANDLING,&quot;OPTIONAL LOOKUP_CHOICE Use&lt;space&gt;Existing,USE_EXISTING%Create&lt;space&gt;If&lt;space&gt;Needed,CREATE_IF_MISSING%Overwrite,DROP_CREATE&quot;,ARCGISONLINEFEATURES&lt;space&gt;Feature&lt;space&gt;Service&lt;space&gt;Handling,ARCGISONLINEFEATURES_FEATURE_SERVICE_SELECTION_SOURCE,&quot;OPTIONAL ACTIVECHOICE_LOOKUP User&lt;space&gt;Content,User,GROUP_ID%Group,Group,FOLDER_NAME,FEATURE_SERVICE_HANDLING&quot;,ARCGISONLINEFEATURES&lt;space&gt;Item&lt;space&gt;Source,ARCGISONLINEFEATURES_AGOL_ADV_PARM_GROUP,&quot;OPTIONAL DISCLOSUREGROUP FEATURES_PER_REQUEST%USE_GLOBAL_ID%PRESERVE_GLOBALID%ASYNC_WRITE%ASYNC_WRITE_WAIT%ASYNC_WRITE_TIMEOUT&quot;,ARCGISONLINEFEATURES&lt;space&gt;Advanced,ARCGISONLINEFEATURES_FEATURESERVICE,&quot;OPTIONAL WEB_SELECT_ENCODED DEPENDENT_PARAMETERS:NC:FOLDER_NAME:GROUP_ID:FEATURE_SERVICE_SELECTION_SOURCE%SHOWID%PROMPTFORTITLE%NO_SEARCH%ITEM_ICON:%MODULE:arcgisonlinefeatures.arcgisonlinefeatureswebselector%KEYVALS:mode,onlinewriter,target,featureservices&quot;,ARCGISONLINEFEATURES&lt;space&gt;Feature&lt;space&gt;Service,ARCGISONLINEFEATURES_USE_GLOBAL_ID,&quot;OPTIONAL ACTIVECHOICE Yes%No,PRESERVE_GLOBALID&quot;,ARCGISONLINEFEATURES&lt;space&gt;Use&lt;space&gt;Global&lt;space&gt;IDs:,ARCGISONLINEFEATURES_NC,&quot;OPTIONAL NAMED_CONNECTION_ENCODED &quot;&quot;Esri ArcGIS Online&quot;&quot;&quot;,ARCGISONLINEFEATURES&lt;space&gt;ArcGIS&lt;space&gt;Online&lt;space&gt;Connection:"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="MORE_SUMMARY_ATTRS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NO_OUTPUT_PORTS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OUTPUTPORTS_GROUP" PARM_VALUE="FME_DISCLOSURE_CLOSED"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_PORTS" PARM_VALUE="&quot;&quot;"/>
+#!     <XFORM_PARM PARM_NAME="OUTPUT_PORTS_MODE" PARM_VALUE="NO_OUTPUT_PORTS"/>
+#!     <XFORM_PARM PARM_NAME="PER_EACH_INPUT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SELECTED_PORTS" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SUMMARY_ATTRS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TOTAL_FEATURES_WRITTEN_ATTR" PARM_VALUE="_total_features_written"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WRITER_DIRECTIVES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WRITER_FEATURE_TYPE_PARAMS" PARM_VALUE="Scheme&lt;space&gt;Boundaries:Scheme&lt;space&gt;Boundaries,ftp_feature_type_name,Scheme&lt;space&gt;Boundaries,ftp_writer,ARCGISONLINEFEATURES,ftp_geometry,arcgisonline_polygon,ftp_dynamic_schema,no,ftp_dynamic_feature_type_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_geometry_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_def_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_sources,&lt;lt&gt;lt&lt;gt&gt;Unused&lt;lt&gt;gt&lt;gt&gt;,ftp_attribute_source,1,ftp_user_attributes,OBJECTID&lt;comma&gt;Integer&lt;comma&gt;WaterType&lt;comma&gt;SmallInteger&lt;comma&gt;Name&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;Ownership&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;Delivery&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;Maintenance&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;DecisionDate&lt;comma&gt;Date&lt;comma&gt;VolumeRestrictions&lt;comma&gt;Integer&lt;comma&gt;Notes&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;GlobalID&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;38&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;created_user&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;created_date&lt;comma&gt;Date&lt;comma&gt;last_edited_user&lt;comma&gt;String&lt;lt&gt;openparen&lt;gt&gt;255&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;last_edited_date&lt;comma&gt;Date&lt;comma&gt;Shape__Area&lt;comma&gt;Double&lt;comma&gt;Shape__Length&lt;comma&gt;Double,ftp_user_attribute_values,&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;&lt;comma&gt;,ftp_format_parameters,arcgisonline_layer_group&lt;comma&gt;&lt;comma&gt;fme_feature_operation&lt;comma&gt;INSERT&lt;comma&gt;fme_table_handling&lt;comma&gt;USE_EXISTING&lt;comma&gt;fme_update_geometry&lt;comma&gt;&lt;lt&gt;lt&lt;gt&gt;Unused&lt;lt&gt;gt&lt;gt&gt;"/>
+#!     <XFORM_PARM PARM_NAME="WRITER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="WRITER_METAFILE" PARM_VALUE="ATTRIBUTE_CASE,ANY,ATTRIBUTE_INVALID_CHARS,&lt;lt&gt;&lt;gt&gt;|&lt;backslash&gt;&lt;backslash&gt;&lt;quote&gt;&lt;semicolon&gt;=:&lt;dollar&gt;?*&lt;closeparen&gt;&lt;openparen&gt;&lt;openbracket&gt;%#&lt;apos&gt;&lt;amp&gt;+-&lt;closebracket&gt;^~&lt;comma&gt;&lt;opencurly&gt;&lt;closecurly&gt;.&lt;solidus&gt;`!&lt;at&gt;,ATTRIBUTE_LENGTH,0,ATTR_TYPE_MAP,Integer&lt;comma&gt;fme_int32&lt;comma&gt;Integer&lt;comma&gt;fme_uint32&lt;comma&gt;Integer&lt;comma&gt;fme_int64&lt;comma&gt;Integer&lt;comma&gt;fme_uint64&lt;comma&gt;SmallInteger&lt;comma&gt;fme_int16&lt;comma&gt;Integer&lt;comma&gt;fme_uint16&lt;comma&gt;SmallInteger&lt;comma&gt;fme_uint8&lt;comma&gt;Single&lt;comma&gt;fme_real32&lt;comma&gt;Double&lt;comma&gt;fme_real64&lt;comma&gt;Date&lt;comma&gt;fme_datetime&lt;comma&gt;Date&lt;comma&gt;fme_date&lt;comma&gt;Date&lt;comma&gt;fme_time&lt;comma&gt;String&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_varchar&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;String&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_varbinary&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;String&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_char&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;String&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_binary&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;String&lt;openparen&gt;254&lt;closeparen&gt;&lt;comma&gt;fme_buffer&lt;comma&gt;String&lt;openparen&gt;254&lt;closeparen&gt;&lt;comma&gt;fme_binarybuffer&lt;comma&gt;String&lt;openparen&gt;254&lt;closeparen&gt;&lt;comma&gt;fme_xml&lt;comma&gt;String&lt;openparen&gt;254&lt;closeparen&gt;&lt;comma&gt;fme_json&lt;comma&gt;String&lt;comma&gt;fme_buffer&lt;comma&gt;OID&lt;comma&gt;fme_int32&lt;comma&gt;OID&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_int32&lt;comma&gt;Double&lt;comma&gt;&lt;quote&gt;fme_decimal&lt;openparen&gt;width&lt;comma&gt;decimal&lt;closeparen&gt;&lt;quote&gt;&lt;comma&gt;SmallInteger&lt;comma&gt;fme_boolean&lt;comma&gt;GUID&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_varchar&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;GlobalID&lt;openparen&gt;width&lt;closeparen&gt;&lt;comma&gt;fme_varchar&lt;openparen&gt;width&lt;closeparen&gt;,DEST_ILLEGAL_ATTR_LIST,,FEATURE_TYPE_CASE,ANY,FEATURE_TYPE_INVALID_CHARS,&lt;lt&gt;&lt;gt&gt;|&lt;backslash&gt;&lt;backslash&gt;&lt;quote&gt;&lt;semicolon&gt;=,FEATURE_TYPE_LENGTH,0,FEATURE_TYPE_LENGTH_INCLUDES_PREFIX,false,FEATURE_TYPE_RESERVED_WORDS,,FORMAT_METAFILE,$(FME_HOME_ENCODED)metafile&lt;backslash&gt;ARCGISONLINEFEATURES.fmf,FORMAT_NAME,ARCGISONLINEFEATURES,GEOM_MAP,arcgisonline_no_geom&lt;comma&gt;fme_no_geom&lt;comma&gt;arcgisonline_point&lt;comma&gt;fme_point&lt;comma&gt;arcgisonline_multipoint&lt;comma&gt;fme_point&lt;comma&gt;arcgisonline_point&lt;comma&gt;fme_text&lt;comma&gt;arcgisonline_polyline&lt;comma&gt;fme_line&lt;comma&gt;arcgisonline_polygon&lt;comma&gt;fme_polygon&lt;comma&gt;arcgisonline_polygon&lt;comma&gt;fme_rectangle&lt;comma&gt;arcgisonline_polygon&lt;comma&gt;fme_rounded_rectangle&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_solid&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_surface&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_raster&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_point_cloud&lt;comma&gt;arcgisonline_polygon&lt;comma&gt;fme_ellipse&lt;comma&gt;arcgisonline_polyline&lt;comma&gt;fme_arc&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_voxel_grid&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_feature_table&lt;comma&gt;arcgisonline_no_geom&lt;comma&gt;fme_collection,READER_ATTR_INDEX_TYPES,,READER_FORMAT_TYPE,PYTHON,READER_USES_DEF,yes,SOURCE,no,SUPPORTS_FEAT_TYPE_FANOUT,yes,SUPPORTS_MULTI_GEOM,no,WORKBENCH_CANNED_SCHEMA,,WRITER,ARCGISONLINEFEATURES,WRITER_ATTR_INDEX_TYPES,,WRITER_DEFLINE_PARMS,&lt;quote&gt;GUI&lt;space&gt;NAMEDGROUP&lt;space&gt;arcgisonline_layer_group&lt;space&gt;fme_feature_operation%fme_table_handling%fme_update_geometry&lt;space&gt;Layer&lt;quote&gt;&lt;comma&gt;&lt;comma&gt;&lt;quote&gt;GUI&lt;space&gt;ACTIVECHOICE_LOOKUP&lt;space&gt;fme_feature_operation&lt;space&gt;Insert&lt;comma&gt;INSERT&lt;comma&gt;fme_update_geometry%Update&lt;comma&gt;UPDATE&lt;comma&gt;fme_match_columns%Delete&lt;comma&gt;DELETE&lt;comma&gt;fme_update_geometry%Upsert&lt;comma&gt;UPSERT%&lt;lt&gt;at&lt;gt&gt;Value&lt;lt&gt;openparen&lt;gt&gt;fme_db_operation&lt;lt&gt;closeparen&lt;gt&gt;&lt;comma&gt;MULTIPLE&lt;space&gt;Feature&lt;space&gt;Operation&lt;quote&gt;&lt;comma&gt;INSERT&lt;comma&gt;&lt;quote&gt;GUI&lt;space&gt;ACTIVECHOICE_LOOKUP&lt;space&gt;fme_table_handling&lt;space&gt;Use&lt;lt&gt;space&lt;gt&gt;Existing&lt;comma&gt;USE_EXISTING%Truncate&lt;lt&gt;space&lt;gt&gt;Existing&lt;comma&gt;TRUNCATE_EXISTING&lt;space&gt;Feature&lt;space&gt;Type&lt;space&gt;Handling&lt;quote&gt;&lt;comma&gt;USE_EXISTING&lt;comma&gt;&lt;quote&gt;GUI&lt;space&gt;WHOLE_LINE&lt;space&gt;LOOKUP_CHOICE&lt;space&gt;fme_update_geometry&lt;space&gt;Yes&lt;comma&gt;YES%No&lt;comma&gt;NO&lt;space&gt;Update&lt;space&gt;Spatial&lt;space&gt;Column&lt;openparen&gt;s&lt;closeparen&gt;&lt;quote&gt;&lt;comma&gt;YES,WRITER_DEF_LINE_TEMPLATE,&lt;opencurly&gt;FME_GEN_GROUP_NAME&lt;closecurly&gt;&lt;comma&gt;arcgisonline_type&lt;comma&gt;&lt;opencurly&gt;FME_GEN_GEOMETRY&lt;closecurly&gt;&lt;comma&gt;arcgisonline_mode&lt;comma&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;comma&gt;arcgisonline_truncate_layer&lt;comma&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;quote&gt;&lt;comma&gt;fme_update_geometry&lt;comma&gt;YES&lt;comma&gt;fme_feature_operation&lt;comma&gt;INSERT&lt;comma&gt;fme_table_handling&lt;comma&gt;USE_EXISTING,WRITER_FORMAT_PARAMETER,NETWORK_AUTHENTICATION&lt;comma&gt;NO&lt;comma&gt;ATTRIBUTE_READING&lt;comma&gt;DEFLINE&lt;comma&gt;ADVANCED_PARMS&lt;comma&gt;&lt;quote&gt;ARCGISONLINEFEATURES_IN_FEATURES_PER_REQUEST&lt;space&gt;ARCGISONLINEFEATURES_OUT_FEATURES_PER_REQUEST&lt;space&gt;ARCGISONLINEFEATURES_OUT_PRESERVE_GLOBALID&lt;space&gt;ARCGISONLINEFEATURES_OUT_ASYNC_WRITE&lt;space&gt;ARCGISONLINEFEATURES_OUT_ASYNC_WRITE_WAIT&lt;space&gt;ARCGISONLINEFEATURES_OUT_ASYNC_WRITE_TIMEOUT&lt;quote&gt;&lt;comma&gt;FEATURE_TYPE_NAME&lt;comma&gt;Layer&lt;comma&gt;FEATURE_TYPE_DEFAULT_NAME&lt;comma&gt;Layer1,WRITER_FORMAT_TYPE,PYTHON,WRITER_HAS_DEFLINE_ATTRS,yes,WRITER_USES_DEF,yes"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="FeatureWriter"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="Junction"
+#!   VERSION="0"
+#!   POSITION="991.13353133531291 -845.1311563115629"
+#!   BOUNDING_RECT="991.13353133531291 -845.1311563115629 61 61"
+#!   ORDER="500000000000006"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="OBJECTID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WaterType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Ownership" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Delivery" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Maintenance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DecisionDate" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VolumeRestrictions" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Notes" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="GlobalID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="created_user" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="created_date" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_user" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_date" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Area" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Junction"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="12"
+#!   TYPE="Junction"
+#!   VERSION="0"
+#!   POSITION="-443.87640051695894 -1503.3902189021887"
+#!   BOUNDING_RECT="-443.87640051695894 -1503.3902189021887 61 61"
+#!   ORDER="500000000000007"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="23636"
+#! >
+#!     <OUTPUT_FEAT NAME="Output"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="OBJECTID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="WaterType" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Ownership" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Delivery" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Maintenance" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="DecisionDate" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="VolumeRestrictions" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Notes" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="GlobalID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="created_user" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="created_date" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_user" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="last_edited_date" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Area" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Shape__Length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="Junction_2"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="5"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="4"
+#!   SOURCE_PORT_DESC="fo 0 CREATED"
+#!   TARGET_PORT_DESC="fi 0 INITIATOR"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="14"
+#!   SOURCE_NODE="10"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="true"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="13"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="fo 0 Output"
+#!   TARGET_PORT_DESC="fi 0 Scheme&lt;lt&gt;space&lt;gt&gt;Boundaries"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="11"
+#!   SOURCE_NODE="4"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 1 Scheme&lt;lt&gt;space&lt;gt&gt;Boundaries"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0.30196078431372547,0.30196078431372547,0.30196078431372547,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION ArcGISPro30
+ARCGIS_COMPATIBILITY ARCGISPRO
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+WRITER_TYPE MULTI_WRITER
+WRITER_KEYWORD MULTI_DEST
+MULTI_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)features.log"
+LOG_APPEND NO
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE ESRI
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2023.1.1.1 (20231011 - Build 23636 - WIN64)"
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME features
+MACRO FME_VIEWER_APP fmedatainspector
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+Tcl2 proc Creator_CoordSysRemover {} {   global FME_CoordSys;   set FME_CoordSys {}; }
+MACRO Creator_XML     NOT_ACTIVATED
+MACRO Creator_CLASSIC NOT_ACTIVATED
+MACRO Creator_2D3D    2D_GEOMETRY
+MACRO Creator_COORDS  <Unused>
+INCLUDE [ if { {Geometry Object} == {Geometry Object} } {            puts {MACRO Creator_XML *} } ]
+INCLUDE [ if { {Geometry Object} == {2D Coordinate List} } {            puts {MACRO Creator_2D3D 2D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+INCLUDE [ if { {Geometry Object} == {3D Coordinate List} } {            puts {MACRO Creator_2D3D 3D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+INCLUDE [ if { {Geometry Object} == {2D Min/Max Box} } {            set comment {                We need to turn the COORDS which are                    minX minY maxX maxY                into a full polygon list of coordinates            };            set splitCoords [split [string trim {<Unused>}]];            if { [llength $splitCoords] > 4} {               set trimmedCoords {};               foreach item $splitCoords { if { $item != {} } {lappend trimmedCoords $item} };               set splitCoords $trimmedCoords;            };            if { [llength $splitCoords] != 4 } {                error {Creator: Coordinate list is expected to be a space delimited list of four numbers as 'minx miny maxx maxy' - `<Unused>' is invalid};            };            set minX [lindex $splitCoords 0];            set minY [lindex $splitCoords 1];            set maxX [lindex $splitCoords 2];            set maxY [lindex $splitCoords 3];            puts "MACRO Creator_COORDS $minX $minY $minX $maxY $maxX $maxY $maxX $minY $minX $minY";            puts {MACRO Creator_2D3D 2D_GEOMETRY};            puts {MACRO Creator_CLASSIC *} } ]
+FACTORY_DEF {$(Creator_XML)} CreationFactory    FACTORY_NAME { Creator_XML_Creator }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______        @Geometry(FROM_ENCODED_STRING,<lt>?xml<space>version=<quote>1.0<quote><space>encoding=<quote>US_ASCII<quote><space>standalone=<quote>no<quote><space>?<gt><lt>geometry<space>dimension=<quote>2<quote><gt><lt>null<solidus><gt><lt><solidus>geometry<gt>) }
+FACTORY_DEF {$(Creator_CLASSIC)} CreationFactory    FACTORY_NAME { Creator_CLASSIC_Creator }    $(Creator_2D3D) { $(Creator_COORDS) }    CREATE_AT_END { no }    OUTPUT { FEATURE_TYPE _____CREATED______ }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Creator_Cloner }    INPUT FEATURE_TYPE _____CREATED______        @Tcl2(Creator_CoordSysRemover)        @CoordSys()    NUMBER_OF_COPIES { 1 }    COPY_NUMBER_ATTRIBUTE { "_creation_instance" }    OUTPUT { FEATURE_TYPE Creator_CREATED        fme_feature_type Creator         }
+FACTORY_DEF * BranchingFactory   FACTORY_NAME "Creator_CREATED Brancher -1 5"   INPUT FEATURE_TYPE Creator_CREATED   TARGET_FACTORY "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   MAXIMUM_COUNT None   OUTPUT PASSED FEATURE_TYPE *
+# -------------------------------------------------------------------------
+FACTORY_DEF * TeeFactory   FACTORY_NAME "$(WB_CURRENT_CONTEXT)_CREATOR_BRANCH_TARGET"   INPUT FEATURE_TYPE *  OUTPUT FEATURE_TYPE *
+# -------------------------------------------------------------------------
+MACRO FeatureReader_OUTPUT_PORTS_ENCODED Scheme<space>Boundaries
+MACRO FeatureReader_DIRECTIVES AGOL_ADV_PARM_GROUP,,ARCGISONLINEFEATURES_EXPOSE_FORMAT_ATTRS,,CREATE_FEATURE_TABLES_FROM_DATA,Yes,EXPOSE_ATTRS_GROUP,,FEATURES_PER_REQUEST,1000,FEATURESERVICE,Queenstown<space>Lakes<space>District<space>Council<space>Open<space>Data<solidus>Three<space>Waters<space>Schemes<openparen>c2b563e7c41f44a6ad5d04efd337d118<closeparen>,FORMAT_GUID,YES,NC,hywell<lt>space<gt>Esri<lt>space<gt>ArcGIS<lt>space<gt>Online,QUERY_FEATURE_TYPES_FOR_MERGE_FILTERS,Yes,RESOLVE_DOMAINS,No,TABLELIST,<quote>Scheme<space>Boundaries<quote>,USE_SEARCH_ENVELOPE,NO
+# Always provide an INTERACTION, otherwise the factory defaults to ENVELOPE_INTERSECTS
+INCLUDE [if { ( {NONE} == {<Unused>} ) || ( {($INTERACT)} == {} ) } {             puts {MACRO FCTQUERY_INTERACTION_LINE FCTQUERY_INTERACTION NONE};          } else {             puts {MACRO FCTQUERY_INTERACTION_LINE FCTQUERY_INTERACTION "NONE"};          }         ]
+# Consolidate the attribute merge options to what the factory expects
+DEFAULT_MACRO FeatureReader_COMBINE_ATTRS
+INCLUDE [       if { {RESULT_ONLY} == {MERGE} } {          puts "MACRO FeatureReader_COMBINE_ATTRS <Unused>";       } else {          puts "MACRO FeatureReader_COMBINE_ATTRS RESULT_ONLY";       };    ]
+INCLUDE [    puts {DEFAULT_MACRO FeatureReaderDataset_FeatureReader <lt>Unused<gt>}; ]
+FACTORY_DEF {*} QueryFactory    FACTORY_NAME { FeatureReader }    INPUT  FEATURE_TYPE Creator_CREATED    $(FCTQUERY_INTERACTION_LINE)    COMBINE_ATTRIBUTES  { $(FeatureReader_COMBINE_ATTRS) }    IGNORE_NULLS        { <Unused> }    QUERYFCT_ATTRIBUTE_PREFIX { <Unused> }    COMBINE_GEOMETRY    { RESULT_ONLY }    ENABLE_CACHE        { NO }    QUERYFCT_TABLE_SEPARATOR { SPACE }    READER_TYPE         { ARCGISONLINEFEATURES  }    READER_DATASET      { "$(FeatureReaderDataset_FeatureReader)" }    QUERYFCT_IDS        { "" }    READER_DIRECTIVES   { METAFILE,ARCGISONLINEFEATURES }    QUERYFCT_OUTPUT     { "BASED_ON_CONNECTIONS" }    CONTINUE_ON_READER_ERROR YES    ORDER_RESULTS { "No" }    QUERYFCT_RESULT_TAGS { $(FeatureReader_OUTPUT_PORTS_ENCODED) }    QUERYFCT_SET_FME_FEATURE_TYPE YES    READER_PARAMS_WWJD     { $(FeatureReader_DIRECTIVES) }    TREAT_READER_PARAM_AMPERSANDS_AS_LITERALS YES    OUTPUT { READER_ERROR FEATURE_TYPE FeatureReader_<REJECTED>           }    OUTPUT Scheme<space>Boundaries FEATURE_TYPE FeatureReader_Scheme<space>Boundaries
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME FeatureReader_<Rejected> INPUT FEATURE_TYPE FeatureReader_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, FeatureReader<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Junction }    INPUT  FEATURE_TYPE FeatureReader_Scheme<space>Boundaries    OUTPUT { FEATURE_TYPE Junction_Output         }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { Junction_2 }    INPUT  FEATURE_TYPE Junction_Output    OUTPUT { FEATURE_TYPE Junction_2_Output         }
+# -------------------------------------------------------------------------
+INCLUDE [    puts {DEFAULT_MACRO FeatureWriterDataset_FeatureWriter <lt>Unused<gt>}; ]
+FACTORY_DEF {*} WriterFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FEATURE_TABLE_SHIM_SUPPORT INPUT_SPEC_ONLY    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    FACTORY_NAME { FeatureWriter }    WRITER_TYPE { ARCGISONLINEFEATURES }    WRITER_DATASET { "$(FeatureWriterDataset_FeatureWriter)" }    WRITER_SETTINGS { "RUNTIME_MACROS,NC<comma>hywell<lt>space<gt>Esri<lt>space<gt>ArcGIS<lt>space<gt>Online<comma>FEATURE_SERVICE_SELECTION_SOURCE<comma>User<comma>FOLDER_NAME<comma>IAM<comma>GROUP_ID<comma><lt>Unused<gt><comma>FEATURESERVICE<comma>Scheme<lt>space<gt>Boundaries<comma>FEATURE_SERVICE_HANDLING<comma>CREATE_IF_MISSING<comma>TARGET_WKID<comma>102100<comma>AGOL_ADV_PARM_GROUP<comma>FME_DISCLOSURE_CLOSED<comma>FEATURES_PER_REQUEST<comma>1000<comma>USE_GLOBAL_ID<comma>No<comma>PRESERVE_GLOBALID<comma><lt>Unused<gt><comma>ASYNC_WRITE<comma>NO<comma>ASYNC_WRITE_WAIT<comma><lt>Unused<gt><comma>ASYNC_WRITE_TIMEOUT<comma><lt>Unused<gt><comma>DESTINATION_DATASETTYPE_VALIDATION<comma>Yes,METAFILE,ARCGISONLINEFEATURES" }    WRITER_METAFILE { "ATTRIBUTE_CASE,ANY,ATTRIBUTE_INVALID_CHARS,<lt><gt>|<backslash><backslash><quote><semicolon>=:<dollar>?*<closeparen><openparen><openbracket>%#<apos><amp>+-<closebracket>^~<comma><opencurly><closecurly>.<solidus>`!<at>,ATTRIBUTE_LENGTH,0,ATTR_TYPE_MAP,Integer<comma>fme_int32<comma>Integer<comma>fme_uint32<comma>Integer<comma>fme_int64<comma>Integer<comma>fme_uint64<comma>SmallInteger<comma>fme_int16<comma>Integer<comma>fme_uint16<comma>SmallInteger<comma>fme_uint8<comma>Single<comma>fme_real32<comma>Double<comma>fme_real64<comma>Date<comma>fme_datetime<comma>Date<comma>fme_date<comma>Date<comma>fme_time<comma>String<openparen>width<closeparen><comma>fme_varchar<openparen>width<closeparen><comma>String<openparen>width<closeparen><comma>fme_varbinary<openparen>width<closeparen><comma>String<openparen>width<closeparen><comma>fme_char<openparen>width<closeparen><comma>String<openparen>width<closeparen><comma>fme_binary<openparen>width<closeparen><comma>String<openparen>254<closeparen><comma>fme_buffer<comma>String<openparen>254<closeparen><comma>fme_binarybuffer<comma>String<openparen>254<closeparen><comma>fme_xml<comma>String<openparen>254<closeparen><comma>fme_json<comma>String<comma>fme_buffer<comma>OID<comma>fme_int32<comma>OID<openparen>width<closeparen><comma>fme_int32<comma>Double<comma><quote>fme_decimal<openparen>width<comma>decimal<closeparen><quote><comma>SmallInteger<comma>fme_boolean<comma>GUID<openparen>width<closeparen><comma>fme_varchar<openparen>width<closeparen><comma>GlobalID<openparen>width<closeparen><comma>fme_varchar<openparen>width<closeparen>,DEST_ILLEGAL_ATTR_LIST,,FEATURE_TYPE_CASE,ANY,FEATURE_TYPE_INVALID_CHARS,<lt><gt>|<backslash><backslash><quote><semicolon>=,FEATURE_TYPE_LENGTH,0,FEATURE_TYPE_LENGTH_INCLUDES_PREFIX,false,FEATURE_TYPE_RESERVED_WORDS,,FORMAT_METAFILE,$(FME_HOME_ENCODED)metafile<backslash>ARCGISONLINEFEATURES.fmf,FORMAT_NAME,ARCGISONLINEFEATURES,GEOM_MAP,arcgisonline_no_geom<comma>fme_no_geom<comma>arcgisonline_point<comma>fme_point<comma>arcgisonline_multipoint<comma>fme_point<comma>arcgisonline_point<comma>fme_text<comma>arcgisonline_polyline<comma>fme_line<comma>arcgisonline_polygon<comma>fme_polygon<comma>arcgisonline_polygon<comma>fme_rectangle<comma>arcgisonline_polygon<comma>fme_rounded_rectangle<comma>arcgisonline_no_geom<comma>fme_solid<comma>arcgisonline_no_geom<comma>fme_surface<comma>arcgisonline_no_geom<comma>fme_raster<comma>arcgisonline_no_geom<comma>fme_point_cloud<comma>arcgisonline_polygon<comma>fme_ellipse<comma>arcgisonline_polyline<comma>fme_arc<comma>arcgisonline_no_geom<comma>fme_voxel_grid<comma>arcgisonline_no_geom<comma>fme_feature_table<comma>arcgisonline_no_geom<comma>fme_collection,READER_ATTR_INDEX_TYPES,,READER_FORMAT_TYPE,PYTHON,READER_USES_DEF,yes,SOURCE,no,SUPPORTS_FEAT_TYPE_FANOUT,yes,SUPPORTS_MULTI_GEOM,no,WORKBENCH_CANNED_SCHEMA,,WRITER,ARCGISONLINEFEATURES,WRITER_ATTR_INDEX_TYPES,,WRITER_DEFLINE_PARMS,<quote>GUI<space>NAMEDGROUP<space>arcgisonline_layer_group<space>fme_feature_operation%fme_table_handling%fme_update_geometry<space>Layer<quote><comma><comma><quote>GUI<space>ACTIVECHOICE_LOOKUP<space>fme_feature_operation<space>Insert<comma>INSERT<comma>fme_update_geometry%Update<comma>UPDATE<comma>fme_match_columns%Delete<comma>DELETE<comma>fme_update_geometry%Upsert<comma>UPSERT%<lt>at<gt>Value<lt>openparen<gt>fme_db_operation<lt>closeparen<gt><comma>MULTIPLE<space>Feature<space>Operation<quote><comma>INSERT<comma><quote>GUI<space>ACTIVECHOICE_LOOKUP<space>fme_table_handling<space>Use<lt>space<gt>Existing<comma>USE_EXISTING%Truncate<lt>space<gt>Existing<comma>TRUNCATE_EXISTING<space>Feature<space>Type<space>Handling<quote><comma>USE_EXISTING<comma><quote>GUI<space>WHOLE_LINE<space>LOOKUP_CHOICE<space>fme_update_geometry<space>Yes<comma>YES%No<comma>NO<space>Update<space>Spatial<space>Column<openparen>s<closeparen><quote><comma>YES,WRITER_DEF_LINE_TEMPLATE,<opencurly>FME_GEN_GROUP_NAME<closecurly><comma>arcgisonline_type<comma><opencurly>FME_GEN_GEOMETRY<closecurly><comma>arcgisonline_mode<comma><quote><quote><quote><quote><quote><quote><comma>arcgisonline_truncate_layer<comma><quote><quote><quote><quote><quote><quote><comma>fme_update_geometry<comma>YES<comma>fme_feature_operation<comma>INSERT<comma>fme_table_handling<comma>USE_EXISTING,WRITER_FORMAT_PARAMETER,NETWORK_AUTHENTICATION<comma>NO<comma>ATTRIBUTE_READING<comma>DEFLINE<comma>ADVANCED_PARMS<comma><quote>ARCGISONLINEFEATURES_IN_FEATURES_PER_REQUEST<space>ARCGISONLINEFEATURES_OUT_FEATURES_PER_REQUEST<space>ARCGISONLINEFEATURES_OUT_PRESERVE_GLOBALID<space>ARCGISONLINEFEATURES_OUT_ASYNC_WRITE<space>ARCGISONLINEFEATURES_OUT_ASYNC_WRITE_WAIT<space>ARCGISONLINEFEATURES_OUT_ASYNC_WRITE_TIMEOUT<quote><comma>FEATURE_TYPE_NAME<comma>Layer<comma>FEATURE_TYPE_DEFAULT_NAME<comma>Layer1,WRITER_FORMAT_TYPE,PYTHON,WRITER_HAS_DEFLINE_ATTRS,yes,WRITER_USES_DEF,yes" }    WRITER_FEATURE_TYPES { "Scheme<space>Boundaries:Scheme<space>Boundaries,ftp_feature_type_name,Scheme<space>Boundaries,ftp_writer,ARCGISONLINEFEATURES,ftp_geometry,arcgisonline_polygon,ftp_dynamic_schema,no,ftp_dynamic_feature_type_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_geometry_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_def_name_type,DYN_SCHEMA_PROP_AUTO,ftp_dynamic_schema_sources,<lt>lt<gt>Unused<lt>gt<gt>,ftp_attribute_source,1,ftp_user_attributes,OBJECTID<comma>Integer<comma>WaterType<comma>SmallInteger<comma>Name<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>Ownership<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>Delivery<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>Maintenance<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>DecisionDate<comma>Date<comma>VolumeRestrictions<comma>Integer<comma>Notes<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>GlobalID<comma>String<lt>openparen<gt>38<lt>closeparen<gt><comma>created_user<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>created_date<comma>Date<comma>last_edited_user<comma>String<lt>openparen<gt>255<lt>closeparen<gt><comma>last_edited_date<comma>Date<comma>Shape__Area<comma>Double<comma>Shape__Length<comma>Double,ftp_user_attribute_values,<comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma><comma>,ftp_format_parameters,arcgisonline_layer_group<comma><comma>fme_feature_operation<comma>INSERT<comma>fme_table_handling<comma>USE_EXISTING<comma>fme_update_geometry<comma><lt>lt<gt>Unused<lt>gt<gt>" }    WRITER_PARAMS { "AGOL_ADV_PARM_GROUP,FME_DISCLOSURE_CLOSED,ASYNC_WRITE,NO,DESTINATION_DATASETTYPE_VALIDATION,Yes,FEATURE_SERVICE_HANDLING,CREATE_IF_MISSING,FEATURE_SERVICE_SELECTION_SOURCE,User,FEATURES_PER_REQUEST,1000,FEATURESERVICE,Scheme<lt>space<gt>Boundaries,FOLDER_NAME,IAM,NC,hywell<lt>space<gt>Esri<lt>space<gt>ArcGIS<lt>space<gt>Online,TARGET_WKID,102100,USE_GLOBAL_ID,No" }    DATASET_ATTR { "_dataset" }    FEATURE_TYPE_LIST_ATTR { "_feature_types" }    TOTAL_FEATURES_WRITTEN_ATTR { "_total_features_written" }    OUTPUT_PORTS { "" }    INPUT Scheme<space>Boundaries FEATURE_TYPE Junction_2_Output  @FeatureType(ENCODED,@EvaluateExpression(FDIV,STRING_ENCODED,Scheme<space>Boundaries,FeatureWriter))
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+

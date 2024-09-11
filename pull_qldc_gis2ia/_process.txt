@@ -9,6 +9,7 @@ current
 future
 1. developers submit as built drawings to QGIS
 2. GIS data is imported into IAM
+ a. perhaps save a local copy as CSV files and points_array to store coords
 3. processes run to clean up data
  a. missing data such as ground levels, inverts etc
  b. condition data updated 
