@@ -43,38 +43,102 @@ puts 'class defined to help with the import parameters for each table'
 class ImporterClassNode
 	def ImporterClassNode.onEndRecordNode(obj)
 
-		# load float fields
-		inNodeX = obj['x'].to_f
-		inNodeY = obj['y'].to_f
-	
+		# load fields
+		inNodeX = obj['x'].to_f							#yes
+		inNodeY = obj['y'].to_f							#yes
+		inNodeZ = obj['ZCOORD'].to_f					#yes
+		inNodeI = obj['INVERTELEV'].to_f				#needs a calc
+		
+		inNodeDiam1 = obj['BARLDIAM'].to_i				#yes
+		inNodeDiam2 = obj['BARLDIM2'].to_i				#yes
+		inNodeCoverDiam = obj['CVRDIAM'].to_i	
+		inNodeCrit = obj['CRITICALITY'].to_i			#yes
+		
+		inNodeInstallDate = obj['INSTDATE']				#yes
+		inNodeAddDate = obj['ADDDTTM']					#yes
+		inNodeModDate = obj['MODDTTM']					#yes
+		inNodeCreatedDate = obj['created_date']			#yes
+		inNodeLastEditdate = obj['last_edited_date']	#yes
+
+		inNodeType = obj['ASSETTYPE']					#yes
+		inNodeDesc = obj['DESCR']
+		inNodeServ = obj['SERVSTAT']					#yes
+		inNodeOwn = obj['OWN']							#yes
+		inNode = obj['BARLSHAPE']
+		inNodeChmbMaterial = obj['CHAMATL']
+		inNodeCoverType = obj['CVRTYPE']
+		inNodeAsBuilt = obj['ASBUILT']
+		inNodeScheme = obj['SCHEME']					#yes
+		inNodeDataScr = obj['DATA_SRC']
+		inNodeComments = obj['COMMENTS']
+		inNodeAddBy = obj['ADDDBY']
+		inNodeModBy = obj['MODBY']
+		inNodeConfidence = obj['CONFIDENCE']
+		inNodeAllocate = obj['ALLOCATE']
+		inNodeCreatedUser = obj['created_user']
+		inNodeLastEditUser = obj['last_edited_user']
+		
 		@nodeTypeLookup = {		
 			'STDMH' => 'M',
-			'LAMPHOLE' => 'L'
-		}
-		
-		# load text fields
-		inNodeType = obj['ASSETTYPE']
-		
-		# load integer fields
-		#inNodeChmbDim2 = obj['chamber_dim_2'].to_i
+			'LAMPHOLE' => 'L',
+			'MANHOLE' => 'M',
+			'CHAMBER' => 'M',
+			'PRESSURE' => 'P',
+			'MISC' => 'U',		# check
+			'BOUND' => 'U',		# check
+			'END' => 'E',		# add new
+			'JUNCTION' => 'J'
+		}	
 		
 		# change some fields to upper case (if necessary)
 		if !inNodeType.nil?
 			inNodeType = inNodeType
 		end
 		
-		# loop through and change according to lookup list above
+		# if else list to set status
 		if @nodeTypeLookup.has_key? inNodeType
 			iamNodeNodeType = @nodeTypeLookup[inNodeType]
 		else
 			iamNodeNodeType = 'U'
 		end
 		
+		# manhole status
+		if inNodeServ == 'ABANDON'
+			iamNodeServ = 'AB'
+		elsif inNodeServ == 'REMOVED'
+			iamNodeServ = 'RE'
+		elsif inNodeServ == 'INACTIVE'
+			iamNodeServ = 'IA'
+		elsif inNodeServ == 'ACTIVE'
+			iamNodeServ = 'PU'
+		elsif inNodeServ == 'EXIST'
+			iamNodeServ = 'PU'			
+		elsif inNodeServ == 'PROPOSED'
+			iamNodeServ = 'TC'
+		else
+			iamNodeServ  = 'U'
+		end
+
 		# update various fields
 		obj['node_type'] = iamNodeNodeType
+		obj['system_type'] = 'F'
+		obj['status'] = iamNodeServ 
 		obj['x'] = inNodeX
 		obj['y'] = inNodeY
-		
+		obj['year_laid'] = inNodeInstallDate
+		obj['owner'] = inNodeOwn
+		obj['ground_level'] = inNodeZ
+		obj['cover_level'] = inNodeZ
+		obj['cover_dim'] = inNodeCoverDiam
+		obj['chamber_dim'] = inNodeDiam1
+		obj['chamber_dim_2'] = inNodeDiam2
+		obj['critical'] = inNodeCrit 
+		obj['user_date_1'] = inNodeAddDate
+		obj['user_date_2'] = inNodeModDate
+		obj['user_date_3'] = inNodeCreatedDate
+		obj['user_date_4'] = inNodeLastEditdate
+		obj['drainage_area'] = inNodeScheme
+
 	end
 end
 
