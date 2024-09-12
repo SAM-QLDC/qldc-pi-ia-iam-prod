@@ -47,7 +47,7 @@ class ImporterClassNode
 		inNodeX = obj['x'].to_f							#yes
 		inNodeY = obj['y'].to_f							#yes
 		inNodeZ = obj['ZCOORD'].to_f					#yes
-		inNodeI = obj['INVERTELEV'].to_f				#needs a calc
+		inNodeI = obj['INVERTELEV'].to_f
 		
 		inNodeDiam1 = obj['BARLDIAM'].to_i				#yes
 		inNodeDiam2 = obj['BARLDIM2'].to_i				#yes
@@ -61,33 +61,45 @@ class ImporterClassNode
 		inNodeLastEditdate = obj['last_edited_date']	#yes
 
 		inNodeType = obj['ASSETTYPE']					#yes
-		inNodeDesc = obj['DESCR']
+		inNodeDesc = obj['DESCR']						#yes
 		inNodeServ = obj['SERVSTAT']					#yes
 		inNodeOwn = obj['OWN']							#yes
-		inNode = obj['BARLSHAPE']
-		inNodeChmbMaterial = obj['CHAMATL']
-		inNodeCoverType = obj['CVRTYPE']
-		inNodeAsBuilt = obj['ASBUILT']
+		#inNode = obj['BARLSHAPE']
+		#inNodeChmbMaterial = obj['CHAMATL']
+		#inNodeCoverType = obj['CVRTYPE']
+		#inNodeAsBuilt = obj['ASBUILT']
 		inNodeScheme = obj['SCHEME']					#yes
-		inNodeDataScr = obj['DATA_SRC']
-		inNodeComments = obj['COMMENTS']
-		inNodeAddBy = obj['ADDDBY']
-		inNodeModBy = obj['MODBY']
-		inNodeConfidence = obj['CONFIDENCE']
-		inNodeAllocate = obj['ALLOCATE']
-		inNodeCreatedUser = obj['created_user']
-		inNodeLastEditUser = obj['last_edited_user']
+		#inNodeDataScr = obj['DATA_SRC']
+		inNodeComments = obj['COMMENTS']				#yes
+		#inNodeAddBy = obj['ADDDBY']
+		#inNodeModBy = obj['MODBY']
+		#inNodeConfidence = obj['CONFIDENCE']
+		#inNodeAllocate = obj['ALLOCATE']
+		#inNodeCreatedUser = obj['created_user']
+		#inNodeLastEditUser = obj['last_edited_user']
 		
-		@nodeTypeLookup = {		
-			'STDMH' => 'M',
+		@nodeTypeLookup = {	
+			'AIR' => 'AV',
+			'AIR VALVE' => 'AV',
+			'BEND' => 'G',
+			'BOUND' => 'U',
+			'CHAMBER' => 'M',
+			'COMM' => 'U',
+			'END' => 'E',
+			'FLOW' => 'M',
+			'JUNCTION' => 'J',
 			'LAMPHOLE' => 'L',
 			'MANHOLE' => 'M',
-			'CHAMBER' => 'M',
-			'PRESSURE' => 'P',
-			'MISC' => 'U',		# check
-			'BOUND' => 'U',		# check
-			'END' => 'E',		# add new
-			'JUNCTION' => 'J'
+			'MISC' => 'U',
+			'NON RETURN' => 'NRV',
+			'NORETURN' => 'NRV',
+			'OTHER' => 'U',
+			'PRESSURE' => 'Z',
+			'SEWERPUMP' => 'P',
+			'SEWERTREAT' => 'W',
+			'STDMH' => 'M',
+			'STOPV' => 'SV',
+			'VALVE' => 'V'
 		}	
 		
 		# change some fields to upper case (if necessary)
@@ -111,6 +123,8 @@ class ImporterClassNode
 			iamNodeServ = 'IA'
 		elsif inNodeServ == 'ACTIVE'
 			iamNodeServ = 'PU'
+		elsif inNodeServ == 'REDRAWN'
+			iamNodeServ = 'PU'
 		elsif inNodeServ == 'EXIST'
 			iamNodeServ = 'PU'			
 		elsif inNodeServ == 'PROPOSED'
@@ -118,27 +132,209 @@ class ImporterClassNode
 		else
 			iamNodeServ  = 'U'
 		end
+		
+		# loop CVRDIAM
+		if inNodeCoverDiam > 0
+			iamNodeCoverDiam = inNodeCoverDiam
+		else
+			iamNodeCoverDiam = ''
+		end
+		
+		# loop inNodeZ
+		if inNodeZ > 0
+			iamNodeZ = inNodeZ
+		else
+			iamNodeZ = ''
+		end
+		
+		# loop inNodeDiam1
+		if inNodeDiam1 > 0
+			iamNodeDiam1 = inNodeDiam1
+		else
+			iamNodeDiam1 = ''
+		end		
+			
+		# loop inNodeDiam2
+		if inNodeDiam2 > 0
+			iamNodeDiam2 = inNodeDiam2
+		else
+			iamNodeDiam2 = ''
+		end	
+
+		# chamber floor depth
+		if inNodeZ > 0 && inNodeI > 0
+			iamNodeCfd = (inNodeZ - inNodeI)*1000
+		else
+			iamNodeCfd = ''
+		end
 
 		# update various fields
 		obj['node_type'] = iamNodeNodeType
+		obj['cover_dim'] = iamNodeCoverDiam
+		obj['status'] = iamNodeServ
+		obj['ground_level'] = iamNodeZ
+		obj['cover_level'] = iamNodeZ
+		obj['shaft_dim'] = iamNodeDiam1
+		obj['shaft_dim_2'] = iamNodeDiam2
+		obj['chamber_floor_depth'] = iamNodeCfd
+		
 		obj['system_type'] = 'F'
-		obj['status'] = iamNodeServ 
+		
 		obj['x'] = inNodeX
 		obj['y'] = inNodeY
 		obj['year_laid'] = inNodeInstallDate
 		obj['owner'] = inNodeOwn
-		obj['ground_level'] = inNodeZ
-		obj['cover_level'] = inNodeZ
-		obj['cover_dim'] = inNodeCoverDiam
-		obj['chamber_dim'] = inNodeDiam1
-		obj['chamber_dim_2'] = inNodeDiam2
+
 		obj['critical'] = inNodeCrit 
 		obj['user_date_1'] = inNodeAddDate
 		obj['user_date_2'] = inNodeModDate
 		obj['user_date_3'] = inNodeCreatedDate
 		obj['user_date_4'] = inNodeLastEditdate
 		obj['drainage_area'] = inNodeScheme
+		obj['notes'] = inNodeDesc
+		obj['special_instructions'] = inNodeComments
 
+	end
+end
+
+# Pipe - from InfoAsset manhole
+
+class ImporterClassPipe
+	def ImporterClassPipe.onEndRecordPipe(obj)
+
+		# load fields
+		#inPipeCompkley = obj['COMPKEY']				#in config file
+		inPipeType = obj['ASSETTYPE']
+		inPipeDescription = obj['DESC']
+		inPipeStatus = obj['SERVSTAT']
+		inPipeOwn = obj['Own']
+		inPipeMaterial = obj['PIPEMATL']
+		inPipeLength = obj['PIPELEN'].to_f
+		inPipeDiamNom = obj['NOMDIAM'].to_i
+		inPipeDiamInt = obj['INTDIAM'].to_i
+		inPipeDiamExt = obj['OUTDIAM'].to_i
+		inPipeUsNodeId = obj['UPNODE']
+		inPipeUsInvert = obj['UPSELEV'].to_f
+		inPipeDsNodeId = obj['DWNNODE']
+		inPipeDsInvert = obj['DWNELEV'].to_f
+		inPipePipeClass = obj['CLASS']
+		inPipeYearLaid = obj['INSTDATE']
+		inPipeJunctionType = obj['JTTYPE']
+		inPipeManufacturer = obj['MANUFCT']
+		inPipeInstallationMethod = obj['INSTMTHD']
+		inPipeLiningMaterial = obj['LINEMATL']
+		inPipeLiningMethod = obj['LINEMTHD']
+		inPipeLiningDate = obj['LINEDATE']
+		inPipeAsBuilt = obj['ASBUILT']
+		inPipeScheme = obj['SCHEME']
+		inPipeDataScr = obj['DATA_SRC']
+		inPipeComments = obj['COMMENTS']
+		inPipeAddBy = obj['ADDDBY']
+		inPipeAddTtm = obj['ADDDTTM']
+		inPipeModBy = obj['MODBY']
+		inPipeModTtm = obj['MODDTTM']
+		inPipeConfidence = obj['CONFIDENCE']
+		inPipeCriticality = obj['CRITICALITY'].to_i
+		inPipeAllocate = obj['ALLOCATE']
+		inPipeOldGuid = obj['OLDGUID']
+		inPipeGlobalID = obj['GlobalID']
+		inPipeCreatedUser = obj['created_user']
+		inPipeCreatedDate = obj['created_date']
+		inPipeLastEditedUser = obj['last_edited_user']
+		inPipeLastEditedDate = obj['last_edited_date']
+		#inPipePointArray = obj['point_array']			#in config file
+		
+		# asset type
+		if inPipeType == 'SEWER'
+			iamPipeType = 'A'
+		elsif inPipeType == 'TRUNK'
+			iamPipeType = 'A'
+		elsif inPipeType == 'RISING'
+			iamPipeType = 'B'
+		elsif inPipeType == 'VENT'
+			iamPipeType = 'A'
+		elsif inPipeType == 'OUTFALL'
+			iamPipeType = 'A'
+		elsif inPipeType == 'LATGRAV'
+			iamPipeType = 'A'			
+		elsif inPipeType == 'MH'
+			iamPipeType = 'U'			
+		else
+			iamPipeType  = 'U'
+		end
+		
+		# pipe status
+		if inPipeStatus == 'ABANDON'
+			iamPipeStatus = 'AB'
+		elsif inPipeStatus == 'ACTIVE'
+			iamPipeStatus = 'INUSE'
+		elsif inPipeStatus == 'HOST'
+			iamPipeStatus = 'HO'
+		elsif inPipeStatus == 'REMOVED'
+			iamPipeStatus = 'RE'
+		elsif inPipeStatus == 'INACTIVE'
+			iamPipeStatus = 'Standby'
+		elsif inPipeStatus == 'EXIST'
+			iamPipeStatus = 'INUSE'	
+		else
+			iamPipeStatus  = 'U'
+		end
+
+		# lining method
+		if inPipeLiningMethod == 'CIPP'
+			iamPipeLiningMethod = 'CIP'
+		elsif inPipeLiningMethod == 'SPIRRAL'
+			iamPipeLiningMethod = 'SW'
+		elsif inPipeLiningMethod == 'Spiral Wound'
+			iamPipeLiningMethod = 'SW'
+		elsif inPipeLiningMethod == 'SLIP'
+			iamPipeLiningMethod = 'CP'
+		else
+			iamPipeLiningMethod  = ''
+		end
+		
+		# lining method
+		if inPipeLiningMaterial == 'PVC'
+			iamPipeLiningMaterial = 'PVC'
+		elsif inPipeLiningMaterial == 'EPOXY'
+			iamPipeLiningMaterial = 'EP'
+		elsif inPipeLiningMaterial == 'uPVC'
+			iamPipeLiningMaterial = 'PVC'
+		elsif inPipeLiningMaterial == 'CONCRETE'
+			iamPipeLiningMaterial = 'CO'
+		else
+			iamPipeLiningMaterial  = ''
+		end		
+		
+		# update various fields
+		obj['pipe_type'] = iamPipeType
+		obj['us_node_id'] = inPipeUsNodeId
+		obj['ds_node_id'] = inPipeDsNodeId
+		obj['notes'] = inPipeDescription
+		obj['status'] = iamPipeStatus
+		obj['owner'] = inPipeOwn
+		obj['system_type'] = 'F'
+		obj['shape'] = 'CP'
+		obj['shape_flag'] = 'AS'
+		obj['width'] = inPipeDiamNom					#prob more data for nominal
+		obj['pipe_material'] = inPipeMaterial
+		obj['lining_type'] =  iamPipeLiningMethod
+		obj['lining_material'] = iamPipeLiningMaterial
+		obj['us_invert'] = inPipeUsInvert
+		obj['ds_invert'] = inPipeDsInvert
+		obj['year_laid'] = inPipeYearLaid
+		obj['pipe_class'] = inPipePipeClass
+		obj['criticality'] = inPipeCriticality 
+		obj['user_text_1'] = inPipeUsNodeId
+		obj['user_text_2'] = inPipeDsNodeId
+		obj['user_date_1'] = inPipeAddTtm
+		obj['user_date_2'] = inPipeModTtm
+		obj['user_date_3'] = inPipeCreatedDate
+		obj['user_date_4'] = inPipeLastEditedDate
+		obj['drainage_area'] = inPipeScheme
+		obj['notes'] = inPipeDescription
+		obj['special_instructions'] = inPipeComments
+		
 	end
 end
 
@@ -146,40 +342,43 @@ end
 import_tables = Array.new
 
 import_tables.push ImportTable.new('csv', 'Node', 
-	folder + '\wastewater_config.cfg', folder + '\exports\wwManhole.csv', 
+	folder + '\wastewater_config.cfg', folder + '\exports\wwNodes.csv', 
 	ImporterClassNode)
+	
+import_tables.push ImportTable.new('csv', 'Pipe', 
+	folder + '\wastewater_config.cfg', folder + '\exports\wwMain.csv', 
+	ImporterClassPipe)
 	
 puts 'Import tables and config file setup'
 
-puts 'Start importing'
-
 # Set up params
-csv_options=Hash.new
-csv_options['Use Display Precision'] = false
-csv_options['Flag Fields '] = false
-csv_options['Multiple Files'] = true
-csv_options['Selection Only'] = false
-csv_options['Coordinate Arrays Format'] = 'Packed'
-csv_options['Other Arrays Format'] = 'Separate'
-csv_options['WGS84'] = false
-csv_options['Duplication Behaviour'] = 'Merge'
-csv_options['Delete Missing Objects'] = true
-csv_options['Update Links From Points'] = false
-csv_options['Default Value Flag'] = '#S'
-csv_options['Set Value Flag'] = '#A'
+node_options=Hash.new
+node_options['Use Display Precision'] = false
+node_options['Update Based On Asset ID'] = true
+node_options['Flag Fields '] = false
+node_options['Multiple Files'] = true
+node_options['Selection Only'] = false
+node_options['Coordinate Arrays Format'] = 'Packed'
+node_options['Other Arrays Format'] = 'Separate'
+node_options['WGS84'] = false
+node_options['Duplication Behaviour'] = 'Merge'
+node_options['Delete Missing Objects'] = true
+node_options['Update Links From Points'] = false
+node_options['Default Value Flag'] = '#S'
+node_options['Set Value Flag'] = '#A'
 
 puts 'specific import options defined'
 
 ## import tables into IAM
 # Loop over table configs
 import_tables.each{|table_info|
-	csv_options['Callback Class'] = table_info.cb_class
+	node_options['Callback Class'] = table_info.cb_class
 	
 	# Do the import
 	net.odic_import_ex(
 		table_info.tbl_format,	# input table format
 		table_info.cfg_file,	# field mapping config file
-		csv_options,				# specified options override the default options
+		node_options,			# specified options override the default options
 		table_info.in_table,	# import to IAM table name
 		table_info.csv_file		# import from table name
 	)
