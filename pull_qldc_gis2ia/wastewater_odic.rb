@@ -247,84 +247,242 @@ class ImporterClassPipe
 		# asset type
 		if inPipeType == 'SEWER'
 			iamPipeType = 'A'
+			iamPipeTypeFlag = '#A'				
 		elsif inPipeType == 'TRUNK'
 			iamPipeType = 'A'
+			iamPipeTypeFlag = '#A'				
 		elsif inPipeType == 'RISING'
 			iamPipeType = 'B'
+			iamPipeTypeFlag = '#A'				
 		elsif inPipeType == 'VENT'
 			iamPipeType = 'A'
+			iamPipeTypeFlag = '#A'				
 		elsif inPipeType == 'OUTFALL'
 			iamPipeType = 'A'
+			iamPipeTypeFlag = '#A'				
 		elsif inPipeType == 'LATGRAV'
-			iamPipeType = 'A'			
+			iamPipeType = 'A'
+			iamPipeTypeFlag = '#A'			
 		elsif inPipeType == 'MH'
-			iamPipeType = 'U'			
+			iamPipeType = 'U'
+			iamPipeTypeFlag = 'XX'			
 		else
 			iamPipeType  = 'U'
+			iamPipeTypeFlag = 'XX'
 		end
 		
 		# pipe status
 		if inPipeStatus == 'ABANDON'
 			iamPipeStatus = 'AB'
+			iamPipeStatusFlag = '#A'
 		elsif inPipeStatus == 'ACTIVE'
 			iamPipeStatus = 'INUSE'
+			iamPipeStatusFlag = '#A'
 		elsif inPipeStatus == 'HOST'
 			iamPipeStatus = 'HO'
+			iamPipeStatusFlag = 'AS'
 		elsif inPipeStatus == 'REMOVED'
 			iamPipeStatus = 'RE'
+			iamPipeStatusFlag = '#A'
 		elsif inPipeStatus == 'INACTIVE'
 			iamPipeStatus = 'Standby'
+			iamPipeStatusFlag = '#A'
 		elsif inPipeStatus == 'EXIST'
-			iamPipeStatus = 'INUSE'	
+			iamPipeStatus = 'INUSE'
+			iamPipeStatusFlag = 'AS'
 		else
 			iamPipeStatus  = 'U'
+			iamPipeStatusFlag = 'XX'
 		end
 
 		# lining method
 		if inPipeLiningMethod == 'CIPP'
 			iamPipeLiningMethod = 'CIP'
+			iamPipeLiningMethodFlag = '#A'
 		elsif inPipeLiningMethod == 'SPIRRAL'
 			iamPipeLiningMethod = 'SW'
+			iamPipeLiningMethodFlag = '#A'
 		elsif inPipeLiningMethod == 'Spiral Wound'
 			iamPipeLiningMethod = 'SW'
+			iamPipeLiningMethodFlag = '#A'
 		elsif inPipeLiningMethod == 'SLIP'
 			iamPipeLiningMethod = 'CP'
+			iamPipeLiningMethodFlag = 'AS'
 		else
 			iamPipeLiningMethod  = ''
+			iamPipeLiningMethodFlag = 'XX'
 		end
 		
 		# lining method
 		if inPipeLiningMaterial == 'PVC'
 			iamPipeLiningMaterial = 'PVC'
+			iamPipeLiningMaterialFlag = '#A'
 		elsif inPipeLiningMaterial == 'EPOXY'
 			iamPipeLiningMaterial = 'EP'
+			iamPipeLiningMaterialFlag = '#A'
 		elsif inPipeLiningMaterial == 'uPVC'
-			iamPipeLiningMaterial = 'PVC'
+			iamPipeLiningMaterial = 'UPVC'
+			iamPipeLiningMaterialFlag = '#A'
 		elsif inPipeLiningMaterial == 'CONCRETE'
 			iamPipeLiningMaterial = 'CO'
+			iamPipeLiningMaterialFlag = '#A'
 		else
 			iamPipeLiningMaterial  = ''
-		end		
+			iamPipeLiningMaterialFlag = 'XX'
+		end
 		
+		# pipe materials
+		if inPipeMaterial == 'AC'
+			iamPipeMaterial = 'AC'
+			iamPipeMaterialFlag = '#A'	
+		elsif inPipeMaterial == 'ALK'
+			iamPipeMaterial = 'ALK'
+			iamPipeMaterialFlag = '#A'	
+		elsif inPipeMaterial == 'CI'
+			iamPipeMaterial = 'CI'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'CLSTEEL'
+			iamPipeMaterial = 'CLS'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'CONC'
+			iamPipeMaterial = 'CP'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'DI'
+			iamPipeMaterial = 'DI'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'EW'
+			iamPipeMaterial = 'VC'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'FIBGLASS'
+			iamPipeMaterial = 'FB'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'HDPE'
+			iamPipeMaterial = 'HDPE'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'MDPE'
+			iamPipeMaterial = 'MDPE'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'MPVC'
+			iamPipeMaterial = 'MPVC'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'PE'
+			iamPipeMaterial = 'PE'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'PE100'
+			iamPipeMaterial = 'PE'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'POLYETHYLENE (PE100)'
+			iamPipeMaterial = 'PE'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'POLYVINYL CHLORIDE'
+			iamPipeMaterial = 'PVC'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'PP'
+			iamPipeMaterial = 'PP'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'PVC'
+			iamPipeMaterial = 'PVC'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'SSTEEL'
+			iamPipeMaterial = 'SS'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'STAINLESS STEEL'
+			iamPipeMaterial = 'SS'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'STEEL'
+			iamPipeMaterial = 'SS'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'STRUCTURAL LINER UPVC'
+			iamPipeMaterial = 'UPVC'	
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'U - POLYVINYL CHLORIDE'
+			iamPipeMaterial = 'UPVC'
+			iamPipeMaterialFlag = '#A'				
+		elsif inPipeMaterial == 'UNK'
+			iamPipeMaterial = 'XXX'
+			iamPipeMaterialFlag = 'XX'	
+		elsif inPipeMaterial == 'UPVC'
+			iamPipeMaterial = 'UPVC'
+			iamPipeMaterialFlag = '#A'	
+		elsif inPipeMaterial == 'UPVCLINE'
+			iamPipeMaterial = 'UPVC'
+			iamPipeMaterialFlag = '#A'			
+		else
+			iamPipeMaterial = 'XXX'
+			iamPipeMaterialFlag = 'XX'
+		end
+		
+		# loop us inverts
+		if inPipeUsInvert > 0
+			iamPipeUsInvert = inPipeUsInvert
+			iamPipeUsInvertFlag = '#A'
+		else
+			iamPipeUsInvert = ''
+			iamPipeUsInvertFlag = 'XX'
+		end
+		
+		# loop ds inverts
+		if inPipeDsInvert > 0
+			iamPipeDsInvert = inPipeDsInvert
+			iamPipeDsInvertFlag = '#A'
+		else
+			iamPipeDsInvert = ''
+			iamPipeDsInvertFlag = 'XX'
+		end
+		
+		# loop through criticality
+		if inPipeCriticality > 0
+			iamPipeCriticality = inPipeCriticality
+			iamPipeCriticalityFlag = '#A'
+		else
+			iamPipeCriticality = ''
+			iamPipeCriticalityFlag = 'XX'
+		end
+		
+		# loop through diameters
+		# should really use internal diameters
+		if inPipeDiamNom > 0
+			iamPipeDiamNom = inPipeDiamNom
+			iamPipeDiamNomFlag = '#A'
+			iamPipeHeightNom = inPipeDiamNom
+			iamPipeHeightNomFlag = 'AS'
+		else
+			iamPipeDiamNom = ''
+			iamPipeDiamNomFlag = 'XX'
+			iamPipeHeightNom = ''
+			iamPipeHeightNomFlag = 'XX'
+		end
+	
 		# update various fields
 		obj['pipe_type'] = iamPipeType
+		obj['pipe_type_flag'] = iamPipeTypeFlag
 		obj['us_node_id'] = inPipeUsNodeId
 		obj['ds_node_id'] = inPipeDsNodeId
 		obj['notes'] = inPipeDescription
 		obj['status'] = iamPipeStatus
+		obj['status_flag'] = iamPipeStatusFlag
 		obj['owner'] = inPipeOwn
 		obj['system_type'] = 'F'
 		obj['shape'] = 'CP'
 		obj['shape_flag'] = 'AS'
-		obj['width'] = inPipeDiamNom					#prob more data for nominal
-		obj['pipe_material'] = inPipeMaterial
+		obj['width'] = iamPipeDiamNom
+		obj['width_flag'] = iamPipeDiamNomFlag
+		obj['height'] = iamPipeHeightNom
+		obj['height_flag'] = iamPipeHeightNomFlag		
+		obj['pipe_material'] = iamPipeMaterial
+		obj['pipe_material_flag'] = iamPipeMaterialFlag
 		obj['lining_type'] =  iamPipeLiningMethod
+		obj['lining_type_flag'] =  iamPipeLiningMethodFlag
 		obj['lining_material'] = iamPipeLiningMaterial
-		obj['us_invert'] = inPipeUsInvert
-		obj['ds_invert'] = inPipeDsInvert
+		obj['lining_material_flag'] = iamPipeLiningMaterialFlag
+		obj['us_invert'] = iamPipeUsInvert
+		obj['us_invert_flag'] = iamPipeUsInvertFlag
+		obj['ds_invert'] = iamPipeDsInvert
+		obj['ds_invert_flag'] = iamPipeDsInvertFlag
 		obj['year_laid'] = inPipeYearLaid
 		obj['pipe_class'] = inPipePipeClass
-		obj['criticality'] = inPipeCriticality 
+		obj['criticality'] = iamPipeCriticality 
+		obj['criticality_flag'] = iamPipeCriticalityFlag
 		obj['user_text_1'] = inPipeUsNodeId
 		obj['user_text_2'] = inPipeDsNodeId
 		obj['user_date_1'] = inPipeAddTtm
