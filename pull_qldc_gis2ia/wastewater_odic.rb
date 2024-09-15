@@ -85,7 +85,7 @@ class ImporterClassNode
 			'BOUND' => 'U',
 			'CHAMBER' => 'M',
 			'COMM' => 'U',
-			'END' => 'E',
+			'END' => 'HSE',
 			'FLOW' => 'M',
 			'JUNCTION' => 'J',
 			'LAMPHOLE' => 'L',
@@ -110,82 +110,152 @@ class ImporterClassNode
 		# if else list to set status
 		if @nodeTypeLookup.has_key? inNodeType
 			iamNodeNodeType = @nodeTypeLookup[inNodeType]
+			iamNodeNodeTypeFlag = '#A'
 		else
 			iamNodeNodeType = 'U'
+			iamNodeNodeTypeFlag = 'XX'
 		end
 		
 		# manhole status
 		if inNodeServ == 'ABANDON'
 			iamNodeServ = 'AB'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'A'
+			iamNodeSystemTypeFlag = '#A'
 		elsif inNodeServ == 'REMOVED'
 			iamNodeServ = 'RE'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'A'
+			iamNodeSystemTypeFlag = '#A'
 		elsif inNodeServ == 'INACTIVE'
 			iamNodeServ = 'IA'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'A'
+			iamNodeSystemTypeFlag = '#A'
 		elsif inNodeServ == 'ACTIVE'
 			iamNodeServ = 'PU'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'F'
+			iamNodeSystemTypeFlag = '#A'
 		elsif inNodeServ == 'REDRAWN'
 			iamNodeServ = 'PU'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'F'
+			iamNodeSystemTypeFlag = '#A'
 		elsif inNodeServ == 'EXIST'
-			iamNodeServ = 'PU'			
+			iamNodeServ = 'PU'	
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'F'
+			iamNodeSystemTypeFlag = '#A'			
 		elsif inNodeServ == 'PROPOSED'
 			iamNodeServ = 'TC'
+			iamNodeServFlag = '#A'
+			iamNodeSystemType = 'A'
+			iamNodeSystemTypeFlag = '#A'
 		else
 			iamNodeServ  = 'U'
+			iamNodeServFlag = 'XX'
+			iamNodeSystemType = 'U'
+			iamNodeSystemTypeFlag = 'XX'
 		end
 		
 		# loop CVRDIAM
 		if inNodeCoverDiam > 0
 			iamNodeCoverDiam = inNodeCoverDiam
+			iamNodeCoverDiamFlag = '#A'
 		else
 			iamNodeCoverDiam = ''
+			iamNodeCoverDiamFlag = 'XX'
 		end
 		
 		# loop inNodeZ
 		if inNodeZ > 0
 			iamNodeZ = inNodeZ
+			iamNodeZFlag = '#A'
 		else
 			iamNodeZ = ''
+			iamNodeZFlag = 'XX'
 		end
 		
 		# loop inNodeDiam1
 		if inNodeDiam1 > 0
 			iamNodeDiam1 = inNodeDiam1
+			iamNodeDiam1Flag = '#A'
 		else
 			iamNodeDiam1 = ''
+			iamNodeDiam1Flag = 'XX'
 		end		
 			
 		# loop inNodeDiam2
 		if inNodeDiam2 > 0
 			iamNodeDiam2 = inNodeDiam2
+			iamNodeDiam2Flag = '#A'
 		else
 			iamNodeDiam2 = ''
+			iamNodeDiam2Flag = 'XX'
 		end	
 
 		# chamber floor depth
 		if inNodeZ > 0 && inNodeI > 0
 			iamNodeCfd = (inNodeZ - inNodeI)*1000
+			iamNodeCfdFlag = '#A'		
 		else
 			iamNodeCfd = ''
+			iamNodeCfdFlag = '#D'
 		end
-
+		
+		# flag install year field
+		if inNodeInstallDate != nil
+			iamNodeInstallDate = inNodeInstallDate
+			iamNodeInstallDateFlag = '#A'
+		else
+			iamNodeInstallDate = ''
+			iamNodeInstallDateFlag = 'XX'		
+		end
+		
+		# flag owner field
+		if inNodeOwn != nil
+			iamNodeOwn = inNodeOwn
+			iamNodeOwnFlag = '#A'
+		else
+			iamNodeOwn = 'QLDC'
+			iamNodeOwnFlag = 'XX'	
+		end
+		
+		# flag criticality field
+		if inNodeCrit > 0
+			iamNodeCrit = inNodeCrit
+			iamNodeCritFlag = '#A'
+		else
+			iamNodeCrit = ''
+			iamNodeCritFlag = 'XX'
+		end
+		
 		# update various fields
 		obj['node_type'] = iamNodeNodeType
+		obj['node_type_flag'] = iamNodeNodeTypeFlag
 		obj['cover_dim'] = iamNodeCoverDiam
+		obj['cover_dim_flag'] = iamNodeCoverDiamFlag
 		obj['status'] = iamNodeServ
-		obj['ground_level'] = iamNodeZ
+		obj['status_flag'] = iamNodeServFlag
 		obj['cover_level'] = iamNodeZ
+		obj['cover_level_flag'] = iamNodeZFlag
 		obj['shaft_dim'] = iamNodeDiam1
+		obj['shaft_dim_flag'] = iamNodeDiam1Flag
 		obj['shaft_dim_2'] = iamNodeDiam2
+		obj['shaft_dim_2_flag'] = iamNodeDiam2Flag
 		obj['chamber_floor_depth'] = iamNodeCfd
-		
-		obj['system_type'] = 'F'
-		
+		obj['chamber_floor_depth_flag'] = iamNodeCfdFlag
+		obj['system_type'] = iamNodeSystemType
+		obj['system_type_flag'] = iamNodeSystemTypeFlag
 		obj['x'] = inNodeX
 		obj['y'] = inNodeY
-		obj['year_laid'] = inNodeInstallDate
-		obj['owner'] = inNodeOwn
-
-		obj['critical'] = inNodeCrit 
+		obj['year_laid'] = iamNodeInstallDate
+		obj['year_laid_flag'] = iamNodeInstallDateFlag
+		obj['owner'] = iamNodeOwn
+		obj['owner_flag'] = iamNodeOwnFlag
+		obj['critical'] = iamNodeCrit
+		obj['critical_flag'] = iamNodeCritFlag
 		obj['user_date_1'] = inNodeAddDate
 		obj['user_date_2'] = inNodeModDate
 		obj['user_date_3'] = inNodeCreatedDate
@@ -245,24 +315,16 @@ class ImporterClassPipe
 		#inPipePointArray = obj['point_array']			#in config file
 		
 		# asset type
-		if inPipeType == 'SEWER'
-			iamPipeType = 'A'
-			iamPipeTypeFlag = '#A'				
-		elsif inPipeType == 'TRUNK'
-			iamPipeType = 'A'
-			iamPipeTypeFlag = '#A'				
-		elsif inPipeType == 'RISING'
-			iamPipeType = 'B'
-			iamPipeTypeFlag = '#A'				
-		elsif inPipeType == 'VENT'
-			iamPipeType = 'A'
-			iamPipeTypeFlag = '#A'				
-		elsif inPipeType == 'OUTFALL'
-			iamPipeType = 'A'
-			iamPipeTypeFlag = '#A'				
-		elsif inPipeType == 'LATGRAV'
+		if inPipeType == 'SEWER' || 
+			inPipeType == 'TRUNK' || 
+			inPipeType == 'VENT' || 
+			inPipeType == 'OUTFALL' || 
+			inPipeType == 'LATGRAV'
 			iamPipeType = 'A'
 			iamPipeTypeFlag = '#A'			
+		elsif inPipeType == 'RISING'
+			iamPipeType = 'B'
+			iamPipeTypeFlag = '#A'												
 		elsif inPipeType == 'MH'
 			iamPipeType = 'U'
 			iamPipeTypeFlag = 'XX'			
@@ -275,24 +337,38 @@ class ImporterClassPipe
 		if inPipeStatus == 'ABANDON'
 			iamPipeStatus = 'AB'
 			iamPipeStatusFlag = '#A'
+			iamSystemType = 'A'
+			iamSystemTypeFlag = '#A'
 		elsif inPipeStatus == 'ACTIVE'
 			iamPipeStatus = 'INUSE'
 			iamPipeStatusFlag = '#A'
+			iamSystemType = 'F'
+			iamSystemTypeFlag = '#A'
 		elsif inPipeStatus == 'HOST'
 			iamPipeStatus = 'HO'
-			iamPipeStatusFlag = 'AS'
+			iamPipeStatusFlag = 'XX'
+			iamSystemType = 'F'
+			iamSystemTypeFlag = 'XX'
 		elsif inPipeStatus == 'REMOVED'
 			iamPipeStatus = 'RE'
 			iamPipeStatusFlag = '#A'
+			iamSystemType = 'A'
+			iamSystemTypeFlag = '#A'
 		elsif inPipeStatus == 'INACTIVE'
 			iamPipeStatus = 'Standby'
 			iamPipeStatusFlag = '#A'
+			iamSystemType = 'A'
+			iamSystemTypeFlag = '#A'
 		elsif inPipeStatus == 'EXIST'
 			iamPipeStatus = 'INUSE'
 			iamPipeStatusFlag = 'AS'
+			iamSystemType = 'F'
+			iamSystemTypeFlag = '#A'
 		else
 			iamPipeStatus  = 'U'
 			iamPipeStatusFlag = 'XX'
+			iamSystemType = 'U'
+			iamSystemTypeFlag = 'XX'
 		end
 
 		# lining method
@@ -462,7 +538,8 @@ class ImporterClassPipe
 		obj['status'] = iamPipeStatus
 		obj['status_flag'] = iamPipeStatusFlag
 		obj['owner'] = inPipeOwn
-		obj['system_type'] = 'F'
+		obj['system_type'] = iamSystemType
+		obj['system_type_flag'] = iamSystemTypeFlag
 		obj['shape'] = 'CP'
 		obj['shape_flag'] = 'AS'
 		obj['width'] = iamPipeDiamNom
