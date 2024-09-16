@@ -1,5 +1,7 @@
 # update fields within current geoplan network with estimated condition grades
 
+# notes: this ruby script is to be run on the eser interface ie the geoplan it will generate exepected lifetimes and and estimate based on Vaughan simplified condition rating table
+
 ## libraries
 require 'date'
 
@@ -19,42 +21,45 @@ curyear = Time.now.strftime('%Y').to_i
 ## looping and updating each asset
 ro = net.row_objects('cams_pipe').each do |ro|
 
+	### wastewater lifetimes from old IAM networks
 	if ro.pipe_material == 'UPVC'
-		lifetime = 100
+		lifetime = 80
 	elsif ro.pipe_material == 'PVC'
-		lifetime = 100
+		lifetime = 80
 	elsif ro.pipe_material == 'VC'
-		lifetime = 120
+		lifetime = 80
 	elsif ro.pipe_material == 'AC'
-		lifetime = 65
+		lifetime = 50
 	elsif ro.pipe_material == 'CP'
-		lifetime = 90
+		lifetime = 50
 	elsif ro.pipe_material == 'MPVC'
-		lifetime = 100	
+		lifetime = 	80
 	elsif ro.pipe_material == 'CLS'
-		lifetime = 90		
+		lifetime = 	50	
 	elsif ro.pipe_material == 'HDPE'
-		lifetime = 100	
+		lifetime = 	80
 	elsif ro.pipe_material == 'MDPE'
-		lifetime = 100	
+		lifetime = 	80
 	elsif ro.pipe_material == 'SS'
-		lifetime = 80	
-	elsif ro.pipe_material == 'XXX'
-		lifetime = 70
+		lifetime = 	80
 	elsif ro.pipe_material == 'CI'
 		lifetime = 80
-	elsif ro.pipe_material == 'FB'
-		lifetime = 65
-	elsif ro.pipe_material == 'ALK'
+
+	### these values have been guessed
+	elsif ro.pipe_material == 'XXX'
 		lifetime = 70
-	elsif ro.pipe_material == 'PE'
-		lifetime = 100
-	elsif ro.pipe_material == 'PP'
-		lifetime = 100
-	elsif ro.pipe_material == 'DI'
-		lifetime = 100
-	else
+	elsif ro.pipe_material == 'FB'
 		lifetime = 80
+	elsif ro.pipe_material == 'ALK'
+		lifetime = 80
+	elsif ro.pipe_material == 'PE'
+		lifetime = 80
+	elsif ro.pipe_material == 'PP'
+		lifetime = 80
+	elsif ro.pipe_material == 'DI'
+		lifetime = 80
+	else
+		lifetime = 70
 	end
 
 	if ro.year_laid == nil
@@ -66,18 +71,28 @@ ro = net.row_objects('cams_pipe').each do |ro|
 	percRUL = (age.to_f / lifetime.to_f) * 100
 	
 	if percRUL <= 57
+		ro['lifetime'] = lifetime
+		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 1
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 66
+		ro['lifetime'] = lifetime
+		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 2
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 75
+		ro['lifetime'] = lifetime
+		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 3
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 93
+		ro['lifetime'] = lifetime
+		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 4	
 		ro['likelihood_score_flag'] = 'AS'
 	else
+		ro['lifetime'] = lifetime
+		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 5
 		ro['likelihood_score_flag'] = 'AS'
 	end
