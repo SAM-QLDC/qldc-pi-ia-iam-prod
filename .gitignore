@@ -7,6 +7,7 @@ draft/
 images/
 excel/
 temp/
+gis/
 
 # ignore files ext
 **/*.log
