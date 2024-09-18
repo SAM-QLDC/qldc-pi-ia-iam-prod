@@ -13,6 +13,7 @@ gis/
 **/*.log
 *.zip
 *.recover
+*.ffs
 
 # infoasset snapshot files
 **/*.isfd
