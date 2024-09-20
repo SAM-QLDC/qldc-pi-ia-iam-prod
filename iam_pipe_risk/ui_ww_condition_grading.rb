@@ -21,6 +21,31 @@ curyear = Time.now.strftime('%Y').to_i
 ## looping and updating each asset
 ro = net.row_objects('cams_pipe').each do |ro|
 
+	### wastewater lifetime extensions
+	if ro.lining_type == 'SW' && ro.lining_material == 'PVC'
+		extend = 30
+	elsif ro.lining_type == 'SW'
+		extend = 30
+	elsif ro.lining_type == 'CP' && ro.lining_material == 'PVC'
+		extend = 30
+	elsif ro.lining_type == 'CP'
+		extend = 30
+	elsif ro.lining_type == 'CIP' && ro.lining_material == 'PVC'
+		extend = 30
+	elsif ro.lining_type == 'CIP' && ro.lining_material == 'EP'
+		extend = 30
+	elsif ro.lining_type == 'CIP'
+		extend = 30
+	elsif ro.lining_material == 'UPVC'
+		extend = 30
+	elsif ro.lining_material == 'PVC'
+		extend = 30
+	elsif ro.lining_material == 'CO'
+		extend = 30	
+	else
+		extend = 0
+	end
+
 	### wastewater lifetimes from old IAM networks
 	if ro.pipe_material == 'UPVC'
 		lifetime = 80
@@ -68,30 +93,31 @@ ro = net.row_objects('cams_pipe').each do |ro|
 		age = (curyear + 1) - ro.year_laid.strftime('%Y').to_i
 	end
 	
-	percRUL = (age.to_f / lifetime.to_f) * 100
+	lifetime_estended = (lifetime.to_f + extend.to_f)
+	percRUL = (age.to_f / lifetime_estended) * 100
 	
 	if percRUL <= 57
-		ro['lifetime'] = lifetime
+		ro['lifetime'] = lifetime_estended
 		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 1
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 66
-		ro['lifetime'] = lifetime
+		ro['lifetime'] = lifetime_estended
 		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 2
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 75
-		ro['lifetime'] = lifetime
+		ro['lifetime'] = lifetime_estended
 		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 3
 		ro['likelihood_score_flag'] = 'AS'
 	elsif percRUL <= 93
-		ro['lifetime'] = lifetime
+		ro['lifetime'] = lifetime_estended
 		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 4	
 		ro['likelihood_score_flag'] = 'AS'
 	else
-		ro['lifetime'] = lifetime
+		ro['lifetime'] = lifetime_estended
 		ro['lifetime_flag'] = 'AS'
 		ro['likelihood_score'] = 5
 		ro['likelihood_score_flag'] = 'AS'
