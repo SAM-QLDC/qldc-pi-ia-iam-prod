@@ -417,7 +417,7 @@ end
 import_tables = Array.new
 
 import_tables.push ImportTable.new('csv', 'valve', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsBackflow.csv', 
+	folder + '\water supply_config.cfg', folder + '\exports\wsValve.csv', 
 	ImporterClassValve)
 	
 import_tables.push ImportTable.new('csv', 'hydrant', 
