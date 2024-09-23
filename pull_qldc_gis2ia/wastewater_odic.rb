@@ -577,11 +577,13 @@ end
 import_tables = Array.new
 
 import_tables.push ImportTable.new('csv', 'Node', 
-	folder + '\wastewater_config.cfg', folder + '\exports\wwNodes.csv', 
+	folder + '\exports\wastewater\wastewater_config.cfg', 
+	folder + '\exports\wastewater\wwNodes.csv', 
 	ImporterClassNode)
 	
 import_tables.push ImportTable.new('csv', 'Pipe', 
-	folder + '\wastewater_config.cfg', folder + '\exports\wwMain.csv', 
+	folder + '\exports\wastewater\wastewater_config.cfg', 
+	folder + '\exports\wastewater\wwMain.csv', 
 	ImporterClassPipe)
 	
 puts 'Import tables and config file setup'

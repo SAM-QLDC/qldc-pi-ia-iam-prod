@@ -744,27 +744,35 @@ end
 import_tables = Array.new
 
 import_tables.push ImportTable.new('csv', 'valve', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsValve.csv', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsValve.csv', 
 	ImporterClassValve)
 	
 import_tables.push ImportTable.new('csv', 'hydrant', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsHydrant.csv', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsHydrant.csv', 
 	ImporterClassHydrant)
 	
 import_tables.push ImportTable.new('csv', 'meter', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsMeter.csv', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsMeter.csv', 
 	ImporterClassMeter)	
 	
 import_tables.push ImportTable.new('csv', 'fitting', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsNode.csv', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsNode.csv', 
 	ImporterClassFitting)	
 	
 import_tables.push ImportTable.new('csv', 'pipe', 
-	folder + '\water supply_config.cfg', folder + '\exports\wsPipes.csv', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsPipes.csv', 
 	ImporterClassPipe)
 	
-#import_tables.push ImportTable.new('csv', 'zone', 
-#	folder + '\water supply_config.cfg', folder + '\exports\wsPressureZone.csv', 
+
+	
+#import_tables.push ImportTable.new('shp', 'zone', 
+#	folder + '\exports\water supply_config.cfg', 
+#	folder + '\exports\water supply\wsPressureZone.csv', 
 #	ImporterClassZone)
 	
 puts 'Import tables and config file setup'
