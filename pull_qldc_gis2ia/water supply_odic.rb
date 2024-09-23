@@ -21,7 +21,6 @@ class ImportTable
 end
 puts 'class defined to help with the import parameters for each table'
 
-## Attribute Conversion from InfoAsset CSV Files into InfoWorks ICM
 # Callback Classes
 
 class ImporterClassValve
@@ -36,7 +35,7 @@ class ImporterClassValve
 		inValveLevel = obj['ZCOORD']
 		inValveInvert = obj['INVERTELEV']
 		inValveValveStatus = obj['VALVESTAT']
-		inValveZ = obj['VALVESZ']
+		inValveZ = obj['VALVESZ'].to_i
 		inValveSerial = obj['SERNO']
 		inValveModel = obj['MODELNO']
 		inValveManufacturer = obj['MANUFCT']
@@ -97,6 +96,55 @@ class ImporterClassValve
 		end
 		obj['date_installed'] = iamValveInstallDate
 		obj['date_installed_flag'] = iamValveInstallDateFlag
+		
+		## elevation
+		if inValveLevel != nil
+			iamValveLevel = inValveLevel
+			iamValveLevelFlag = '#A'
+		else
+			iamValveLevel = ''
+			iamValveLevelFlag = 'XX'
+		end
+		obj['elevation'] = iamValveLevel
+		obj['elevation_flag'] = iamValveLevelFlag
+		
+		## manufacturer
+		if inValveManufacturer != nil
+			iamValveManufacturer = inValveManufacturer
+			iamValveManufacturerFlag = '#A'
+		else
+			iamValveManufacturer = ''
+			iamValveManufacturerFlag = 'XX'
+		end
+		obj['manufacturer'] = iamValveManufacturer
+		obj['manufacturer_flag'] = iamValveManufacturerFlag
+		
+		## status
+		if inValveValveStatus != nil
+			iamValveValveStatus = inValveValveStatus.capitalize
+			iamValveValveStatusFlag = '#A'
+		else
+			iamValveValveStatus = 'Unknown'
+			iamValveValveStatusFlag = 'XX'
+		end
+		obj['status'] = iamValveValveStatus
+		obj['status_flag'] = iamValveValveStatusFlag
+
+		## diameter
+		if inValveZ > 0
+			iamValveZ = inValveZ
+			iamValveZFlag = '#A'
+		else
+			iamValveZ = ''
+			iamValveZFlag = 'XX'
+		end
+		obj['diameter'] = iamValveZ
+		obj['diameter_flag'] = iamValveZFlag
+		
+		obj['user_date_1'] = inValveDatetimeAdd
+		obj['user_date_2'] = inValveDatetimeMod
+		obj['user_date_3'] = inValveDatetimeCreated
+		obj['user_date_4'] = inValveDatetimeEdited
 		
 	end
 end
@@ -171,6 +219,33 @@ class ImporterClassHydrant
 		end
 		obj['date_installed'] = iamHydrantInstallDate
 		obj['date_installed_flag'] = iamHydrantInstallDateFlag
+		
+		## elevation
+		if inHydrantLevel != nil
+			iamHydrantLevel = inHydrantLevel
+			iamHydrantLevelFlag = '#A'
+		else
+			iamHydrantLevel = ''
+			iamHydrantLevelFlag = 'XX'
+		end
+		obj['elevation'] = iamHydrantLevel
+		obj['elevation_flag'] = iamHydrantLevelFlag
+		
+		## manufacturer
+		if inHydrantManufacturer != nil
+			iamHydrantManufacturer = inHydrantManufacturer
+			iamHydrantManufacturerFlag = '#A'
+		else
+			iamHydrantManufacturer = ''
+			iamHydrantManufacturerFlag = 'XX'
+		end
+		obj['manufacturer'] = iamHydrantManufacturer
+		obj['manufacturer_flag'] = iamHydrantManufacturerFlag		
+		
+		obj['user_date_1'] = inHydrantDatetimeAdd
+		obj['user_date_2'] = inHydrantDatetimeMod
+		obj['user_date_3'] = inHydrantDatetimeCreated
+		obj['user_date_4'] = inHydrantDatetimeEdited
 
 	end
 end
@@ -186,14 +261,14 @@ class ImporterClassMeter
 		inMeterOwn = obj['OWN']
 		inMeterLevel = obj['ZCOORD']
 		inMeterInvert = obj['INVERTELEV']
-		inMeterZ = obj['METERSZ']
+		inMeterZ = obj['METERSZ'].to_i
 		inMeterSerial = obj['SERNO']
 		inMeterModel = obj['MODELNO']
 		inMeterManufacturer = obj['MANUFCT']
 		inMeterInstallDate = obj['INSTDATE']
 		inMeterAsBuilt = obj['ASBUILT']
 		inMeterScheme = obj['SCHEME']
-		inMeterFDataScr = obj['DATA_SRC']
+		inMeterDataScr = obj['DATA_SRC']
 		inMeterComments = obj['COMMENTS']
 		inMeterDatetimeAdd = obj['ADDDTTM']
 		inMeterDatetimeMod = obj['MODDTTM']
@@ -247,6 +322,56 @@ class ImporterClassMeter
 		end
 		obj['date_installed'] = iamMeterInstallDate
 		obj['date_installed_flag'] = iamMeterInstallDateFlag
+		
+		## elevation
+		if inMeterLevel != nil
+			iamMeterLevel = inMeterLevel
+			iamMeterLevelFlag = '#A'
+		else
+			iamMeterLevel = ''
+			iamMeterLevelFlag = 'XX'
+		end
+		obj['elevation'] = iamMeterLevel
+		obj['elevation_flag'] = iamMeterLevelFlag
+		
+		## manufacturer
+		if inMeterManufacturer != nil
+			iamMeterManufacturer = inMeterManufacturer
+			iamMeterManufacturerFlag = '#A'
+		else
+			iamMeterManufacturer = ''
+			iamMeterManufacturerFlag = 'XX'
+		end
+	
+		obj['manufacturer'] = iamMeterManufacturer
+		obj['manufacturer_flag'] = iamMeterManufacturerFlag
+		
+		## diameter
+		if inMeterZ > 0
+			iamMeterZ = inMeterZ
+			iamMeterZFlag = '#A'
+		else
+			iamMeterZ = ''
+			iamMeterZFlag = 'XX'
+		end
+		obj['diameter'] = iamMeterZ
+		obj['diameter_flag'] = iamMeterZFlag
+		
+		## serial_number
+		if inMeterSerial != nil
+			iamMeterSerial = inMeterSerial
+			iamMeterSerialFlag = '#A'
+		else
+			iamMeterSerial = ''
+			iamMeterSerialFlag = 'XX'
+		end
+		obj['serial_number'] = iamMeterSerial
+		obj['serial_number_flag'] = iamMeterSerialFlag		
+		
+		obj['user_date_1'] = inMeterDatetimeAdd
+		obj['user_date_2'] = inMeterDatetimeMod
+		obj['user_date_3'] = inMeterDatetimeCreated
+		obj['user_date_4'] = inMeterDatetimeEdited
 
 	end
 end
@@ -319,6 +444,22 @@ class ImporterClassFitting
 		end
 		obj['date_installed'] = iamFittingInstallDate
 		obj['date_installed_flag'] = iamFittingInstallDateFlag
+		
+		## elevation
+		if inFittingLevel != nil
+			iamFittingLevel = inFittingLevel
+			iamFittingLevelFlag = '#A'
+		else
+			iamFittingLevel = ''
+			iamFittingLevelFlag = 'XX'
+		end
+		obj['elevation'] = iamFittingLevel
+		obj['elevation_flag'] = iamFittingLevelFlag
+		
+		obj['user_date_1'] = inFittingDatetimeAdd
+		obj['user_date_2'] = inFittingDatetimeMod
+		obj['user_date_3'] = inFittingDatetimeCreated
+		obj['user_date_4'] = inFittingDatetimeEdited
 
 	end
 end
@@ -334,10 +475,10 @@ class ImporterClassPipe
 		inPipeOwn = obj['OWN']
 		inPipeMaterial = obj['PIPEMATL']
 		inPipeLength = obj['PIPELEN']
-		inPipeDiameterNominal = obj['NOMDIAM']
-		inPipeDiameterInternal = obj['INTDIAM']
-		inPipeDiameterOutside = obj['OUTDIAM']
-		inPipeDepth = obj['DPTH']
+		inPipeDiameterNominal = obj['NOMDIAM'].to_i
+		inPipeDiameterInternal = obj['INTDIAM'].to_i
+		inPipeDiameterExternal = obj['OUTDIAM'].to_i
+		inPipeDepth = obj['DPTH'].to_f
 		inPipeUSnode = obj['UPNODE']
 		inPipeDSnode = obj['DWNNODE']
 		inPipeClass = obj['CLASS']
@@ -360,10 +501,10 @@ class ImporterClassPipe
 		inPipeDatetimeCreated = obj['created_date']
 		inPipeDatetimeEdited = obj['last_edited_date']
 		inPipeServiceType = obj['SRVTYPE']
-		inPipeXstart = obj['x_start']
-		inPipeYstart = obj['y_start']
-		inPipeXend = obj['x_end']
-		inPipeYend = obj['y_end']
+		inPipeXstart = obj['x_start'].to_f
+		inPipeYstart = obj['y_start'].to_f
+		inPipeXend = obj['x_end'].to_f
+		inPipeYend = obj['y_end'].to_f
 	
 		# import fields
 		## owner field
@@ -409,6 +550,161 @@ class ImporterClassPipe
 		end
 		obj['date_installed'] = iamPipeInstallDate
 		obj['date_installed_flag'] = iamPipeInstallDateFlag
+		
+		## material
+		if inPipeMaterial != nil
+			iamPipeMaterial = inPipeMaterial
+			iamPipeMaterialFlag = '#A'
+		else
+			iamPipeMaterial = ''
+			iamPipeMaterialFlag = 'XX'
+		end
+		obj['material'] = iamPipeMaterial
+		obj['material_flag'] = iamPipeMaterialFlag
+		
+		# internal_diameter
+		if inPipeDiameterInternal > 0
+			iamPipeDiameterInternal = inPipeDiameterInternal
+			iamPipeDiameterInternalFlag = '#A'
+		else
+			iamPipeDiameterInternal = ''
+			iamPipeDiameterInternalFlag = 'XX'
+		end
+		obj['internal_diameter'] = iamPipeDiameterInternal
+		obj['internal_diameter_flag'] = iamPipeDiameterInternalFlag
+		
+		# external_diameter
+		if inPipeDiameterExternal > 0
+			iamPipeDiameterExternal = inPipeDiameterExternal
+			iamPipeDiameterExternalFlag = '#A'
+		else
+			iamPipeDiameterExternal = ''
+			iamPipeDiameterExternalFlag = 'XX'
+		end
+		obj['external_diameter'] = iamPipeDiameterExternal
+		obj['external_diameter_flag'] = iamPipeDiameterExternalFlag
+		
+		# nominal_diameter
+		if inPipeDiameterNominal > 0
+			iamPipeDiameterNominal = inPipeDiameterNominal
+			iamPipeDiameterNominalFlag = '#A'
+		else
+			iamPipeDiameterNominal = ''
+			iamPipeDiameterNominalFlag = 'XX'
+		end
+		obj['nominal_diameter'] = iamPipeDiameterNominal
+		obj['nominal_diameter_flag'] = iamPipeDiameterNominalFlag
+		
+		## depth_of_cover = inPipeDepth
+		if inPipeDepth > 0
+			iamPipeDepth = inPipeDepth
+			iamPipeDepthFlag = '#A'
+		else
+			iamPipeDepth = ''
+			iamPipeDepthFlag = 'XX'
+		end
+		obj['depth_of_cover'] = iamPipeDepth
+		obj['depth_of_cover_flag'] = iamPipeDepthFlag
+		
+		## date_lined = inPipeLiningDate
+		if inPipeLiningDate  != nil
+			iamPipeLiningDate = inPipeLiningDate
+			iamPipeLiningDateFlag = '#A'
+		else
+			iamPipeLiningDate = ''
+			iamPipeLiningDateFlag = 'XX'
+		end
+		obj['date_lined'] = iamPipeLiningDate
+		obj['date_lined_flag'] = iamPipeLiningDateFlag
+		
+		## lining_type = inPipeLiningMethod
+		if inPipeLiningMethod != nil
+			iamPipeLiningMethod = inPipeLiningMethod
+			iamPipeLiningMethodFlag = '#A'
+		else
+			iamPipeLiningMethod = ''
+			iamPipeLiningMethodFlag = 'XX'
+		end
+		obj['lining_type'] = iamPipeLiningMethod
+		obj['lining_type_flag'] = iamPipeLiningMethodFlag
+		
+		## construction_method = inPipeInstallMethod
+		if inPipeInstallMethod != nil
+			iamPipeInstallMethod = inPipeInstallMethod
+			iamPipeInstallMethodFlag = '#A'
+		else
+			iamPipeInstallMethod = ''
+			iamPipeInstallMethodFlag = 'XX'
+		end
+		obj['construction_method'] = iamPipeInstallMethod
+		obj['construction_method_flag'] = iamPipeInstallMethodFlag
+
+		## lining_material = inPipeLiningMaterial
+		if inPipeLiningMaterial != nil
+			iamPipeLiningMaterial = inPipeLiningMaterial
+			iamPipeLiningMaterialFlag = '#A'
+		else
+			iamPipeLiningMaterial = ''
+			iamPipeLiningMaterialFlag = 'XX'
+		end
+		obj['lining_material'] = iamPipeLiningMaterial
+		obj['lining_material_flag'] = iamPipeLiningMaterialFlag		
+		
+		## class = inPipeClass
+		if inPipeClass != nil
+			iamPipeClass = inPipeClass
+			iamPipeClassFlag = '#A'
+		else
+			iamPipeClass = ''
+			iamPipeClassFlag = 'XX'
+		end
+		obj['pipe_class'] = iamPipeClass
+		obj['pipe_class_flag'] = iamPipeClassFlag				
+		
+		## type = inPipeType
+		if inPipeType != nil
+			iamPipeType = inPipeType
+			iamPipeTypeFlag = '#A'
+		else
+			iamPipeType = ''
+			iamPipeTypeFlag = 'XX'
+		end
+		obj['type'] = iamPipeType
+		obj['type_flag'] = iamPipeTypeFlag	
+		
+		## joint_type = inPipeJunctionType
+		if inPipeJunctionType != nil
+			iamPipeJunctionType = inPipeJunctionType
+			iamPipeJunctionTypeFlag = '#A'
+		else
+			iamPipeJunctionType = ''
+			iamPipeJunctionTypeFlag = 'XX'
+		end
+		obj['joint_type'] = iamPipeJunctionType
+		obj['joint_type_flag'] = iamPipeJunctionTypeFlag	
+		
+		## manufacturer = inPipeManufacturer
+		if inPipeManufacturer != nil
+			iamPipeManufacturer = inPipeManufacturer
+			iamPipeManufacturerFlag = '#A'
+		else
+			iamPipeManufacturer = ''
+			iamPipeManufacturerFlag = 'XX'
+		end
+		obj['manufacturer '] = iamPipeManufacturer
+		obj['manufacturer _flag'] = iamPipeManufacturerFlag	
+		
+		## may be usefull for automation
+		obj['user_date_1'] = inPipeDatetimeAdd
+		obj['user_date_2'] = inPipeDatetimeMod
+		obj['user_date_3'] = inPipeDatetimeCreated
+		obj['user_date_4'] = inPipeDatetimeEdited
+		
+		## sueful if you want to create nodes either end of link
+		obj['user_number_1'] = inPipeXstart
+		obj['user_number_2'] = inPipeYstart
+		obj['user_number_3'] = inPipeXend
+		obj['user_number_4'] = inPipeYend
 
 	end
 end
