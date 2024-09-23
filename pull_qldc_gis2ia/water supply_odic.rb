@@ -725,7 +725,7 @@ class ImporterClassPipe
 		obj['user_date_3'] = inPipeDatetimeCreated
 		obj['user_date_4'] = inPipeDatetimeEdited
 		
-		## sueful if you want to create nodes either end of link
+		## useful if you want to create nodes either end of link
 		obj['user_number_1'] = inPipeXstart
 		obj['user_number_2'] = inPipeYstart
 		obj['user_number_3'] = inPipeXend
@@ -737,6 +737,41 @@ end
 class ImporterClassZone
 	def ImporterClassZone.onEndRecordZone(obj)
 	
+	end
+end
+
+class ImporterClassTank
+	def ImporterClassTank.onEndRecordTank(obj)
+	
+		# load fields
+		inTankID = obj['id']
+		inTankObjID = obj['OBJECTID']
+		inTankCompkey = obj['COMPKEY']
+		inTankType = obj['ASSETTYPE']
+		inTankDesc = obj['DESCR']
+		inTankServ = obj['SERVSTAT']
+		inTankOwn = obj['OWN']
+		inTankZ = obj['ZCOORD']
+		inTankInstallDate = obj['INSTDATE']
+		inTankAsBuilt = obj['ASBUILT']
+		inTankScheme = obj['SCHEME']
+		inTankDataScr = obj['DATA_SRC']
+		inTankDatetimeAdd = obj['ADDDTTM']
+		inTankDatetimeMod = obj['MODDTTM']
+		inTankConfidence = obj['CONFIDENCE']
+		inTankCritcality = obj['CRITICALITY']
+		inTankDatetimeCreated = obj['created_date']
+		inTankDatetimeEdited = obj['last_edited_date']
+		inTankGlocalID = obj['GlobalID']
+		inTankX = obj['x'].to_f
+		inTankY = obj['y'].to_f
+		
+		# load into IAM
+		#obj['ID'] = inTankID
+		#obj['asset_id'] = inTankID
+		#obj['x_coord'] = inTankX
+		#obj['y_coord'] = inTankY
+		
 	end
 end
 
@@ -761,14 +796,17 @@ import_tables.push ImportTable.new('csv', 'meter',
 import_tables.push ImportTable.new('csv', 'fitting', 
 	folder + '\exports\water supply\water supply_config.cfg', 
 	folder + '\exports\water supply\wsNode.csv', 
-	ImporterClassFitting)	
+	ImporterClassFitting)
+	
+import_tables.push ImportTable.new('csv', 'tank', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsReservoir.csv', 
+	ImporterClassTank)
 	
 import_tables.push ImportTable.new('csv', 'pipe', 
 	folder + '\exports\water supply\water supply_config.cfg', 
 	folder + '\exports\water supply\wsPipes.csv', 
 	ImporterClassPipe)
-	
-
 	
 #import_tables.push ImportTable.new('shp', 'zone', 
 #	folder + '\exports\water supply_config.cfg', 
