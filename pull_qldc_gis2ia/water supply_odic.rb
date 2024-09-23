@@ -734,12 +734,6 @@ class ImporterClassPipe
 	end
 end
 
-class ImporterClassZone
-	def ImporterClassZone.onEndRecordZone(obj)
-	
-	end
-end
-
 class ImporterClassTank
 	def ImporterClassTank.onEndRecordTank(obj)
 	
@@ -767,10 +761,33 @@ class ImporterClassTank
 		inTankY = obj['y'].to_f
 		
 		# load into IAM
-		#obj['ID'] = inTankID
-		#obj['asset_id'] = inTankID
-		#obj['x_coord'] = inTankX
-		#obj['y_coord'] = inTankY
+		
+	end
+end
+
+class ImporterClassWtw
+	def ImporterClassWtw.onEndRecordWtw(obj)
+		# load fields
+		
+		# load into IAM
+		
+	end
+end
+
+class ImporterClassPumpStation
+	def ImporterClassPumpStation.onEndRecordPumpStation(obj)
+		# load fields
+		
+		# load into IAM
+		
+	end
+end
+
+class ImporterClassZone
+	def ImporterClassZone.onEndRecordZone(obj)
+		# load fields
+		
+		# load into IAM	
 		
 	end
 end
@@ -807,10 +824,23 @@ import_tables.push ImportTable.new('csv', 'pipe',
 	folder + '\exports\water supply\water supply_config.cfg', 
 	folder + '\exports\water supply\wsPipes.csv', 
 	ImporterClassPipe)
+
+## unable to find the correct table name for the import Format
+## these next three tables
+
+#import_tables.push ImportTable.new('csv', 'pump station', 
+#	folder + '\exports\water supply\water supply_config.cfg', 
+#	folder + '\exports\water supply\wsPumpStation.csv', 
+#	ImporterClassPumpStation)
+	
+#import_tables.push ImportTable.new('csv', 'wtw', 
+#	folder + '\exports\water supply\water supply_config.cfg', 
+#	folder + '\exports\water supply\wsTreatmentPlant.csv', 
+#	ImporterClassWtw)
 	
 #import_tables.push ImportTable.new('shp', 'zone', 
 #	folder + '\exports\water supply_config.cfg', 
-#	folder + '\exports\water supply\wsPressureZone.csv', 
+#	folder + '\exports\water supply\wsPressureZone.shp', 
 #	ImporterClassZone)
 	
 puts 'Import tables and config file setup'
