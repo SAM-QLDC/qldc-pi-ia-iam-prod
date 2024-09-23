@@ -691,8 +691,30 @@ class ImporterClassPipe
 			iamPipeManufacturer = ''
 			iamPipeManufacturerFlag = 'XX'
 		end
-		obj['manufacturer '] = iamPipeManufacturer
-		obj['manufacturer _flag'] = iamPipeManufacturerFlag	
+		obj['manufacturer'] = iamPipeManufacturer
+		obj['manufacturer_flag'] = iamPipeManufacturerFlag	
+
+		## obj['us_node_id'] = inPipeUSnode
+		if inPipeUSnode != nil
+			iamPipeUSnode = inPipeUSnode
+			iamPipeUSnodeFlag = '#A'
+		else
+			iamPipeUSnode = ''
+			iamPipeUSnodeFlag = 'XX'
+		end
+		obj['us_node_id'] = iamPipeUSnode
+		obj['us_node_id_flag'] = iamPipeUSnodeFlag			
+		
+		##obj['ds_node_id'] = inPipeDSnode
+		if inPipeDSnode != nil
+			iamPipeDSnode = inPipeDSnode
+			iamPipeDSnodeFlag = '#A'
+		else
+			iamPipeDSnode = ''
+			iamPipeDSnodeFlag = 'XX'
+		end
+		obj['ds_node_id'] = iamPipeDSnode
+		obj['ds_node_id_flag'] = iamPipeDSnodeFlag				
 		
 		## may be usefull for automation
 		obj['user_date_1'] = inPipeDatetimeAdd
