@@ -4,6 +4,9 @@
 ## parameters
 folder = 'C:\Github\qldc-pi-ia-iam-prod\pull_qldc_gis2ia'
 
+# Run batch file
+#system(folder + '/water supply_agol.bat')
+
 ## user interface
 net=WSApplication.current_network
 
@@ -648,7 +651,7 @@ class ImporterClassPipe
 			iamPipeLiningMaterialFlag = 'XX'
 		end
 		obj['lining_material'] = iamPipeLiningMaterial
-		obj['lining_material_flag'] = iamPipeLiningMaterialFlag		
+		obj['lining_material_flag'] = iamPipeLiningMaterialFlag
 		
 		## class = inPipeClass
 		if inPipeClass != nil
@@ -659,7 +662,7 @@ class ImporterClassPipe
 			iamPipeClassFlag = 'XX'
 		end
 		obj['pipe_class'] = iamPipeClass
-		obj['pipe_class_flag'] = iamPipeClassFlag				
+		obj['pipe_class_flag'] = iamPipeClassFlag
 		
 		## type = inPipeType
 		if inPipeType != nil
@@ -670,7 +673,7 @@ class ImporterClassPipe
 			iamPipeTypeFlag = 'XX'
 		end
 		obj['type'] = iamPipeType
-		obj['type_flag'] = iamPipeTypeFlag	
+		obj['type_flag'] = iamPipeTypeFlag
 		
 		## joint_type = inPipeJunctionType
 		if inPipeJunctionType != nil
@@ -681,7 +684,7 @@ class ImporterClassPipe
 			iamPipeJunctionTypeFlag = 'XX'
 		end
 		obj['joint_type'] = iamPipeJunctionType
-		obj['joint_type_flag'] = iamPipeJunctionTypeFlag	
+		obj['joint_type_flag'] = iamPipeJunctionTypeFlag
 		
 		## manufacturer = inPipeManufacturer
 		if inPipeManufacturer != nil
@@ -692,7 +695,7 @@ class ImporterClassPipe
 			iamPipeManufacturerFlag = 'XX'
 		end
 		obj['manufacturer'] = iamPipeManufacturer
-		obj['manufacturer_flag'] = iamPipeManufacturerFlag	
+		obj['manufacturer_flag'] = iamPipeManufacturerFlag
 
 		## obj['us_node_id'] = inPipeUSnode
 		if inPipeUSnode != nil
@@ -703,7 +706,7 @@ class ImporterClassPipe
 			iamPipeUSnodeFlag = 'XX'
 		end
 		obj['us_node_id'] = iamPipeUSnode
-		obj['us_node_id_flag'] = iamPipeUSnodeFlag			
+		obj['us_node_id_flag'] = iamPipeUSnodeFlag
 		
 		##obj['ds_node_id'] = inPipeDSnode
 		if inPipeDSnode != nil
@@ -714,7 +717,7 @@ class ImporterClassPipe
 			iamPipeDSnodeFlag = 'XX'
 		end
 		obj['ds_node_id'] = iamPipeDSnode
-		obj['ds_node_id_flag'] = iamPipeDSnodeFlag				
+		obj['ds_node_id_flag'] = iamPipeDSnodeFlag			
 		
 		## may be usefull for automation
 		obj['user_date_1'] = inPipeDatetimeAdd
@@ -728,6 +731,12 @@ class ImporterClassPipe
 		obj['user_number_3'] = inPipeXend
 		obj['user_number_4'] = inPipeYend
 
+	end
+end
+
+class ImporterClassZone
+	def ImporterClassZone.onEndRecordZone(obj)
+	
 	end
 end
 
@@ -754,36 +763,40 @@ import_tables.push ImportTable.new('csv', 'pipe',
 	folder + '\water supply_config.cfg', folder + '\exports\wsPipes.csv', 
 	ImporterClassPipe)
 	
+#import_tables.push ImportTable.new('csv', 'zone', 
+#	folder + '\water supply_config.cfg', folder + '\exports\wsPressureZone.csv', 
+#	ImporterClassZone)
+	
 puts 'Import tables and config file setup'
 
 # Set up params
-node_options=Hash.new
-node_options['Use Display Precision'] = false
-node_options['Update Based On Asset ID'] = true
-node_options['Flag Fields '] = false
-node_options['Multiple Files'] = true
-node_options['Selection Only'] = false
-node_options['Coordinate Arrays Format'] = 'Packed'
-node_options['Other Arrays Format'] = 'Separate'
-node_options['WGS84'] = false
-node_options['Duplication Behaviour'] = 'Merge'
-node_options['Delete Missing Objects'] = true
-node_options['Update Links From Points'] = false
-node_options['Default Value Flag'] = '#S'
-node_options['Set Value Flag'] = '#A'
+options=Hash.new
+options['Use Display Precision'] = false
+options['Update Based On Asset ID'] = true
+options['Flag Fields '] = false
+options['Multiple Files'] = true
+options['Selection Only'] = false
+options['Coordinate Arrays Format'] = 'Packed'
+options['Other Arrays Format'] = 'Separate'
+options['WGS84'] = false
+options['Duplication Behaviour'] = 'Merge'
+options['Delete Missing Objects'] = true
+options['Update Links From Points'] = false
+options['Default Value Flag'] = '#S'
+options['Set Value Flag'] = '#A'
 
 puts 'specific import options defined'
 
 ## import tables into IAM
 # Loop over table configs
 import_tables.each{|table_info|
-	node_options['Callback Class'] = table_info.cb_class
+	options['Callback Class'] = table_info.cb_class
 	
 	# Do the import
 	net.odic_import_ex(
 		table_info.tbl_format,	# input table format
 		table_info.cfg_file,	# field mapping config file
-		node_options,			# specified options override the default options
+		options,			    # specified options override the default options
 		table_info.in_table,	# import to IAM table name
 		table_info.csv_file		# import from table name
 	)

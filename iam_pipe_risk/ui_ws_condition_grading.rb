@@ -19,57 +19,57 @@ net.transaction_begin
 curyear = Time.now.strftime('%Y').to_i
 
 ## looping and updating each asset
-ro = net.row_objects('cams_pipe').each do |ro|
+ro = net.row_objects('wams_pipe').each do |ro|
 
 	### water supply lifetimes from old IAM networks
-	if ro.pipe_material == 'AC'
+	if ro.material == 'AC'
 		lifetime = 60
-	elsif ro.pipe_material == 'ALK' || ro.pipe_material == 'ALKATHENE'
+	elsif ro.material == 'ALK' || ro.material == 'ALKATHENE'
 		lifetime = 70
-	elsif ro.pipe_material == 'CI'
+	elsif ro.material == 'CI'
 		lifetime = 60
-	elsif ro.pipe_material == 'CLDI'
+	elsif ro.material == 'CLDI'
 		lifetime = 80
-	elsif ro.pipe_material == 'CLSTEEL'
+	elsif ro.material == 'CLSTEEL'
 		lifetime = 80	
-	elsif ro.pipe_material == 'CONC'
+	elsif ro.material == 'CONC'
 		lifetime = 60
-	elsif ro.pipe_material == 'COP'
+	elsif ro.material == 'COP'
 		lifetime = 80
-	elsif ro.pipe_material == 'DI'
+	elsif ro.material == 'DI'
 		lifetime = 80
-	elsif ro.pipe_material == 'EPOXYPE'
+	elsif ro.material == 'EPOXYPE'
 		lifetime = 50
-	elsif ro.pipe_material == 'GI'
+	elsif ro.material == 'GI'
 		lifetime = 80
-	elsif ro.pipe_material == 'HDPE'
+	elsif ro.material == 'HDPE'
 		lifetime = 70
-	elsif ro.pipe_material == 'MDPE' || ro.pipe_material == 'MDPE PN9'
+	elsif ro.material == 'MDPE' || ro.material == 'MDPE PN9'
 		lifetime = 80
-	elsif ro.pipe_material == 'MPVC'
+	elsif ro.material == 'MPVC'
 		lifetime = 80
-	elsif ro.pipe_material == 'NOVA'
+	elsif ro.material == 'NOVA'
 		lifetime = 80
-	elsif ro.pipe_material == 'PE' || ro.pipe_material == 'PE100' || ro.pipe_material == 'PE80' || ro.pipe_material == 'PE80B'
+	elsif ro.material == 'PE' || ro.material == 'PE100' || ro.material == 'PE80' || ro.material == 'PE80B' || ro.material == 'POLYETHYLE'
 		lifetime = 80	
-	elsif ro.pipe_material == 'PP'
+	elsif ro.material == 'PP'
 		lifetime = 70
-	elsif ro.pipe_material == 'PVC' || ro.pipe_material == 'PVCo'
+	elsif ro.material == 'PVC' || ro.material == 'PVCo' || ro.material == 'PVCO'
 		lifetime = 80
-	elsif ro.pipe_material == 'SSTEEL'
+	elsif ro.material == 'SSTEEL'
 		lifetime = 80
-	elsif ro.pipe_material == 'STEEL'
+	elsif ro.material == 'STEEL'
 		lifetime = 60
-	elsif ro.pipe_material == 'UPVC'
+	elsif ro.material == 'UPVC' || ro.material == 'UPVCLINE'
 		lifetime = 80
 	else
 		lifetime = 70
 	end
 
-	if ro.year_laid == nil
+	if ro.date_installed == nil
 		age = ((curyear + 1) - 2020).to_i
 	else
-		age = (curyear + 1) - ro.year_laid.strftime('%Y').to_i
+		age = (curyear + 1) - ro.date_installed.strftime('%Y').to_i
 	end
 	
 	percRUL = (age.to_f / lifetime.to_f) * 100
