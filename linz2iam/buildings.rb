@@ -30,14 +30,12 @@ class ImporterClassProperty
 	def ImporterClassProperty.onEndRecordProperty(obj)
 
 		# load fields
-		inPropertyID = obj['building_id']
+		inPropertyID = obj['id']
 		inPropertyName = obj['name']
 		inPropertyUse = obj['use']
-		inPropertySuburb = obj['suburb_locality']
-		inPropertyTA = obj['territorial_authority']
-		inPropertyDatetimeModified = obj['last_modified']
+		inPropertySuburb = obj['suburb']
+		inPropertyTA = obj['ta_area']
 		inPropertyDatetimeOrigin = obj['origin_utc']
-		inProperty = obj['shape']
 
 		# import into iam
 		obj['property_type'] = inPropertyUse
@@ -45,7 +43,6 @@ class ImporterClassProperty
 		obj['property_town'] = inPropertySuburb
 		obj['property_district'] = inPropertyTA
 		obj['user_date_1'] = inPropertyDatetimeOrigin
-		obj['user_date_2'] = inPropertyDatetimeModified
 
 	end
 end
@@ -53,9 +50,9 @@ end
 # Set up the config files and table names
 import_tables = Array.new
 
-import_tables.push ImportTable.new('csv', 'property', 
+import_tables.push ImportTable.new('shp', 'property', 
 	folder + '\exports\buildings.cfg', 
-	folder + '\exports\buildings.csv', 
+	folder + '\exports\buildings.shp', 
 	ImporterClassProperty)
 	
 puts 'Import tables and config file setup'
