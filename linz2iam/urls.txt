@@ -1,0 +1,16 @@
+linz
+https://data.linz.govt.nz/layer/105689-nz-addresses/
+
+full buildings
+https://data.linz.govt.nz/services;key=1cdb2df938344bc6aca0287bcbbc207e/wfs/layer-101290?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-101290&cql_filter=territorial_authority='@Value(ta)'&SRSNAME=EPSG:2193&outputFormat=csv
+
+changeset buildings
+https://data.linz.govt.nz/services;key=1cdb2df938344bc6aca0287bcbbc207e/wfs/layer-101290-changeset?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-101290-changeset&viewparams=from:@Value(from);to:@Value(origin_utc)&cql_filter=territorial_authority='@Value(ta)'&SRSNAME=EPSG:2193&outputFormat=csv
+
+full addresses
+https://data.linz.govt.nz/services;key=1cdb2df938344bc6aca0287bcbbc207e/wfs/layer-105689?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-105689&cql_filter=territorial_authority='@Value(ta)'&SRSNAME=EPSG:2193&outputFormat=csv
+
+changeset addresses
+https://data.linz.govt.nz/services;key=1cdb2df938344bc6aca0287bcbbc207e/wfs/layer-105689-changeset?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-105689-changeset&viewparams=from:@Value(from);to:@Value(origin_utc)&cql_filter=territorial_authority='@Value(ta)'&SRSNAME=EPSG:2193&outputFormat=csv
+
+address_id source_dataset change_id full_address_number full_road_name full_address territorial_authority unit_type unit_value level_type level_value address_number_prefix address_number address_number_suffix address_number_high road_name_prefix road_name road_type_name road_suffix water_name water_body_name suburb_locality town_city address_class address_lifecycle gd2000_xcoord gd2000_ycoord shape road_name_ascii water_name_ascii water_body_name_ascii suburb_locality_ascii town_city_ascii full_road_name_ascii full_address_ascii
