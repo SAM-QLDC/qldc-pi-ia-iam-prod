@@ -146,8 +146,8 @@ class ImporterClassValve
 		
 		obj['user_date_1'] = inValveDatetimeAdd
 		obj['user_date_2'] = inValveDatetimeMod
-		obj['user_date_3'] = inValveDatetimeCreated
-		obj['user_date_4'] = inValveDatetimeEdited
+		#obj['user_date_3'] = inValveDatetimeCreated
+		#obj['user_date_4'] = inValveDatetimeEdited
 		
 	end
 end
@@ -247,8 +247,8 @@ class ImporterClassHydrant
 		
 		obj['user_date_1'] = inHydrantDatetimeAdd
 		obj['user_date_2'] = inHydrantDatetimeMod
-		obj['user_date_3'] = inHydrantDatetimeCreated
-		obj['user_date_4'] = inHydrantDatetimeEdited
+		#obj['user_date_3'] = inHydrantDatetimeCreated
+		#obj['user_date_4'] = inHydrantDatetimeEdited
 
 	end
 end
@@ -373,8 +373,8 @@ class ImporterClassMeter
 		
 		obj['user_date_1'] = inMeterDatetimeAdd
 		obj['user_date_2'] = inMeterDatetimeMod
-		obj['user_date_3'] = inMeterDatetimeCreated
-		obj['user_date_4'] = inMeterDatetimeEdited
+		#obj['user_date_3'] = inMeterDatetimeCreated
+		#obj['user_date_4'] = inMeterDatetimeEdited
 
 	end
 end
@@ -461,8 +461,8 @@ class ImporterClassFitting
 		
 		obj['user_date_1'] = inFittingDatetimeAdd
 		obj['user_date_2'] = inFittingDatetimeMod
-		obj['user_date_3'] = inFittingDatetimeCreated
-		obj['user_date_4'] = inFittingDatetimeEdited
+		#obj['user_date_3'] = inFittingDatetimeCreated
+		#obj['user_date_4'] = inFittingDatetimeEdited
 
 	end
 end
@@ -722,8 +722,8 @@ class ImporterClassPipe
 		## may be usefull for automation
 		obj['user_date_1'] = inPipeDatetimeAdd
 		obj['user_date_2'] = inPipeDatetimeMod
-		obj['user_date_3'] = inPipeDatetimeCreated
-		obj['user_date_4'] = inPipeDatetimeEdited
+		#obj['user_date_3'] = inPipeDatetimeCreated
+		#obj['user_date_4'] = inPipeDatetimeEdited
 		
 		## useful if you want to create nodes either end of link
 		obj['user_number_1'] = inPipeXstart
@@ -761,15 +761,12 @@ class ImporterClassTank
 		inTankY = obj['y'].to_f
 		
 		# load into IAM
-		
-	end
-end
-
-class ImporterClassWtw
-	def ImporterClassWtw.onEndRecordWtw(obj)
-		# load fields
-		
-		# load into IAM
+		obj['owner'] = inTankOwn
+		obj['operational_status'] = inTankServ
+		obj['date_installed'] = inTankInstallDate
+		obj['elevation'] = inTankZ
+		obj['type'] = inTankType
+		obj['special_instructions'] = inTankDesc
 		
 	end
 end
@@ -777,17 +774,53 @@ end
 class ImporterClassPumpStation
 	def ImporterClassPumpStation.onEndRecordPumpStation(obj)
 		# load fields
-		
+		inPSID = obj['id']
+		inPSObjectID = obj['OBJECTID']
+		inPSCompkey = obj['COMPKEY']
+		inPSType = obj['ASSETTYPE']
+		inPSDesc = obj['DESCR']
+		inPSServ = obj['SERVSTAT']
+		inPSOwn = obj['OWN']
+		inPSZ = obj['ZCOORD']
+		inPSInstallDate = obj['INSTDATE']
+		inPSAsBuilt = obj['ASBUILT']
+		inPSScheme = obj['SCHEME']
+		inPSDataScr = obj['DATA_SRC']
+		inPSConfidence = obj['CONFIDENCE']
+		inPSCriticality = obj['CRITICALITY']
+	
 		# load into IAM
+		obj['owner'] = inPSOwn
+		obj['operational_status'] = inPSServ 
+		obj['date_installed'] = inPSInstallDate
+		obj['type'] = inPSType
 		
 	end
 end
 
-class ImporterClassZone
-	def ImporterClassZone.onEndRecordZone(obj)
+class ImporterClassWtw
+	def ImporterClassWtw.onEndRecordWtw(obj)
 		# load fields
-		
-		# load into IAM	
+		inWtwID = obj['id']
+		inWtwObjectID = obj['OBJECTID']
+		inWtwCompkey = obj['COMPKEY']
+		inWtwType = obj['ASSETTYPE']
+		inWtwDesc = obj['DESCR']
+		inWtwServ = obj['SERVSTAT']
+		inWtwOwn = obj['OWN']
+		inWtwZ = obj['ZCOORD']
+		inWtwInstallDate = obj['INSTDATE']
+		inWtwAsBuilt = obj['ASBUILT']
+		inWtwScheme = obj['SCHEME']
+		inWtwDataScr = obj['DATA_SRC']
+		inWtwConfidence = obj['CONFIDENCE']
+		inWtwCriticality = obj['CRITICALITY']
+
+		# load into IAM
+		obj['owner'] = inWtwOwn
+		obj['operational_status'] = inWtwServ
+		obj['date_installed'] = inWtwInstallDate
+		obj['type'] = inWtwType
 		
 	end
 end
@@ -825,56 +858,76 @@ import_tables.push ImportTable.new('csv', 'pipe',
 	folder + '\exports\water supply\wsPipes.csv', 
 	ImporterClassPipe)
 
-## unable to find the correct table name for the import Format
-## these next three tables
-
-#import_tables.push ImportTable.new('csv', 'pump station', 
-#	folder + '\exports\water supply\water supply_config.cfg', 
-#	folder + '\exports\water supply\wsPumpStation.csv', 
-#	ImporterClassPumpStation)
+import_tables.push ImportTable.new('csv', 'pumpstation', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsPumpStation.csv', 
+	ImporterClassPumpStation)
 	
-#import_tables.push ImportTable.new('csv', 'wtw', 
-#	folder + '\exports\water supply\water supply_config.cfg', 
-#	folder + '\exports\water supply\wsTreatmentPlant.csv', 
-#	ImporterClassWtw)
-	
-#import_tables.push ImportTable.new('shp', 'zone', 
-#	folder + '\exports\water supply_config.cfg', 
-#	folder + '\exports\water supply\wsPressureZone.shp', 
-#	ImporterClassZone)
+import_tables.push ImportTable.new('csv', 'treatmentworks', 
+	folder + '\exports\water supply\water supply_config.cfg', 
+	folder + '\exports\water supply\wsTreatmentPlant.csv', 
+	ImporterClassWtw)
 	
 puts 'Import tables and config file setup'
 
 # Set up params
-options=Hash.new
-options['Use Display Precision'] = false
-options['Update Based On Asset ID'] = true
-options['Flag Fields '] = false
-options['Multiple Files'] = true
-options['Selection Only'] = false
-options['Coordinate Arrays Format'] = 'Packed'
-options['Other Arrays Format'] = 'Separate'
-options['WGS84'] = false
-options['Duplication Behaviour'] = 'Merge'
-options['Delete Missing Objects'] = true
-options['Update Links From Points'] = false
-options['Default Value Flag'] = '#S'
-options['Set Value Flag'] = '#A'
+csv=Hash.new
+csv['Use Display Precision'] = false
+csv['Update Based On Asset ID'] = true
+csv['Flag Fields '] = false
+csv['Multiple Files'] = true
+csv['Selection Only'] = false
+csv['Coordinate Arrays Format'] = 'Packed'
+csv['Other Arrays Format'] = 'Separate'
+csv['WGS84'] = false
+csv['Duplication Behaviour'] = 'Merge'
+csv['Delete Missing Objects'] = true
+csv['Update Links From Points'] = false
+csv['Default Value Flag'] = '#S'
+csv['Set Value Flag'] = '#A'
+csv['Error File'] = folder + '\exports\water supply\errors_csv.txt'
 
 puts 'specific import options defined'
 
 ## import tables into IAM
 # Loop over table configs
 import_tables.each{|table_info|
-	options['Callback Class'] = table_info.cb_class
+	csv['Callback Class'] = table_info.cb_class
 	
 	# Do the import
 	net.odic_import_ex(
 		table_info.tbl_format,	# input table format
 		table_info.cfg_file,	# field mapping config file
-		options,			    # specified options override the default options
+		csv,			    	# specified options override the default options
 		table_info.in_table,	# import to IAM table name
 		table_info.csv_file		# import from table name
 	)
 }
-puts 'End import'
+puts 'End import CSV Files'
+
+puts 'Import tables and config file setup for SHP files'
+
+# Set up params
+shp=Hash.new
+shp['Duplication Behaviour'] = 'Merge'
+shp['Default Value Flag'] = '#S'
+shp['Set Value Flag'] = '#A'
+shp['Error File'] = folder + '\exports\water supply\errors_shp.txt'
+
+puts 'specific import shp options defined'
+	
+# Do the import of water supply pressure zones
+net.odic_import_ex('shp',
+	folder + '\exports\water supply\water supply_config.cfg',
+	shp, 
+	'zone',
+	folder + '\exports\water supply\wsPressureZone.shp')
+
+# Do the import of water supply pressure zones
+net.odic_import_ex('shp',
+	folder + '\exports\water supply\water supply_config.cfg',
+	shp, 
+	'workpackage',
+	folder + '\exports\water supply\wsSchemes.shp')
+
+puts 'End import SHP Files'
