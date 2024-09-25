@@ -51,7 +51,7 @@ end
 import_tables = Array.new
 
 import_tables.push ImportTable.new('shp', 'property', 
-	folder + '\exports\buildings.cfg', 
+	folder + '\exports\buildings_ww.cfg', 
 	folder + '\exports\buildings.shp', 
 	ImporterClassProperty)
 	

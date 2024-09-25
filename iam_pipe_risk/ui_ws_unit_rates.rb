@@ -17,16 +17,25 @@ net.transaction_begin
 
 ## parameters
 source = 'OAS 2024-020 DR - QLDC - Final 3W Valuation.pdf'
+valyear = 2023
+on_cost = 1.262
+curyear = Time.now.strftime('%Y').to_i
 flag_calc = 'AS'
 flag_unsure = 'XX'
 
+### depth factor increases
+depth_m = [0.5,1,2,10000]
+depth_cost_factor = [1,1,1,1]
+
+### cost index changes
+cgi_year = [1970,1971,1972]
+cgi_index = [1,1.02,1.03]
+
 ### latest unit rates
-valyear = 2023
-curyear = Time.now.strftime('%Y').to_i
-cgi_uplift = 1.000
-on_cost = 1.262
 serv_size = [20,50,63,100,10000]
 serv_cost = [207.77,213.99,257.54,277.44,518.81]
+serv_cost_road = [207.77,213.99,257.54,277.44,518.81]
+
 main_size = [
 	50,75,100,125,140,
 	150,200,225,250,289,
@@ -37,6 +46,12 @@ main_cost = [
 	562.98,562.98,722.49,664.86,667.54,
 	768.08,857.88,1032.14,1238.57
 	]
+main_cost_road = [
+	298.91,230.55,282.83,298.91,558.97,
+	562.98,562.98,722.49,664.86,667.54,
+	768.08,857.88,1032.14,1238.57
+	]
+	
 backflow_nrv = 13273.05
 backflow_2xcv = 13273.05
 hydrant_fire = 3845.73 
@@ -264,6 +279,46 @@ ro = net.row_objects('wams_pipe').each do |ro|
 	ro['replace_cost_flag'] = flag_calc
 
 ro.write
+
+end
+
+## looping and updating each asset
+fitting_ro = net.row_objects('wams_fitting').each do |fitting_ro|
+
+	fitting_ro['replace_cost'] = 0
+	fitting_ro['replace_cost_flag'] = flag_calc
+
+fitting_ro.write
+
+end
+
+## looping and updating each hydrant asset
+hydrant_ro = net.row_objects('wams_hydrant').each do |hydrant_ro|
+
+	hydrant_ro['replace_cost'] = hydrant_na 
+	hydrant_ro['replace_cost_flag'] = flag_calc
+
+hydrant_ro.write
+
+end
+
+## looping and updating each meter asset
+meter_ro = net.row_objects('wams_meter').each do |meter_ro|
+
+	meter_ro['replace_cost'] = meter_tbd
+	meter_ro['replace_cost_flag'] = flag_calc
+
+meter_ro.write
+
+end
+
+## looping and updating each meter asset
+valve_ro = net.row_objects('wams_valve').each do |valve_ro|
+
+	valve_ro['replace_cost'] = valve_tbd
+	valve_ro['replace_cost_flag'] = flag_calc
+
+valve_ro.write
 
 end
 
