@@ -672,8 +672,8 @@ class ImporterClassPipe
 			iamPipeType = ''
 			iamPipeTypeFlag = 'XX'
 		end
-		obj['type'] = iamPipeType
-		obj['type_flag'] = iamPipeTypeFlag
+		obj['user_text_5'] = iamPipeType
+		obj['user_text_5_flag'] = iamPipeTypeFlag
 		
 		## joint_type = inPipeJunctionType
 		if inPipeJunctionType != nil
