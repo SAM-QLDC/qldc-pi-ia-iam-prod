@@ -1,0 +1,22 @@
+!table
+!version 900
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 15
+    polygon_id Char (64) ;
+    category_id Char (64) ;
+    headship_cur Char (100) ;
+    headship_med Char (100) ;
+    headship_m2l Char (100) ;
+    headship_lng Char (100) ;
+    headship_mpd Char (100) ;
+    population_cur Float ;
+    population_med Float ;
+    population_m2l Float ;
+    population_lng Float ;
+    population_mpd Float ;
+    growth_mpd Float ;
+    design_ground Char (7) ;
+    area Float ;

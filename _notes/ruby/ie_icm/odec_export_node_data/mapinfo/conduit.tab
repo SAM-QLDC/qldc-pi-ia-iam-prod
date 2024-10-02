@@ -1,0 +1,30 @@
+!table
+!version 900
+!charset WindowsLatin1
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 23
+    us_node_id Char (64) ;
+    link_suffix Char (1) ;
+    ds_node_id Char (64) ;
+    link_type Char (6) ;
+    asset_id Char (64) ;
+    system_type Char (10) ;
+    solution_model Char (20) ;
+    conduit_material Char (5) ;
+    shape Char (64) ;
+    conduit_width Float ;
+    conduit_length Float ;
+    capacity Float ;
+    val_year Char (100) ;
+    val_perc_cg Char (100) ;
+    val_rul_years Char (100) ;
+    design_adwf Float ;
+    design_pf Float ;
+    design_di Float ;
+    design_ii Float ;
+    design_pwwf Float ;
+    design_bifu_allowance Float ;
+    design_spare_pwwf Float ;
+    design_velocity Float ;

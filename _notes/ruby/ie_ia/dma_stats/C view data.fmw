@@ -1,0 +1,563 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME\fme.exe" "C:\Users\HLewis\Downloads\dma_statistics\C view data.fmw"
+#          --SourceDataset_GEOJSON "$(FME_MF_DIR_USERTYPED)exports\dma_stats.json"
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAB1CAIAAADvIyAeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAXpUlEQVR4nO3deVwU5/0H8O8ce7LLwsIul8CCsCBeEfFCTVAEvBNjPGKS5pWmlaZpm7RNbNJU2xy1jTVpYpo2JjHRmEtj1ARFE42K+cVbEKvIKSzIfezN7uwx8/tjCSDHgkdgp/m+X/6xzD7PzLML+/F5nnl2huA4DhBCiA/I4W4AQggNFgYWQog3MLAQQryBgYUQ4g0MLIQQb2BgIYR4AwMLIcQbGFgIId7AwEII8QYGFkKINzCwEEK8gYGFEOINDCyEEG9gYCGEeAMDCyHEGxhYCCHewMBCCPEGBhZCiDcwsBBCvIGBhRDiDQwshBBvYGAhhHgDAwshxBsYWAgh3sDAQgjxBj3cDUDeVFRUuFyu4W4FAqfTOWbMmOFuBcLA8nnh4eEcx91QFYIguv94o9VvQvcjDvHhhuaIZrP5hz4EGgwMLB4Y4sAiCGIojzjEh7uJI/Y4HBpGGFi8sW3Lf/r7mKXNztTExnXfYjKZBAKBRCLpUbK1tdnpcACA1M/P3z9gwIM6nQ59WxvLuimKDlQG0XTffzAul8toNAYFBXXfuGXLRs8DhX/gwkWrxOKejfHO7Xbrqq7qKiscDkegMkibMCogUNn5rNFoFIlEYrH4+3Y6KysrY2Nj+2thb3V1dSKRqEebkY/DwOKNg7s/+Pn8pN7br9YZK6/G9gisHjiOKym+/NYbrxpa66PDAwGgvtkyIibh98/82c9P1mcVh4P5ZPt7Rw8dCFYI/aTCdpuz1eycu/DeJffdLxAIBtPgre9v/OtzDADkfBXgrwjMzLx3MLU6vfnaegXZMi5eTRCE5Zrz9c/fzlrys6mpM/sszDDM3r17x48fn5WVNcj9l5aW5ufnZ2RkJCUlURR1Q21DwwUDizcokgiUiXpvl0kGjg+Lxfz2P5//7UPTxiV0fJ6dLvfhE1d+8cj923fm9Fnlyz2fuVsvbFu/1F/W0YsxmNrf+vTb40dV6ZnzBtlmZSAHAIvn6nfuzt758S86tze3EFu2FgYHh3qpW1Ny+slnl8mkIoIg3G42ITroeHkJ9BNYHMcpFAqLxfLRRx9NmzZNo9GQ5ABnwFmWTUlJuXDhQkNDw8SJEwMCAgasgoYdBhZviMSipDtGAcC1qmsjNCOcDqe+1aAOU0VqHUTkCO91WbfbbjXIpF15R5JEuEpRV1vTXxWL2TRC7Q/dZm/EIoEqUNzebhlkg59f95vIWBYAIgHGJV/3VG09IZf33bPrRADx3fny6jo9x3H+cklQgJSmYryUp2lao9GYzeaCgoKKiorU1FQ/Pz/vhxAIBAkJCW1tbYcOHdJqtePGjcOulo/DwOINiqaVKiUANNU3BYcEOx1Ol9OlDlO36VrrG81BA0QWkCT56b4zBZevqYNlAGA02eenjQEAt9tNkmSf88pCAf37v37GcpxISNvsjkCF34RRIwCAYRiRqI++XnevbHw2J+cDmu7osxAEufOTX5HUJJ3O4XJYNbF+rO01EP2pd0WO4yp1NV8dPZaRnpKaEpMlEXraZrLYD1wcuAckl8vlcrnBYNixY8e8efNCQ0O9T5lTFKVSqYKCgoqLi+vq6tLS0qRSKc6y+ywMLN5wMo6q0ioAsJrb7e32j46UAwAUXayoNeT99/+ef0Y8JWWCl+pBgX5/fGw+x3FtRqtIKPD0tuqbTceOHzNZnUsWzu1dZcodMRnTk0rKGk1We+rkWAFN1TcZqxnFI4//9oU/romL1Xg5XExMwkOrxjywsmPtEkElf/BBo6nug9gIOU1Tx/cbRMrox57so+Jb72/fm5MzViO7xLj25JW/+dScgO/HpIMXEBBA03Rubu6iRYvUavWA5UmS1Gq1Op0uJydn4cKFMtkAvT80XDCweEMoFsYlxQEAU1AklUn/8u533Z99at0Lf1v37Iypk73vhCCIoAAZAKT/eodni/7Emxarrd3W/sCy6ybFl82bWHzi6+MnyhPplIPleQ11pgVzxzz44kGOFJdW1a1dv+GVF9eFh/U7CRU7MvHfB+o6A8vNqffs2vTe+lUJsaEAcLH42pqN+x578s89atXVN2zeuv1XDy9JDjGNjlc//Ube16cql88ZNZj3p7v29vbq6urU1NTAwEAvxSiK8vPzczgcDoejpqZGKBTeeeedUqn0Rg+HhgwGFm/Y2u3nT+QDgK3dZtSbejxrZxwGY8+NXhTr2rr/uGnzexFhoWkzUju3CGn6jTdO3DlipkNORXNJ5w+0x2oaO2sVXip67qWX33n9H/0tI4iLSyorN1gsDplMCABCoYjluE3bjohFApIi9Qary+nuXeuqrsbpdE1OTmFqjgYrpJpwRVmtwfOU0+VyswOfXmAYpqWlxWazLViwQKlUAoDD4RAIBL1HebGxsUFBQQ6HQyKRlJSUhISETJkyxTOH5Xa7z5w5M2nSpMEvkkBDA38fvCGRiiemJgPA5YIiRaD/3395p8NFONzU1dq2Aycrn3vqiaz0tJveeXRkRGRERPctRqNNLKZGBKmqZQU1V/WJqviGxq5AFItFkydOIIh+J5VkMn+tduzVKsO4MV0jstfXrjBabBzH+cskK3+7rXetkZoogiA+zz2cFk9cKGs6W1S/5qHJhcU1ZZVNTWZ67HRvCyNYlm1oaDAYDGPHjk1MTBQKhQBQUFBQVlamUqlmzZrVo3xEREROTk5NTY1arb7vvvsoiiJJsrW19fTp0xzHFRcXKxSKpKQ+1pGgYYSBxRtWszXvYB4AcBzkHcyLAuAoAIqYNEs79c6Fc2bPvqG96fZkAwAQ5Hvfstt27n/vX6/Krj+nVltnTFanON3sufPX3GZxiCakouSKbk82I01KWvC7B5bd+/OfrKIob7PgkyfPKik91j2waJryDEj75Ha7d+XsZ1l2175DuwkAgli5aLZf2FSDUxQ/U5muifW+7KCpqUmpVC5durRzNanRaMzNzeU4rrS0NDExMSwsrHt5q9VaUVHBMIzZbG5oaIiMjPRszM/P9xTYs2fPqFGjcALep2Bg8Yaf3O+uuXcBwOWCotETkhg7U1dTHxOvaWgxyaUq73UlEmn0qBnv7SmIChFLxUIAMFmZoiqzRDV6zMTU/7w6U9ZrBUBS8viG9OK9b32TdUd6gDjgi8rdacnx67demL90wiMPrHz80YcHHC7Nmr34449qNm5yAkBmFieRSi+V1qqD/AkCWg1Wofi6I3Ict++rQ5/s2jt3zqxHVi1vbTMEKwMTtXGDHJQJhcKMjIwJEyZ0X9RK07RCoTAYDEKhsPfMlFQqjYqKqq+vVyqVnVkmlUrHjh0LAOXl5VlZWZhWvuaGv8aFhlJFRYVarWZZFgAWzJ6UEKMGAKvF6ifzY1mWsTMSqcRksT3w8zWz5nSd5iNJ0mKxCIVCz7DIU51h7Neqq+trdVaLAQAClSEh4ZHRmhiO43p8LDu/asdYjbu27JLJhBVFuvRFU5WRERL/4OBgFcuyPTo7HMdZLBaFQuF53OcfVWHBubyv99osegDw81emzlqYnDKl++HyC/9bfrVy0dxMiWSA04IkSVqtVoFA0P0F9n4hANDc3FxdXa1SqaKionq/QJvNZjabpVJpj9OCDMOcO3duypQpnrgkCMJsNkdcP2RGwwIDy6d1DywHw/RXjKZpstuKxx5p4qnu0ZkmBEH0133o/t1gt9tNEATHsiRFeeludD9if4EFAC6Xq/Po1Pc77Dycp+Jglpt7eYG9eUlkL1W6twQDy3fgkJA3hAOt1RwMLznVp46V37fpOyvex3c32rZBuol9/kAtQbcOA8unefoBt/gdt5uofisf15v4tN9iOgzxC0TDCAPLd5U0gN4utdfUD3dDfkQIAmgSMM18Fs5h+Sh9O7zyNefAyyMPOSENv88kAnG5u0/CHpaPOlrMOVwAnBvcdtJh4MTBHNk1h0U529y6fY1XTxqNbUajkaYohSIgUBUeHJfGhWawhHAYW+7LaH0+wdo5UuQKnNhfGYcLjhZz9yZjL8sXYWD5qOo2AACCoDhKzIpVBNmxvIi26Wq//XttbUVGSvSyhVFRIQnBCqnLzTbqraXVbYfOfHLiy1cnTJkjHfcES2InoTeOtOgACC+BBd+/+cgHYWD5KJMNAIDjWIJzgcsKAn8gaPeVN89998XvViQvnLGse2GKoqJC/KNC/OdM0tgY1ztfFO7esiR1yZ9cwX1f7u7Hi3NzlBTIAb6T6HnzkQ/CwPJtnBtc7aStgSWp1m/X0Y66/RuXSETefmsSEf2b5RMXz4xb/fJLd8xcBXEPD1ljfR/hZjixiqXx6jF8hYHl0whgCVc7xTSZirZHyox/+VnmICtqwhSfr7/7gT9/6q+7WGPtuM+CzdgkUQx8cSjeYcwtInnwgMWmZa0mOadLHMpJ/gffhB8JDCyfRjiNpKMV9Bfthqvr1qQDQH5p457jpbTXE+8OF/vsT6bJpYJ3/zj3/nX7tj+XFRWqAAAO1AT8D54UdrDhQtI5YLEDJ1959WDpxGWvc+SN3b8H+Q4MLJ9G2psp27XqigsvZ08nSQIALO3O2LCAuBHerkt35Fy1280CgDpQuvaRqeu3n37r6cF2zf6HzZsWOzY+ctbjy5c8c3y424JuEt4mxKcRjhau5fy4kcpgxQ1fJtgjLTnKYGIKy5tvb8N8nMnKbPjkwr/3XOyxPSSA/u/2n5Qe6nmlU8QX2MPyaRwlbW1tTE/TsN1GckWVrXUt3m5dU9963bOr7xm/60jJ+LgBLkHjUb5twz80azbfdVPN7UHXVB6t7uN2if1tv2UGi/3Tw2XjRwa1M8575qQUXqnSm5njF645Xex9s+IBwNjuEguIiqtXtT/A0dEQwMDyaaTLJCCcQJCMkxXSHddjSJ8UPSE+BACOnNeNUMu1kUoA+PK78pSE0PBgGQB8fKio+05mjIt46f2TnsfH8qvDVXJtpLcR5W1yKXtN49M70ge9/TY4er5mccZUXW2LXEJqNeGxkaF7D5+ZODrpZGFZq9EWpJB8mFtkJkOk0O5iLLQIzxXyDw4JfRrTVhIf4edwsg5nVxdL4ScKUUpDlFK5VKiUSzyP/USCIEXHY+n16x6EAkodKG1sswJARa3hyHndziMlvb6SdSlbm01osx/OBQCAvA+nr/1wujab0H54IO9DwvMAAHTfTNdmE9psQrvhdV3v9nbshNB+uGVb7tsFO+PXXupRpbxj+/7Okgdu39t198y4Lw+fmzYhIXFkxGcHTh4/c3lp5tSYyBC9vi1IIQGANrNr2aqH33jlpeD6d+tObWbMTbfv4GgoYA/Lp9ktLSExQqWcpqmu04K788qOnKsGgGajVSwUyCVCAKhvtVzRtYgFAgBoMdmuVLVa7c70lGhPldAgv/oWi1opA4C4iACD2fG37acfWzIhUN7xdZ/ybbnwzmbuLjiwNnsvAACcKA0rK90M2zbEH57PlT5Yvm3DP/JgnmbsttL0OM/IsQog+rrWdu4EoKlc17Q6t/HpF8eATt29yhMPz1+d27g87vzOrpI993NziipbzxY3jtZGud3ca1v3Pb0q5VqT+e0dh7JXZohFkl1HSxdNH+kp6a9Q3Lv03gWM/diRPecLrfLEe/yCY29DC9APDwPLpzHtBpVCHhooEAm6Auveu+KnjQkHgH3fVcSEBYyODQKAj7++MkEbcu5KAwBEhfgfOFn5wcHL7z83Ny05CgCCAyQtxq7l2wFy4cSE0N9tOrJ5TaZQQAFAWTkkpQEAxMd1fKpT54+NAwBNeCp0W7UUDftXZD9ZAACw+p2erY17eD5oswkAgJGvHZrvpUr0dSXXPHGLbxMAAJwqav7p8rkAcLmsOnNytEREx0cG5l2oA4BHl2fUN+kPny2ku93XWSQSZ82bNyfT/dG2rXrXSnnoDd9MDA09HBL6NFostzHOMKVQSHcFFstyLjfrcrMsx7lY9vvHrN5sf+Y/eZ5/7+ZcdDjdP11/8NvCawBgNDMKv67zjE6H+2xRwx8enOxJKwCIj4OiKgCAsvIKL+05sHYrbNjMlW7OXdHn82M2l27mSjdz74TvPGbwWqV7ydszLhsTo9j++aELVypHRoblFdQAgMXmMNncALDvyNnco6cnJYVS5HXr1y4WFv773R1NinmYVnyBPSyfJpGpGtrKTO1uuaTrKnX7T1w9dbkOAOpbLFJJ4+GzQgCobjTFhvecSmcc7o0fn505fkSjvj1M1THH3GSw6Y22p1ZNEou6+hudnaPUCSPHzOm3PfPmhM/PyH4SYPWKmZeqmuCu65aMl2/bEP9XT97NzC3VluaujV8bwvWqkgRvxK/4Fgrqvy95e9adT04Km5wUtvnLK3eMilmSlfrBVyUUTT22KpNl2campkcXjYXvL4jIsuyZ06e+K6iho+bLUxb1vP0G8mF4PSwf9UIOZ2GAbj5qubQle8nkaLVIJiEB4PiFawKa7HNIqAlTLHvui+47SYxW7lp/j8JPOOvXnx7ZtJKkyN1HSwLk4vSUqD4PylMOVuBZ6b7rWNnkCeNYlpOIhSHBAQBQWlWnCVdv3X30ocyREhH9wnv5qpGTDh0+Fj77Ramy35kzmQjWLcLLy/gi7GH5NLdySkX9pro2Z2igwBNYAFDTZJJdFQBAfZsVAFhgAaDZaAtRSve8fI+njMnMvLj15I4XFwfKRWeK6u+IU1MUwQEsnXX7ViDpvpmesfNE188jXzu05onbMX1+0yZq1TlHzkaqxE16+5KsmSfyrwRK3V8dz6dIEAspAEgerQlVtGzRu+P6TyvkyzCwfBrhNMWNTCyt0U/Wdg1cmvU2qcgMAHqjneAAgAAAo9le32q1MW4AOHHp2oOZo3e+tDg4QAIAH31VdPfMH2CdZnT6d6U/yHKqmxYTrnh8iQIAquqNnx085WDsi5aNnzGu6243YUHiEcECoUQ+fG1EtwQDy6eRTIt/xKSzF/c9NCccoGPKKTkhxDMkBOA6h4QmKzNj/IioEDkA1DabIlQyhUwEAEWVrdeazLNTflwdCk2YYnmaSC7ted2rkAA6/fGP5z91bDgahW4DDCyfRthbwGVVhcf885Nzf350mmfjqUt1tc1mACip1lc3mq/oWgCgWNdqY1wKmRAArtYZPSXtjHvNm8dfWj19mJo/nJT+fXz7csbqrUuf3AEE1fspxAs46e6jOibd9efJ9lpOGFhxasvdU4Luz0g0tzub9NYBq2tCFQQBv3zlsIkRXK7v+G/JYTMJJf4/cMOHgdNuFYgHPtenDk9IzljN0X5ACr1nFk66+yzsYfk0ThjMcS5w2WIy//bxnl83tVmfWDFRLg0YsKLF5nh84zdSVWJk5voRQ9BQniCNlzlJKEtQ2MniKVw46tNYUTArCiFYB0cIk1Z8UlgvfOj5/SUD3SPh69NVd/9hr3rUAvm09dh/7o60N4LLCpx7uBuCbhL2sHyURAAWBjhSwNF+nCiIIwQcIQietYluPPTkv96MDKIXTh85e2KUTNJ1R6+6FsvBU1VfHC+TKyOmrHjTJcNrqPRCUJSjFVgXK/P25UEp3ibNV+Eclo/69Czk6zjg3ITbTjgNnKjrvoQEANXyrb7sQHnJRafTIaA4NwduN+HvrxiZNEUauxijqj+C1pOE08xRIqfK2xW/kqOJlZOGrFHoBmBg+aiaNvjXkUH9bgjOCQTF4eh+MDg3cCwAeLnTFwHwq9lEpHLoGoUGD//KfVSkEhaNB3IQvx+OEGBaDRZBASnwklYkCYvvwLTyXdjD8ml1BjhbBbUGjhn4pjDologEEBFATNJA+MDnYNGwwcBCCPEGDiUQQryBgYUQ4g0MLIQQb2BgIYR4AwMLIcQbGFgIId7AwEII8QYGFkKINzCwEEK8gYGFEOINDCyEEG9gYCGEeAMDCyHEGxhYCCHewMBCCPEGBhZCiDcwsBBCvIGBhRDiDQwshBBvYGAhhHgDAwshxBsYWAgh3sDAQgjxBgYWQog3MLAQQryBgYUQ4g0MLIQQb2BgIYR4AwMLIcQbGFgIId7AwEII8QYGFkKINzCwEEK8gYGFEOINDCyEEG9gYCGEeAMDCyHEGxhYCCHewMBCCPEGBhZCiDcwsBBCvIGBhRDijf8HhrwR6zPtvvoAAAAASUVORK5CYII="
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY=""
+#!   DESCRIPTION=""
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="454 71"
+#!   DOC_TOP_LEFT="-2439.4 -49.7474"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22623"
+#!   FME_BULK_MODE_THRESHOLD=""
+#!   FME_DOCUMENT_GUID="56520c9c-1936-4bf6-b4ea-dacd05e43b4a"
+#!   FME_DOCUMENT_PRIORGUID="f3c9bbb2-e199-4bbb-a450-a0fec829acc4,a5593167-7cd0-4a56-927f-5ee6760b70d8"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="windows-1252"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.1.1.0 (20220728 - Build 22623 - WIN64)"
+#!   LAST_SAVE_DATE="2024-01-26T15:27:09"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="39"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="NO"
+#!   TITLE=""
+#!   USAGE=""
+#!   USE_MARKDOWN=""
+#!   VIEW_POSITION="-3237.53 518.755"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="100"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="GEOJSON"
+#!   DATASET="$(SourceDataset_GEOJSON)"
+#!   KEYWORD="GEOJSON_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string string fme_type string multi_reader_full_id int multi_reader_id int multi_reader_keyword string multi_reader_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="LISTBOX_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22623"
+#!   COORDSYS=""
+#!   FEATURE_TYPES=""
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/geo+json ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the GeoJSON file(s) or type the GeoJSON URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the GeoJSON file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GEOJSON"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="GEOJSON"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="dma_stats"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="json_polygon"
+#!   POSITION="-2439.39959399594 21.252562525625251"
+#!   BOUNDING_RECT="-2439.39959399594 21.252562525625251 454 71"
+#!   ORDER="500000000000000"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEOJSON_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER=""
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="false"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="OID" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="uid" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="council" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="wsa" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zone_id" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="name" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="status" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="count_res" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="count_com" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lm" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lm_rigid" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="lm_flexible" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="n1c" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="age_avg" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="update_date" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="origin_date" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="GEOJSON_1"
+#!   OVERRIDE="-GEOJSON_1_DATASET"
+#!   DATASET="GEOJSON_1/dma_stats.json"
+#! />
+#! </READER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_GEOJSON INCLUDE_WEB_BROWSER%GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|GeoJSON_Documents(*.geojson)|*.geojson|All_Files(*)|* Source GeoJSON File or URL:"
+#!   DEFAULT_VALUE="$(FME_MF_DIR)exports\dma_stats.json"
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoicmVhZCIsImFsbG93VVJMIjp0cnVlLCJkZWZhdWx0VmFsdWUiOiIkKEZNRV9NRl9ESVIpZXhwb3J0c1xcZG1hX3N0YXRzLmpzb24iLCJmaWx0ZXJzIjpbeyJkZXNjcmlwdGlvbiI6Ikdlb0pTT04gRG9jdW1lbnRzIiwiZmlsdGVyIjpbIiouanNvbiIsIiouZ2VvanNvbiJdfSx7ImRlc2NyaXB0aW9uIjoiR2VvSlNPTiBEb2N1bWVudHMiLCJmaWx0ZXIiOlsiKi5qc29uIl19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJHZW9KU09OIERvY3VtZW50cyIsImZpbHRlciI6WyIqLmdlb2pzb24iXX0seyJkZXNjcmlwdGlvbiI6IkFsbCBGaWxlcyIsImZpbHRlciI6WyIqIl19XSwiaW5jbHVkZVdlYkJyb3dzZXIiOnRydWUsIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsIm5hbWUiOiJTb3VyY2VEYXRhc2V0X0dFT0pTT04iLCJwcm9tcHQiOiJTb3VyY2UgR2VvSlNPTiBGaWxlIG9yIFVSTDoiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOnRydWUsInN1cHBvcnRlZFZhbHVlVHlwZXMiOlsiZ2xvYmFsUGFyYW1ldGVyIl0sInR5cGUiOiJmaWxlIiwidmFsaWRhdGVFeGlzdGVuY2UiOmZhbHNlLCJ2YWx1ZVR5cGUiOiJzdHJpbmcifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="SourceDataset_GEOJSON" 
+#!   DEFAULT_VALUE="$(FME_MF_DIR)exports\dma_stats.json"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_GEOJSON INCLUDE_WEB_BROWSER%GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|GeoJSON_Documents(*.geojson)|*.geojson|All_Files(*)|* Source GeoJSON File or URL:"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 39
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_GEOJSON_1,GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1,GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1,GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1
+# ============================================================================
+DEFAULT_MACRO SourceDataset_GEOJSON $(FME_MF_DIR)exports\dma_stats.json
+
+# ============================================================================
+INCLUDE [ if {{$(SourceDataset_GEOJSON$encode)} == {}} { puts_real {Parameter 'SourceDataset_GEOJSON' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} GEOJSON
+MULTI_READER_KEYWORD{0} GEOJSON_1
+MULTI_READER_GEN_DIRECTIVES{0} USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,Yes,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,_MERGE_SCHEMAS,YES,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,FLATTEN_MODE,ALL_LEVELS,USE_SEARCH_ENVELOPE,NO,EXPOSE_ATTRS_GROUP,,GEOJSON_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,CLIP_TO_ENVELOPE,NO
+WRITER_TYPE NULL
+WRITER_KEYWORD NULL_DEST
+NULL_DEST_DATASET null
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GEOJSON_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOJSON GEOJSON_1
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_GEOJSON_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOJSON GEOJSON_1
+DEFAULT_MACRO SourceDataset_GEOJSON_1 $(SourceDataset_GEOJSON)
+GUI FILE_OR_URL SourceDataset_GEOJSON_1 GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|GeoJSON_Documents(*.geojson)|*.geojson|All_Files|* Source GeoJSON File or URL:
+DEFAULT_MACRO GEOJSON_IN_FLATTEN_MODE_GEOJSON_1 ALL_LEVELS
+GEOJSON_1_FLATTEN_MODE "$(GEOJSON_IN_FLATTEN_MODE_GEOJSON_1)"
+DEFAULT_MACRO GEOJSON_IN_EXPOSE_ATTRS_GROUP_GEOJSON_1 
+GEOJSON_1_EXPOSE_ATTRS_GROUP "$(GEOJSON_IN_EXPOSE_ATTRS_GROUP_GEOJSON_1)"
+DEFAULT_MACRO GEOJSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_GEOJSON_1 Yes
+GEOJSON_1_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE "$(GEOJSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_GEOJSON_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1 NO
+GEOJSON_1_USE_SEARCH_ENVELOPE "$(GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1)"
+GUI ACTIVEDISCLOSUREGROUP GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1 GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1%GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1%GEOJSON_IN_SEARCH_METHOD%GEOJSON_IN_SEARCH_METHOD_FILTER%GEOJSON_IN_SEARCH_ORDER%GEOJSON_IN_SEARCH_FEATURE%GEOJSON_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 <Unused>, 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1)"
+GUI OPTIONAL COORDSYS GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 <Unused>,NO 
+DEFAULT_MACRO GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 NO
+GEOJSON_1_CLIP_TO_ENVELOPE "$(GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1)"
+GUI OPTIONAL CHECKBOX GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1 
+GEOJSON_1_NETWORK_AUTHENTICATION "$(GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1)"
+GUI OPTIONAL AUTHENTICATOR GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO GEOJSON_IN_ATTRIBUTE_READING_GEOJSON_1 ALL
+GEOJSON_1_ATTRIBUTE_READING "$(GEOJSON_IN_ATTRIBUTE_READING_GEOJSON_1)"
+# ============================================================================
+GEOJSON_1_GENERATE_FME_BUILD_NUM 22623
+GEOJSON_1_DATASET "$(SourceDataset_GEOJSON_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)C view data.log"
+LOG_APPEND NO
+LOG_FILTER_MASK -1
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING windows-1252
+FME_BULK_MODE_THRESHOLD 
+LAST_SAVE_BUILD "FME 2022.1.1.0 (20220728 - Build 22623 - WIN64)"
+DEFAULT_MACRO DATASET_KEYWORD_GEOJSON_1 GEOJSON_1
+# -------------------------------------------------------------------------
+
+GEOJSON_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME C view data
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+GEOJSON_1_DEF dma_stats   OID                          int   uid                          string   council                      string   wsa                          string   zone_id                      string   name                         string   status                       string   count_res                    int   count_com                    int   lm                           int   lm_rigid                     int   lm_flexible                  int   n1c                          float   age_avg                      int   update_date                  string   origin_date                  string
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   MULTI_READER_KEYWORD $(DATASET_KEYWORD_GEOJSON_1)   INPUT FEATURE_TYPE *    ROUTE GEOJSON GEOJSON_1::dma_stats multi_reader_keyword,$(DATASET_KEYWORD_GEOJSON_1) TO FME_GENERIC ::dma_stats ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+GEOJSON_1_MERGE_DEF GEOJSON_1::dma_stats EXACT dma_stats
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "dma_stats_GEOJSON_1 Splitter"    INPUT FEATURE_TYPE dma_stats
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
