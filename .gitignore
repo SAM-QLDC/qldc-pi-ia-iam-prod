@@ -1,13 +1,10 @@
 # ignore folders
-exports/
+_notes
+**/draft/
+**/exports/
+**/imports/
 **/superceded/
 iam/
-ruby/
-draft/
-images/
-excel/
-temp/
-gis/
 
 # ignore files ext
 **/*.log
