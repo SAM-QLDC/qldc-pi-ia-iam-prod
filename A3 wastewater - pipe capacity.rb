@@ -116,6 +116,9 @@ p = net.row_objects('cams_pipe').each do |p|
 		SCF_half = (theta_half-(Math.sin(theta_half)))/theta_half
 		velocity_half = -2*((2*gravity*gradient*SCF_half*pipe_size)**0.5)*Math::log10((((roughness/1000)/(3.7*SCF_half*pipe_size))+((2.51*dyn_visc)/((SCF_half*pipe_size)*((2*gravity*gradient*SCF_half*pipe_size)**0.5)))))
 		
+		# pressure pipe capacities
+		# to do!
+		
 		# load into IAM
 		p['capacity'] = flow.round(3)
 		p['user_number_5'] = velocity_half.round(3)
