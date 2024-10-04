@@ -93,7 +93,9 @@ p = net.row_objects('cams_pipe').each do |p|
 		end		
 		# calculations
 		pipe_size = p['ds_width']/1000
-		depth = pipe_size 									# fullpipe flows
+		
+		# full pipe flows - pipe full capacity check
+		depth = pipe_size
 		theta = 2*(Math.acos((1-((2*depth)/pipe_size)))) 	#*deg_rad_convert # not needed
 		wettedP = (pipe_size*theta.to_f)/2
 		pipe_area = ((pipe_size**2)/8)*(theta-Math.sin(theta))
@@ -101,12 +103,26 @@ p = net.row_objects('cams_pipe').each do |p|
 		SCF = (theta-(Math.sin(theta)))/theta
 		velocity = -2*((2*gravity*gradient*SCF*pipe_size)**0.5)*Math::log10((((roughness/1000)/(3.7*SCF*pipe_size))+((2.51*dyn_visc)/((SCF*pipe_size)*((2*gravity*gradient*SCF*pipe_size)**0.5)))))
 		flow = ((velocity*SCF*theta*(pipe_size**2))/8)
-		widthB =(pipe_size)*Math.sin(theta/2)
-		HydrMeanD = pipe_area/widthB
-		FroudeNo = velocity/((gravity*HydrMeanD)**0.5)
+		#widthB =(pipe_size)*Math.sin(theta/2)
+		#HydrMeanD = pipe_area/widthB
+		#FroudeNo = velocity/((gravity*HydrMeanD)**0.5)
+		
+		# half pipe velocities - PDWF self cleansing check
+		depth_half = pipe_size
+		theta_half = 2*(Math.acos((1-((2*depth_half)/pipe_size))))
+		wettedP_half = (pipe_size*theta_half.to_f)/2
+		pipe_area_half = ((pipe_size**2)/8)*(theta_half-Math.sin(theta_half))
+		hydrR = pipe_area_half/wettedP_half
+		SCF_half = (theta_half-(Math.sin(theta_half)))/theta_half
+		velocity_half = -2*((2*gravity*gradient*SCF_half*pipe_size)**0.5)*Math::log10((((roughness/1000)/(3.7*SCF_half*pipe_size))+((2.51*dyn_visc)/((SCF_half*pipe_size)*((2*gravity*gradient*SCF_half*pipe_size)**0.5)))))
+		
 		# load into IAM
 		p['capacity'] = flow.round(3)
+		p['user_number_5'] = velocity_half.round(3)
+		
 		p['capacity_flag'] = flag_calc
+		p['user_number_5_flag'] = flag_calc
+		
 	end
 	
 p.write
