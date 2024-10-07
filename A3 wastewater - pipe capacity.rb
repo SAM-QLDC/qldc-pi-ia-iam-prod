@@ -96,7 +96,7 @@ p = net.row_objects('cams_pipe').each do |p|
 		
 		# full pipe flows - pipe full capacity check
 		depth = pipe_size
-		theta = 2*(Math.acos((1-((2*depth)/pipe_size)))) 	#*deg_rad_convert # not needed
+		theta = 2*(Math.acos((1-((2*depth)/pipe_size))))# *deg_rad_convert # not needed
 		wettedP = (pipe_size*theta.to_f)/2
 		pipe_area = ((pipe_size**2)/8)*(theta-Math.sin(theta))
 		hydrR = pipe_area/wettedP

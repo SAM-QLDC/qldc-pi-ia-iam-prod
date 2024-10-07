@@ -2,7 +2,7 @@
 # ==============================================================
 
 ## parameters
-folder = 'C:\Github\QLDC-PI-IAM-DEV'
+folder = 'C:\Github\qldc-pi-ia-iam-prod'
 data = '\fme\exports\water supply'
 
 # Run batch file
@@ -144,6 +144,7 @@ class ImporterClassValve
 		end
 		obj['diameter'] = iamValveZ
 		obj['diameter_flag'] = iamValveZFlag
+		obj['criticality'] = inValveCriticality
 		
 		obj['user_date_1'] = inValveDatetimeAdd
 		obj['user_date_2'] = inValveDatetimeMod
@@ -244,7 +245,8 @@ class ImporterClassHydrant
 			iamHydrantManufacturerFlag = 'XX'
 		end
 		obj['manufacturer'] = iamHydrantManufacturer
-		obj['manufacturer_flag'] = iamHydrantManufacturerFlag		
+		obj['manufacturer_flag'] = iamHydrantManufacturerFlag
+		obj['criticality'] = inHydrantCriticality	
 		
 		obj['user_date_1'] = inHydrantDatetimeAdd
 		obj['user_date_2'] = inHydrantDatetimeMod
@@ -370,7 +372,8 @@ class ImporterClassMeter
 			iamMeterSerialFlag = 'XX'
 		end
 		obj['serial_number'] = iamMeterSerial
-		obj['serial_number_flag'] = iamMeterSerialFlag		
+		obj['serial_number_flag'] = iamMeterSerialFlag
+		obj['criticality'] = inMeterCriticality	
 		
 		obj['user_date_1'] = inMeterDatetimeAdd
 		obj['user_date_2'] = inMeterDatetimeMod
@@ -459,6 +462,7 @@ class ImporterClassFitting
 		end
 		obj['elevation'] = iamFittingLevel
 		obj['elevation_flag'] = iamFittingLevelFlag
+		obj['criticality'] = inFittingCritcality
 		
 		obj['user_date_1'] = inFittingDatetimeAdd
 		obj['user_date_2'] = inFittingDatetimeMod
@@ -725,6 +729,7 @@ class ImporterClassPipe
 		obj['user_date_2'] = inPipeDatetimeMod
 		#obj['user_date_3'] = inPipeDatetimeCreated
 		#obj['user_date_4'] = inPipeDatetimeEdited
+		obj['criticality'] = inPipeCriticality
 		
 		## useful if you want to create nodes either end of link
 		obj['user_number_1'] = inPipeXstart
@@ -768,6 +773,7 @@ class ImporterClassTank
 		obj['elevation'] = inTankZ
 		obj['type'] = inTankType
 		obj['special_instructions'] = inTankDesc
+		obj['criticality'] = inTankCritcality
 		
 	end
 end
@@ -795,6 +801,7 @@ class ImporterClassPumpStation
 		obj['operational_status'] = inPSServ 
 		obj['date_installed'] = inPSInstallDate
 		obj['type'] = inPSType
+		obj['criticality'] = inPSCriticality
 		
 	end
 end
@@ -822,6 +829,7 @@ class ImporterClassWtw
 		obj['operational_status'] = inWtwServ
 		obj['date_installed'] = inWtwInstallDate
 		obj['type'] = inWtwType
+		obj['criticality'] = inWtwCriticality
 		
 	end
 end

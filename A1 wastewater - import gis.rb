@@ -6,7 +6,7 @@
 #WSApplication.use_arcgis_desktop_licence
 
 ## parameters
-folder = 'C:\Github\QLDC-PI-IAM-DEV'
+folder = 'C:\Github\qldc-pi-ia-iam-prod'
 data = '\fme\exports\wastewater'
 
 # reserve network so no-one else can use it
