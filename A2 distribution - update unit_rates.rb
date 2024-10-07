@@ -17,16 +17,8 @@ net.transaction_begin
 
 ## parameters
 source = 'OAS 2024-020 DR - QLDC - Final 3W Valuation.pdf'
-valyear = 2024
-on_cost_network = 1.262
-on_cost_facilities = 1.259
-curyear = Time.now.strftime('%Y').to_i
-flag_calc = 'VAL'
-flag_unsure = 'XX'
-
-### depth factor increases
-depth_m = [0.5,1,2,10000]
-depth_cost_factor = [1,1,1,1]
+valyear = 2025
+unityear = 2024
 
 ### cost index changes
 cgi_year = [
@@ -58,6 +50,24 @@ cgi_index = [
 	576.4,612.3,658.5,679.9,712.1,726.2,643.9,
 	675.9,697.6,699.8,704.2,767.9,784.5,800.8,
 	850.8,966.7,1026.8,1049,1075]
+	
+### uplift factors
+index_unityear = cgi_year.index{ |x| x >= unityear}
+ci_unityear = cgi_index[index_unityear]
+index_valyear = cgi_year.index{ |x| x >= valyear}
+ci_valyear = cgi_index[index_valyear]
+
+on_cost_valuation_year = (ci_unityear.to_f/ci_valyear.to_f)
+on_cost_network = 1.262
+on_cost_facilities = 1.259
+
+curyear = Time.now.strftime('%Y').to_i
+flag_calc = 'VAL'
+flag_unsure = 'XX'
+
+### depth factor increases
+#depth_m = [0.5,1,2,10000]
+#depth_cost_factor = [1,1,1,1]
 
 ### latest unit rates
 serv_size = [20,50,63,100,10000]
@@ -317,7 +327,7 @@ ro = net.row_objects('wams_pipe').each do |ro|
 	ci_year_installed = cgi_index[index_year_installed]
 	ci_year_now = cgi_index[index_year_now]
 	
-	replace_cost = length.to_f * rate.to_f * on_cost_network.to_f
+	replace_cost = length.to_f * rate.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f
 	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * replace_cost.to_f
 	current_value = (1-(age.to_f/lifetime.to_f)) * installation_cost.to_f
 	
@@ -335,6 +345,7 @@ ro = net.row_objects('wams_pipe').each do |ro|
 	ro['replace_cost'] = replace_cost
 	ro['type'] = type
 	ro['use'] = use
+	ro['user_number_7'] = on_cost_valuation_year
 	
 	ro['install_cost_flag'] = flag_calc
 	ro['current_value_flag'] = current_value_positive_flag
@@ -380,7 +391,7 @@ hydrant_ro = net.row_objects('wams_hydrant').each do |hydrant_ro|
 	index_year_now = cgi_year.index{ |x| x >= valyear}
 	ci_year_now = cgi_index[index_year_now]	
 	
-	replace_cost = hydrant_na.to_f * on_cost_network.to_f
+	replace_cost = hydrant_na.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f
 	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * replace_cost.to_f
 	current_value = (1-(age.to_f/hydrant_lifetime.to_f)) * installation_cost.to_f
 	
@@ -424,9 +435,9 @@ meter_ro = net.row_objects('wams_meter').each do |meter_ro|
 
 	unit_cost = meter_tbd
 	
+	replace_cost = unit_cost.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f 
 	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * unit_cost.to_f * on_cost_network.to_f
 	current_value = (1-(age.to_f/meter_lifetime.to_f)) * installation_cost.to_f
-	replace_cost = unit_cost.to_f * on_cost_network.to_f 
 	
 	if current_value < 0
 		current_value_positive = 0
@@ -468,9 +479,9 @@ valve_ro = net.row_objects('wams_valve').each do |valve_ro|
 
 	unit_cost = valve_tbd	
 	
+	replace_cost = unit_cost.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f 	
 	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * unit_cost.to_f * on_cost_network.to_f
 	current_value = (1-(age.to_f/valve_lifetime.to_f)) * installation_cost.to_f
-	replace_cost = unit_cost.to_f * on_cost_network.to_f 	
 
 	if current_value < 0
 		current_value_positive = 0
