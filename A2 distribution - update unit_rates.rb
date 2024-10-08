@@ -17,8 +17,9 @@ net.transaction_begin
 
 ## parameters
 source = 'OAS 2024-020 DR - QLDC - Final 3W Valuation.pdf'
-valyear = 2025
-unityear = 2024
+valyear = 2024
+unityear = 2022
+curyear = Time.now.strftime('%Y').to_i
 
 ### cost index changes
 cgi_year = [
@@ -33,7 +34,7 @@ cgi_year = [
 	1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,
 	2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,
 	2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,
-	2020,2021,2022,2023,2024,2025]
+	2020,2021,2022,2023,2024]
 
 cgi_index = [
 	1,8,8,8.6,9.4,10.5,11.6,
@@ -49,7 +50,7 @@ cgi_index = [
 	396.5,415.6,436.8,446.8,456.3,481.7,534,558.2,
 	576.4,612.3,658.5,679.9,712.1,726.2,643.9,
 	675.9,697.6,699.8,704.2,767.9,784.5,800.8,
-	850.8,966.7,1026.8,1049,1075]
+	850.8,966.7,1026.8,1049]
 	
 ### uplift factors
 index_unityear = cgi_year.index{ |x| x >= unityear}
@@ -57,11 +58,10 @@ ci_unityear = cgi_index[index_unityear]
 index_valyear = cgi_year.index{ |x| x >= valyear}
 ci_valyear = cgi_index[index_valyear]
 
-on_cost_valuation_year = (ci_unityear.to_f/ci_valyear.to_f)
+on_cost_valuation_year = (ci_valyear.to_f/ci_unityear.to_f)
 on_cost_network = 1.262
 on_cost_facilities = 1.259
 
-curyear = Time.now.strftime('%Y').to_i
 flag_calc = 'VAL'
 flag_unsure = 'XX'
 
@@ -345,7 +345,8 @@ ro = net.row_objects('wams_pipe').each do |ro|
 	ro['replace_cost'] = replace_cost
 	ro['type'] = type
 	ro['use'] = use
-	ro['user_number_7'] = on_cost_valuation_year
+	# check on ci indexes
+	#ro['user_number_7'] = on_cost_valuation_year
 	
 	ro['install_cost_flag'] = flag_calc
 	ro['current_value_flag'] = current_value_positive_flag
