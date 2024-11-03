@@ -1,1 +1,0 @@
-ADD SCENARIO $scenario;
