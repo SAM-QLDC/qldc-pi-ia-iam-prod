@@ -241,8 +241,8 @@ class ImporterClassNode
 		obj['shaft_dim_2_flag'] = iamNodeDiam2Flag
 		obj['chamber_floor_depth'] = iamNodeCfd
 		obj['chamber_floor_depth_flag'] = iamNodeCfdFlag
-		obj['system_type'] = iamNodeSystemType
-		obj['system_type_flag'] = iamNodeSystemTypeFlag
+		obj['system_type'] = 'S'
+		obj['system_type_flag'] = 'AS'
 		obj['x'] = inNodeX
 		obj['y'] = inNodeY
 		obj['year_laid'] = iamNodeInstallDate
