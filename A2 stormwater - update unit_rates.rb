@@ -68,14 +68,34 @@ on_cost_valuation_year = (ci_valyear.to_f/ci_unityear.to_f)
 #depth_cost_factor = [1,1,1,1]
 
 ### latest unit rates
-serv_size = []
-serv_cost = []
+serv_size = [
+	100,110,150,200,
+	225,250,300,100000]
+serv_cost = [
+	330,446,457,485,
+	613,617,714,801]
 
-main_size = []
-main_cost = []
+main_size = [
+	100,110,150,200,
+	225,250,300,375,
+	450,600,675,750,
+	900,1050,1200,100000]
+main_cost = [
+	330,446,457,485,
+	613,617,714,801,
+	964,1359,1749,1851,
+	2278,3320,3320,6243]
 
-culv_size = []
-culv_cost = []
+culv_size = [
+	100,150,200,225,
+	250,275,300,375,
+	450,600,750,900,
+	100000]
+culv_cost = [
+	330,457,485,613,
+	617,717,714,801,
+	964,1359,1851,2278,
+	3320]
 
 # unit costs for non-pipe assets
 sw_manhole = 6823
@@ -98,7 +118,7 @@ sw_main_lifetime = 80
 # this will enable old unit rates to be used for newer assessments
 # and back calcs for installation costs where none are available
 
-## looping and updating each asset
+## looping and updating each pipe asset
 ro = net.row_objects('cams_pipe').each do |ro|
 
 	### wastewater lifetimes from old IAM network
@@ -148,8 +168,10 @@ ro = net.row_objects('cams_pipe').each do |ro|
 		lifetime = 80
 	end
 
-	if ro.year_laid == nil
-		year_installed = typyear
+	if 
+		ro.year_laid == nil ||
+		ro.year_laid.strftime('%Y').to_i < 1901 
+			year_installed = typyear
 	else
 		year_installed = ro.year_laid.strftime('%Y').to_i
 	end
@@ -189,9 +211,201 @@ ro = net.row_objects('cams_pipe').each do |ro|
 		ro['likelihood_score_flag'] = flag_calc
 	end
 
+	### unit rates
+	size = ro.width.to_i
+	length = ro.length.to_f
+	pipe_type = ro.pipe_type
+	pipe_owner = ro.owner
+	
+	if size > 0
+		size_nd = size
+	else
+		size_nd = 225
+	end	
+
+	if pipe_owner == 'PRIVATE'
+		index = serv_size.index{ |x| x >= size_nd}
+		rate = serv_cost[index]
+	else
+		index = main_size.index{ |x| x >= size_nd}	
+		rate = main_cost[index]
+	end
+
+	### pick out CPI figures for the install year and the current year
+	index_year_installed = cgi_year.index{ |x| x >= year_installed}
+	index_year_now = cgi_year.index{ |x| x >= valyear}
+	ci_year_installed = cgi_index[index_year_installed]
+	ci_year_now = cgi_index[index_year_now]
+	
+	replace_cost = length.to_f * rate.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f
+	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * replace_cost.to_f
+	current_value = (1-(age.to_f/lifetime.to_f)) * installation_cost.to_f
+	
+	if current_value < 0
+		current_value_positive = 0
+		current_value_positive_flag = flag_unsure
+	else
+		current_value_positive = current_value
+		current_value_positive_flag = flag_calc
+	end
+	
+	rehab_cost = replace_cost - current_value_positive
+	
+	#### 
+	ro['install_cost'] = installation_cost.to_i
+	ro['current_value'] = current_value_positive.to_i
+	ro['replace_cost'] = replace_cost.to_i
+	ro['rehab_cost'] = rehab_cost.to_i
+	
+	ro['install_cost_flag'] = flag_calc
+	ro['current_value_flag'] = current_value_positive_flag
+	ro['replace_cost_flag'] = flag_calc
+	ro['rehab_cost_flag'] = flag_calc
+
 ro.write
 
 end
+
+## looping and updating each connection pipe asset
+cp = net.row_objects('cams_connection_pipe').each do |cp|
+
+	### wastewater lifetimes from old IAM network
+	if 
+		cp.pipe_material == 'ALK' ||
+		cp.pipe_material == 'CI' ||
+		cp.pipe_material == 'HDPE' ||
+		cp.pipe_material == 'MDPE' ||
+		cp.pipe_material == 'MPVC' ||
+		cp.pipe_material == 'PE' ||
+		cp.pipe_material == 'PE100' ||
+		cp.pipe_material == 'POLYETHYLENE (PE100)' ||
+		cp.pipe_material == 'POLYVINYL CHLORIDE' ||
+		cp.pipe_material == 'PP' ||
+		cp.pipe_material == 'PVC' ||
+		cp.pipe_material == 'PVCO' ||
+		cp.pipe_material == 'UPVC' ||
+		cp.pipe_material == 'UPVCLINE' ||
+		cp.pipe_material == 'STRUCTURAL LINER UPVC' ||
+		cp.pipe_material == 'U - POLYVINYL CHLORIDE' ||
+		cp.pipe_material == 'SSTEEL' ||
+		cp.pipe_material == 'STAINLESS STEEL' ||
+		cp.pipe_material == 'STEEL' ||
+		cp.pipe_material == 'NOVA' ||
+		# new ones from the sw network
+		cp.pipe_material == 'SRSTEEL' ||
+		cp.pipe_material == 'UPVCL' ||
+		cp.pipe_material == 'RCRRJ' ||
+		cp.pipe_material == 'REINFORCED CONCRETE'
+			lifetime = 80
+	elsif 
+		cp.pipe_material == 'EW'
+			lifetime = 70
+	elsif 
+		cp.pipe_material == 'GI' ||
+		cp.pipe_material == 'DI' ||
+		cp.pipe_material == 'NOVA'
+			lifetime = 60
+	elsif 
+		cp.pipe_material == 'AC' ||
+		cp.pipe_material == 'FIBGLASS' ||
+		cp.pipe_material == 'CLSTEEL' ||
+		cp.pipe_material == 'CONC'
+			lifetime = 50
+	else
+		lifetime = 80
+	end
+
+	if cp.year_laid == nil
+		year_installed = typyear
+	else
+		year_installed = cp.year_laid.strftime('%Y').to_i
+	end
+
+	if cp.year_laid == nil
+		age = ((curyear + 1) - typyear).to_i
+	else
+		age = (curyear + 1) - year_installed
+	end
+	
+	percRUL = (age.to_f / lifetime.to_f) * 100
+	
+	if percRUL <= 57
+		cp['lifetime'] = lifetime
+		cp['lifetime_flag'] = flag_calc
+	elsif percRUL <= 66
+		cp['lifetime'] = lifetime
+		cp['lifetime_flag'] = flag_calc
+	elsif percRUL <= 75
+		cp['lifetime'] = lifetime
+		cp['lifetime_flag'] = flag_calc
+	elsif percRUL <= 93
+		cp['lifetime'] = lifetime
+		cp['lifetime_flag'] = flag_calc
+	else
+		cp['lifetime'] = lifetime
+		cp['lifetime_flag'] = flag_calc
+	end
+
+	diameter = cp.diameter.to_i
+	pipe_length = cp.length.to_f
+
+	### unit rates
+	if diameter > 0
+		size = cp.diameter.to_i
+	else
+		size = 100
+	end
+	
+	if pipe_length > 0
+		length = cp.length.to_f
+	else
+		length = 5
+	end
+
+	index = serv_size.index{ |x| x >= size}
+	rate = serv_cost[index]
+
+	### pick out CPI figures for the install year and the current year
+	index_year_installed = cgi_year.index{ |x| x >= year_installed}
+	index_year_now = cgi_year.index{ |x| x >= valyear}
+	ci_year_installed = cgi_index[index_year_installed]
+	ci_year_now = cgi_index[index_year_now]
+	
+	replace_cost = length.to_f * rate.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f
+	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * replace_cost.to_f
+	current_value = (1-(age.to_f/lifetime.to_f)) * installation_cost.to_f
+	
+	if current_value > 0
+		current_value_positive = current_value
+		current_value_positive_flag = flag_calc	
+	else
+		current_value_positive = 0
+		current_value_positive_flag = flag_unsure
+	end
+	
+	rehab_cost = replace_cost - current_value_positive
+	
+	#### 
+	cp['replace_cost'] = replace_cost
+	cp['install_cost'] = installation_cost
+	cp['current_value'] = current_value_positive
+	cp['rehab_cost'] = rehab_cost
+	
+	cp['replace_cost_flag'] = flag_calc
+	cp['install_cost_flag'] = flag_calc
+	cp['current_value_flag'] = current_value_positive_flag
+	cp['rehab_cost_flag'] = flag_calc
+	
+cp.write
+
+end
+
+## looping and updating each channel asset
+#ch = net.row_objects('cams_channel').each do |ch|
+#
+#ch.write
+#
+#end
 
 ## final commit
 net.transaction_commit
