@@ -474,16 +474,69 @@ class ImporterClassPipe
 end
 
 class ImporterClassChannel
-	def ImporterClassChannel.onEndRecordchannel(obj)
+	def ImporterClassChannel.onEndRecordChannel(obj)
+		
 		# load fields
+		inChAssetType = obj['ASSETTYPE']
+		inChOwner = obj['OWN']
+		inChServ = obj['SERVSTAT']
+		inChWidth = obj['TPWIDTH']
+		inChDepth = obj['CHDEPTH']
+		inChDate = obj['INSTDATE']
+		inChUsNodeId = obj['UPNODE']
+		inChDsNodeId = obj['DWNNODE']
+
 		# update various fields
+		obj['type'] = inChAssetType
+		obj['type_flag'] = '#A'
+		obj['owner'] = inChOwner
+		obj['owner_flag'] = '#A' 
+		obj['status'] = inChServ
+		obj['status_flag'] = '#A' 
+		obj['system_type'] = 'S'
+		obj['system_type_flag'] = 'AS'
+		obj['width'] = inChWidth
+		obj['width_flag'] = '#A' 
+		obj['depth'] = inChDepth
+		obj['depth_flag'] = '#A' 
+		obj['constr_date'] = inChDate
+		obj['constr_date_flag'] = '#A' 
+		obj['us_node_id'] = inChUsNodeId
+		obj['us_node_id_flag'] = '#A'
+		obj['ds_node_id'] = inChDsNodeId
+		obj['ds_node_id_flag'] = '#A'
+		
 	end
 end
 
 class ImporterClassLateral
-	def ImporterClassLateral.onEndRecordLateral(obj)
+	def ImporterClassLateral.onEndRecordConnectionPipe(obj)
+		
 		# load fields
+		inLatAssetType = obj['ASSETTYPE']
+		inLatOwner = obj['OWN']
+		inLatServ = obj['SERVSTAT']
+		inLatMat = obj['PIPEMATL']
+		inLatDiam = obj['NOMDIAM']
+		inLatDate = obj['INSTDATE']
+		inLatScheme = obj['SCHEME']
+		inLatUpNode = obj['UPNODE']
+		inLatDwNode = obj['DWNNODE']
+		
 		# update various fields
+		obj['type'] = inLatAssetType
+		obj['owner'] = inLatOwner
+		obj['status'] = inLatServ
+		obj['system_type'] = 'S'
+		obj['system_type_flag'] = 'AS'
+		obj['pipe_material'] = inLatMat
+		obj['shape'] = 'C'
+		obj['shape_flag'] = 'AS'
+		obj['diameter'] = inLatDiam
+		obj['year_laid'] = inLatDate
+		obj['user_text_1'] = inLatUpNode
+		obj['user_text_2'] = inLatDwNode
+		
 	end
 end
 
@@ -553,7 +606,7 @@ import_tables.push ImportTable.new('csv', 'channel',
 puts 'Import tables and config file setup - asset_id matching'
 
 # Set up params
-options = Hash.new
+#options = Hash.new
 options['Update Based On Asset ID'] = false
 
 ## import tables into IAM
@@ -575,18 +628,18 @@ puts 'End import for tables matching id'
 puts 'Import tables and config file setup for SHP files'
 
 # Set up params
-shp=Hash.new
-shp['Duplication Behaviour'] = 'Merge'
-shp['Default Value Flag'] = '#S'
-shp['Set Value Flag'] = '#A'
-shp['Error File'] = folder + data + '\errors_shp.txt'
+options = Hash.new
+options['Duplication Behaviour'] = 'Merge'
+options['Default Value Flag'] = '#S'
+options['Set Value Flag'] = '#A'
+options['Error File'] = folder + data + '\errors_shp.txt'
 
 puts 'specific import shp options defined'
 
 # Do the import of water supply pressure zones
 net.odic_import_ex('shp',
 	folder + data + '\stormwater_config.cfg',
-	shp, 'workpackage',
+	options, 'workpackage',
 	folder + data + '\swSchemes.shp')
 
 puts 'End import SHP Files'

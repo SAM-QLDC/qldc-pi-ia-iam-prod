@@ -68,21 +68,31 @@ on_cost_valuation_year = (ci_valyear.to_f/ci_unityear.to_f)
 #depth_cost_factor = [1,1,1,1]
 
 ### latest unit rates
-serv_size = [40,50,100,125,10000]
-serv_cost = [214,210,273,452,467]
+serv_size = []
+serv_cost = []
 
-main_size = [40,50,60,106,110,150,200,250,300,375,10000]
-main_cost = [214,210,259,272,451,466,557,698,776,918,7035]
+main_size = []
+main_cost = []
+
+culv_size = []
+culv_cost = []
 
 # unit costs for non-pipe assets
-ww_manhole_mh = 7000
-ww_manhole_lh = 7000
-ww_manhole_st = 7000
-ww_valve = 8364
+sw_manhole = 6823
+sw_basin = 5790
+sw_soakpit = 5790
+sw_detention = 5790
+sw_structure = 6823
 
 # lifetimes for various point assets
-manhole_lifetime = 80
-valve_lifetime = 20
+sw_manhole_lifetime = 80
+sw_basin_lifetime = 60
+sw_soakpit_lifetime = 60
+sw_detention_lifetime = 60
+sw_structure_lifetime = 60
+sw_culvert_lifetime = 80
+sw_lateral_lifetime = 80
+sw_main_lifetime = 80
 
 # set up array for CGI values
 # this will enable old unit rates to be used for newer assessments
@@ -93,6 +103,7 @@ ro = net.row_objects('cams_pipe').each do |ro|
 
 	### wastewater lifetimes from old IAM network
 	if 
+		# based on ww pipe material types
 		ro.pipe_material == 'ALK' ||
 		ro.pipe_material == 'CI' ||
 		ro.pipe_material == 'HDPE' ||
@@ -112,7 +123,12 @@ ro = net.row_objects('cams_pipe').each do |ro|
 		ro.pipe_material == 'SSTEEL' ||
 		ro.pipe_material == 'STAINLESS STEEL' ||
 		ro.pipe_material == 'STEEL' ||
-		ro.pipe_material == 'NOVA'
+		ro.pipe_material == 'NOVA' ||
+		# new ones from the sw network
+		ro.pipe_material == 'SRSTEEL' ||
+		ro.pipe_material == 'UPVCL' ||
+		ro.pipe_material == 'RCRRJ' ||
+		ro.pipe_material == 'REINFORCED CONCRETE'
 			lifetime = 80
 	elsif 
 		ro.pipe_material == 'EW'
