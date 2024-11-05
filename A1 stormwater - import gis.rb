@@ -267,7 +267,7 @@ class ImporterClassPipe
 	def ImporterClassPipe.onEndRecordPipe(obj)
 
 		# load fields
-		#inPipeCompkley = obj['COMPKEY']				#in config file
+		inPipeCompkley = obj['COMPKEY']
 		inPipeType = obj['ASSETTYPE']
 		inPipeDescription = obj['DESC']
 		inPipeStatus = obj['SERVSTAT']
@@ -294,40 +294,37 @@ class ImporterClassPipe
 		inPipeDataScr = obj['DATA_SRC']
 		inPipeComments = obj['COMMENTS']
 		inPipeAddBy = obj['ADDDBY']
-		#inPipeAddTtm = obj['ADDDTTM']
+		inPipeAddTtm = obj['ADDDTTM']
 		inPipeModBy = obj['MODBY']
-		#inPipeModTtm = obj['MODDTTM']
+		inPipeModTtm = obj['MODDTTM']
 		inPipeConfidence = obj['CONFIDENCE']
-		#inPipeCriticality = obj['CRITICALITY'].to_i
+		inPipeCriticality = obj['CRITICALITY'].to_i
 		inPipeAllocate = obj['ALLOCATE']
 		inPipeOldGuid = obj['OLDGUID']
 		inPipeGlobalID = obj['GlobalID']
 		inPipeCreatedUser = obj['created_user']
-		#inPipeCreatedDate = obj['created_date']
+		inPipeCreatedDate = obj['created_date']
 		inPipeLastEditedUser = obj['last_edited_user']
-		#inPipeLastEditedDate = obj['last_edited_date']
+		inPipeLastEditedDate = obj['last_edited_date']
 		inPipeStartX = obj['x_start']
 		inPipeStartY = obj['y_start']
 		inPipeEndX = obj['x_end']
 		inPipeEndY = obj['y_end']
 		
 		# asset type
-		if inPipeType == 'SEWER' || 
-			inPipeType == 'TRUNK' || 
-			inPipeType == 'VENT' || 
-			inPipeType == 'OUTFALL' || 
-			inPipeType == 'LATGRAV'
-			iamPipeType = 'A'
-			iamPipeTypeFlag = '#A'			
-		elsif inPipeType == 'RISING'
-			iamPipeType = 'B'
-			iamPipeTypeFlag = '#A'												
-		elsif inPipeType == 'MH'
-			iamPipeType = 'U'
-			iamPipeTypeFlag = 'XX'			
+		if inPipeType == 'PERFORATED PIPE'
+			iamPipeType = 'PERFORTD'
+			iamPipeTypeFlag = 'AS'
+		elsif 
+			inPipeType == 'MUDTANK LEAD' || 
+			inPipeType == 'MUDTANK LATERAL' ||
+			inPipeType == 'MUDTANK LEAD' ||
+			inPipeType == 'Raingarden Lead' 
+				iamPipeType = 'LATERAL_M'
+				iamPipeTypeFlag = 'AS'												
 		else
-			iamPipeType  = 'U'
-			iamPipeTypeFlag = 'XX'
+			iamPipeType  = inPipeType
+			iamPipeTypeFlag = '#A'
 		end
 		
 		# pipe status
@@ -367,122 +364,29 @@ class ImporterClassPipe
 			iamSystemType = 'U'
 			iamSystemTypeFlag = 'XX'
 		end
-
-		# lining method
-		if inPipeLiningMethod == 'CIPP'
-			iamPipeLiningMethod = 'CIP'
-			iamPipeLiningMethodFlag = '#A'
-		elsif inPipeLiningMethod == 'SPIRRAL'
-			iamPipeLiningMethod = 'SW'
-			iamPipeLiningMethodFlag = '#A'
-		elsif inPipeLiningMethod == 'Spiral Wound'
-			iamPipeLiningMethod = 'SW'
-			iamPipeLiningMethodFlag = '#A'
-		elsif inPipeLiningMethod == 'SLIP'
-			iamPipeLiningMethod = 'CP'
-			iamPipeLiningMethodFlag = 'AS'
-		else
-			iamPipeLiningMethod  = ''
-			iamPipeLiningMethodFlag = 'XX'
-		end
-		
-		# lining method
-		if inPipeLiningMaterial == 'PVC'
-			iamPipeLiningMaterial = 'PVC'
-			iamPipeLiningMaterialFlag = '#A'
-		elsif inPipeLiningMaterial == 'EPOXY'
-			iamPipeLiningMaterial = 'EP'
-			iamPipeLiningMaterialFlag = '#A'
-		elsif inPipeLiningMaterial == 'uPVC'
-			iamPipeLiningMaterial = 'UPVC'
-			iamPipeLiningMaterialFlag = '#A'
-		elsif inPipeLiningMaterial == 'CONCRETE'
-			iamPipeLiningMaterial = 'CO'
-			iamPipeLiningMaterialFlag = '#A'
-		else
-			iamPipeLiningMaterial  = ''
-			iamPipeLiningMaterialFlag = 'XX'
-		end
 		
 		# pipe materials
-		if inPipeMaterial == 'AC'
-			iamPipeMaterial = 'AC'
-			iamPipeMaterialFlag = '#A'	
-		elsif inPipeMaterial == 'ALK'
-			iamPipeMaterial = 'ALK'
-			iamPipeMaterialFlag = '#A'	
-		elsif inPipeMaterial == 'CI'
-			iamPipeMaterial = 'CI'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'CLSTEEL'
-			iamPipeMaterial = 'CLS'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'CONC'
-			iamPipeMaterial = 'CP'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'DI'
-			iamPipeMaterial = 'DI'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'EW'
-			iamPipeMaterial = 'VC'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'FIBGLASS'
-			iamPipeMaterial = 'FB'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'HDPE'
-			iamPipeMaterial = 'HDPE'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'MDPE'
-			iamPipeMaterial = 'MDPE'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'MPVC'
-			iamPipeMaterial = 'MPVC'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'PE'
-			iamPipeMaterial = 'PE'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'PE100'
-			iamPipeMaterial = 'PE'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'POLYETHYLENE (PE100)'
-			iamPipeMaterial = 'PE'	
-			iamPipeMaterialFlag = '#A'				
+		if inPipeMaterial == 'POLYETHYLENE (PE100)'
+			iamPipeMaterial = 'PE100'	
+			iamPipeMaterialFlag = 'AS'				
 		elsif inPipeMaterial == 'POLYVINYL CHLORIDE'
 			iamPipeMaterial = 'PVC'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'PP'
-			iamPipeMaterial = 'PP'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'PVC'
-			iamPipeMaterial = 'PVC'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'SSTEEL'
-			iamPipeMaterial = 'SS'	
-			iamPipeMaterialFlag = '#A'				
+			iamPipeMaterialFlag = 'AS'							
 		elsif inPipeMaterial == 'STAINLESS STEEL'
 			iamPipeMaterial = 'SS'	
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'STEEL'
-			iamPipeMaterial = 'SS'	
-			iamPipeMaterialFlag = '#A'				
+			iamPipeMaterialFlag = 'AS'							
 		elsif inPipeMaterial == 'STRUCTURAL LINER UPVC'
-			iamPipeMaterial = 'UPVC'	
-			iamPipeMaterialFlag = '#A'				
+			iamPipeMaterial = 'UPVCS'	
+			iamPipeMaterialFlag = 'AS'				
 		elsif inPipeMaterial == 'U - POLYVINYL CHLORIDE'
 			iamPipeMaterial = 'UPVC'
-			iamPipeMaterialFlag = '#A'				
-		elsif inPipeMaterial == 'UNK'
-			iamPipeMaterial = 'XXX'
-			iamPipeMaterialFlag = 'XX'	
-		elsif inPipeMaterial == 'UPVC'
-			iamPipeMaterial = 'UPVC'
-			iamPipeMaterialFlag = '#A'	
+			iamPipeMaterialFlag = 'AS'				
 		elsif inPipeMaterial == 'UPVCLINE'
-			iamPipeMaterial = 'UPVC'
-			iamPipeMaterialFlag = '#A'			
+			iamPipeMaterial = 'UPVCL'
+			iamPipeMaterialFlag = 'AS'			
 		else
-			iamPipeMaterial = 'XXX'
-			iamPipeMaterialFlag = 'XX'
+			iamPipeMaterial = inPipeMaterial
+			iamPipeMaterialFlag = '#A'
 		end
 		
 		# loop us inverts
@@ -504,13 +408,13 @@ class ImporterClassPipe
 		end
 		
 		# loop through criticality
-		#if inPipeCriticality > 0
-		#	iamPipeCriticality = inPipeCriticality
-		#	iamPipeCriticalityFlag = '#A'
-		#else
-		#	iamPipeCriticality = ''
-		#	iamPipeCriticalityFlag = 'XX'
-		#end
+		if inPipeCriticality >= 1
+			iamPipeCriticality = inPipeCriticality.to_s
+			iamPipeCriticalityFlag = '#A'
+		else
+			iamPipeCriticality = '0'
+			iamPipeCriticalityFlag = 'XX'	
+		end
 		
 		# loop through diameters
 		# should really use internal diameters
@@ -527,53 +431,59 @@ class ImporterClassPipe
 		end
 	
 		# update various fields
-		obj['pipe_type'] = inPipeType
+		obj['pipe_type'] = iamPipeType
 		obj['pipe_type_flag'] = iamPipeTypeFlag
-		#obj['us_node_id'] = inPipeUsNodeId
-		#obj['ds_node_id'] = inPipeDsNodeId
 		obj['notes'] = inPipeDescription
 		obj['status'] = inPipeStatus
-		obj['status_flag'] = iamPipeStatusFlag
 		obj['owner'] = inPipeOwn
-		obj['system_type'] = iamSystemType
-		obj['system_type_flag'] = iamSystemTypeFlag
-		#obj['shape'] = 'CP'
-		#obj['shape_flag'] = 'AS'
+		obj['system_type'] = 'S'
+		obj['system_type_flag'] = 'AS'
+		obj['shape'] = 'CP'
+		obj['shape_flag'] = 'AS'
 		obj['width'] = iamPipeDiamNom
 		obj['width_flag'] = iamPipeDiamNomFlag
 		obj['height'] = iamPipeHeightNom
-		obj['height_flag'] = iamPipeHeightNomFlag		
-		obj['pipe_material'] = inPipeMaterial
-		#obj['pipe_material'] = iamPipeMaterial
-		#obj['pipe_material_flag'] = iamPipeMaterialFlag
+		obj['height_flag'] = iamPipeHeightNomFlag
+		obj['pipe_material'] = iamPipeMaterial
+		obj['pipe_material_flag'] = iamPipeMaterialFlag
 		obj['lining_type'] = inPipeLiningMethod 
-		#obj['lining_type'] = iamPipeLiningMethod
-		#obj['lining_type_flag'] = iamPipeLiningMethodFlag
 		obj['lining_material'] = inPipeLiningMaterial
-		#obj['lining_material'] = iamPipeLiningMaterial
-		#obj['lining_material_flag'] = iamPipeLiningMaterialFlag
 		obj['us_invert'] = iamPipeUsInvert
 		obj['us_invert_flag'] = iamPipeUsInvertFlag
 		obj['ds_invert'] = iamPipeDsInvert
 		obj['ds_invert_flag'] = iamPipeDsInvertFlag
 		obj['year_laid'] = inPipeYearLaid
 		obj['pipe_class'] = inPipePipeClass
-		#obj['criticality'] = iamPipeCriticality 
-		#obj['criticality_flag'] = iamPipeCriticalityFlag
+		obj['criticality'] = iamPipeCriticality 
+		obj['criticality_flag'] = iamPipeCriticalityFlag
 		obj['user_number_1'] = inPipeStartX
 		obj['user_number_2'] = inPipeStartY
 		obj['user_number_3'] = inPipeEndX
-		obj['user_number_4'] = inPipeEndY		
+		obj['user_number_4'] = inPipeEndY
 		obj['user_text_1'] = inPipeUsNodeId
 		obj['user_text_2'] = inPipeDsNodeId
-		#obj['user_date_1'] = inPipeAddTtm
-		#obj['user_date_2'] = inPipeModTtm
-		#obj['user_date_3'] = inPipeCreatedDate
-		#obj['user_date_4'] = inPipeLastEditedDate
-		obj['drainage_area'] = inPipeScheme
+		obj['user_date_1'] = inPipeAddTtm
+		obj['user_date_2'] = inPipeModTtm
+		obj['user_date_3'] = inPipeCreatedDate
+		obj['user_date_4'] = inPipeLastEditedDate
+		obj['drainage_code'] = inPipeScheme
 		obj['notes'] = inPipeDescription
 		obj['special_instructions'] = inPipeComments
 		
+	end
+end
+
+class ImporterClassChannel
+	def ImporterClassChannel.onEndRecordchannel(obj)
+		# load fields
+		# update various fields
+	end
+end
+
+class ImporterClassLateral
+	def ImporterClassLateral.onEndRecordLateral(obj)
+		# load fields
+		# update various fields
 	end
 end
 
@@ -590,39 +500,93 @@ import_tables.push ImportTable.new('csv', 'pipe',
 	folder + data + '\swMain.csv', 
 	ImporterClassPipe)
 	
-puts 'Import tables and config file setup'
+import_tables.push ImportTable.new('csv', 'connectionpipe', 
+	folder + data + '\stormwater_config.cfg', 
+	folder + data + '\swLateral.csv', 
+	ImporterClassLateral)
+	
+puts 'Import tables and config file setup - asset_id matching'
 
 # Set up params
-csv_options = Hash.new
-csv_options['Use Display Precision'] = false
-csv_options['Update Based On Asset ID'] = true
-csv_options['Flag Fields '] = false
-csv_options['Multiple Files'] = true
-csv_options['Selection Only'] = false
-csv_options['Coordinate Arrays Format'] = 'Packed'
-csv_options['Other Arrays Format'] = 'Separate'
-csv_options['WGS84'] = false
-csv_options['Duplication Behaviour'] = 'Merge'
-csv_options['Delete Missing Objects'] = true
-csv_options['Update Links From Points'] = false
-csv_options['Default Value Flag'] = '#S'
-csv_options['Set Value Flag'] = '#A'
-csv_options['Error File'] = folder + data + '\errors_csv.txt'
+options = Hash.new
+options['Use Display Precision'] = false
+options['Update Based On Asset ID'] = true
+options['Flag Fields '] = false
+options['Multiple Files'] = true
+options['Selection Only'] = false
+options['Coordinate Arrays Format'] = 'Packed'
+options['Other Arrays Format'] = 'Separate'
+options['WGS84'] = false
+options['Duplication Behaviour'] = 'Merge'
+options['Delete Missing Objects'] = true
+options['Update Links From Points'] = false
+options['Default Value Flag'] = '#S'
+options['Set Value Flag'] = '#A'
+options['Error File'] = folder + data + '\errors_csv.txt'
 
 puts 'specific import options defined'
 
 ## import tables into IAM
 # Loop over table configs
 import_tables.each{|table_info|
-	csv_options['Callback Class'] = table_info.cb_class
+	options['Callback Class'] = table_info.cb_class
 	
 	# Do the import
 	net.odic_import_ex(
 		table_info.tbl_format,	# input table format
 		table_info.cfg_file,	# field mapping config file
-		csv_options,			# specified options override the default options
+		options,				# specified options override the default options
 		table_info.in_table,	# import to IAM table name
 		table_info.csv_file		# import from table name
 	)
 }
-puts 'End import'
+puts 'End import for tables matching asset_id'
+
+# Set up the config files and table names
+import_tables = Array.new
+	
+import_tables.push ImportTable.new('csv', 'channel', 
+	folder + data + '\stormwater_config.cfg', 
+	folder + data + '\swChannel.csv', 
+	ImporterClassChannel)
+	
+puts 'Import tables and config file setup - asset_id matching'
+
+# Set up params
+options = Hash.new
+options['Update Based On Asset ID'] = false
+
+## import tables into IAM
+# Loop over table configs
+import_tables.each{|table_info|
+	options['Callback Class'] = table_info.cb_class
+	
+	# Do the import
+	net.odic_import_ex(
+		table_info.tbl_format,	# input table format
+		table_info.cfg_file,	# field mapping config file
+		options,				# specified options override the default options
+		table_info.in_table,	# import to IAM table name
+		table_info.csv_file		# import from table name
+	)
+}
+puts 'End import for tables matching id'
+
+puts 'Import tables and config file setup for SHP files'
+
+# Set up params
+shp=Hash.new
+shp['Duplication Behaviour'] = 'Merge'
+shp['Default Value Flag'] = '#S'
+shp['Set Value Flag'] = '#A'
+shp['Error File'] = folder + data + '\errors_shp.txt'
+
+puts 'specific import shp options defined'
+
+# Do the import of water supply pressure zones
+net.odic_import_ex('shp',
+	folder + data + '\stormwater_config.cfg',
+	shp, 'workpackage',
+	folder + data + '\swSchemes.shp')
+
+puts 'End import SHP Files'
