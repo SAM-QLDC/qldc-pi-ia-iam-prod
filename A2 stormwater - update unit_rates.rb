@@ -90,7 +90,7 @@ culv_size = [
 	100,150,200,225,
 	250,275,300,375,
 	450,600,750,900,
-	100000]
+	1000000]
 culv_cost = [
 	330,457,485,613,
 	617,717,714,801,
@@ -315,8 +315,10 @@ cp = net.row_objects('cams_connection_pipe').each do |cp|
 		lifetime = 80
 	end
 
-	if cp.year_laid == nil
-		year_installed = typyear
+	if 		
+		cp.year_laid == nil ||
+		cp.year_laid.strftime('%Y').to_i < 1901 
+			year_installed = typyear
 	else
 		year_installed = cp.year_laid.strftime('%Y').to_i
 	end
@@ -401,11 +403,205 @@ cp.write
 end
 
 ## looping and updating each channel asset
-#ch = net.row_objects('cams_channel').each do |ch|
-#
-#ch.write
-#
-#end
+ch = net.row_objects('cams_channel').each do |ch|
+
+	lifetime = 80
+
+	if 		
+		ch.constr_date == nil ||
+		ch.constr_date.strftime('%Y').to_i < 1901 
+			year_installed = typyear
+	else
+		year_installed = ch.constr_date.strftime('%Y').to_i
+	end
+
+	if 
+		ch.constr_date == nil ||
+		ch.constr_date.strftime('%Y').to_i < 1901 
+			age = ((curyear + 1) - typyear).to_i
+	else
+		age = (curyear + 1) - year_installed
+	end
+	
+	percRUL = (age.to_f / lifetime.to_f) * 100
+	
+	if percRUL <= 57
+		ch['lifetime'] = lifetime
+		ch['lifetime_flag'] = flag_calc
+	elsif percRUL <= 66
+		ch['lifetime'] = lifetime
+		ch['lifetime_flag'] = flag_calc
+	elsif percRUL <= 75
+		ch['lifetime'] = lifetime
+		ch['lifetime_flag'] = flag_calc
+	elsif percRUL <= 93
+		ch['lifetime'] = lifetime
+		ch['lifetime_flag'] = flag_calc
+	else
+		ch['lifetime'] = lifetime
+		ch['lifetime_flag'] = flag_calc
+	end
+	
+	diameter = (ch.width.to_f * 1000).to_i
+	pipe_length = ch.length.to_f
+	
+	### unit rates
+	if diameter > 0
+		size = diameter
+	else
+		size = 2400
+	end
+	
+	if pipe_length > 0
+		length = pipe_length
+	else
+		length = 5
+	end
+
+	index = culv_size.index{ |x| x >= size}
+	rate = culv_cost[index]
+	
+	### pick out CPI figures for the install year and the current year
+	index_year_installed = cgi_year.index{ |x| x >= year_installed}
+	index_year_now = cgi_year.index{ |x| x >= valyear}
+	ci_year_installed = cgi_index[index_year_installed]
+	ci_year_now = cgi_index[index_year_now]
+	
+	replace_cost = length.to_f * rate.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f
+	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * replace_cost.to_f
+	current_value = (1-(age.to_f/lifetime.to_f)) * installation_cost.to_f
+	
+	if current_value > 0
+		current_value_positive = current_value
+		current_value_positive_flag = flag_calc	
+	else
+		current_value_positive = 0
+		current_value_positive_flag = flag_unsure
+	end
+	
+	rehab_cost = replace_cost - current_value_positive
+	
+	#### 
+	## note there is no current_value field in cams_channel
+	ch['replace_cost'] = replace_cost
+	ch['install_cost'] = installation_cost
+	#ch['current_value'] = current_value_positive
+	ch['rehab_cost'] = rehab_cost
+	
+	ch['replace_cost_flag'] = flag_calc
+	ch['install_cost_flag'] = flag_calc
+	#ch['current_value_flag'] = current_value_positive_flag
+	ch['rehab_cost_flag'] = flag_calc
+
+ch.write
+
+end
+
+## looping and updating each manhole asset
+mh = net.row_objects('cams_manhole').each do |mh|
+
+	node_type = mh.node_type
+
+	#lifetime
+	## network structures
+	if 
+		node_type == 'CHAMBER' || 
+		node_type == 'END' ||
+		node_type == 'END CAP' || 
+		node_type == 'INSPECT' ||
+		node_type == 'JUNCTION' || 
+		node_type == 'LAMPHOLE' ||
+		node_type == 'MANHOLE' || 
+		node_type == 'MISC' ||
+		node_type == 'MUDTANK' || 
+		node_type == 'OUTLET' ||
+		node_type == 'STDMH' || 
+		node_type == 'VALVE' ||
+		node_type == 'BUBBLE' || 
+		node_type == 'Scruffy Do' || # change to upper
+		node_type == 'WEIR' || 
+		node_type == 'INTAKE' ||
+		node_type == 'INTERCEPT' || 
+		node_type == 'Valve' || # change to upper
+		node_type == 'Outlet' || # change to upper
+		node_type == 'FIRE_SER'
+			node_lifetime = sw_manhole_lifetime
+			node_lifetime_flag = flag_calc
+			unit_cost = sw_manhole	
+	## soft engineering structures
+	elsif node_type == 'SOAKPIT' || node_type == 'Soakpit'
+		node_lifetime = sw_soakpit_lifetime
+		node_lifetime_flag = flag_calc
+		unit_cost = sw_soakpit
+	elsif node_type == 'DETBASIN'
+		node_lifetime = sw_basin_lifetime
+		node_lifetime_flag = flag_calc
+		unit_cost = sw_basin
+	elsif node_type == 'DETCHAMB'
+		node_lifetime = sw_detention_lifetime
+		node_lifetime_flag = flag_calc
+		unit_cost = sw_detention
+	elsif node_type == 'DETPOND'
+		node_lifetime = sw_basin_lifetime
+		node_lifetime_flag = flag_calc
+		unit_cost = sw_basin
+	elsif 
+		node_type == 'CONWET' || 
+		node_type == 'RAING' ||
+		node_type == 'RE' || 
+		node_type == 'Subsoil In' # change to upper
+			node_lifetime = 60
+			node_lifetime_flag = flag_unsure
+			unit_cost = sw_structure
+	else
+		node_lifetime = 1
+		node_lifetime_flag = flag_unsure
+		unit_cost = 0
+	end
+
+	if mh.year_laid == nil ||
+		mh.year_laid.strftime('%Y').to_i < 1901 
+		year = typyear
+		age = valyear - typyear
+	else
+		year = mh.year_laid.strftime('%Y').to_i
+		age = valyear - year
+	end
+	
+	index_install_year = cgi_year.index{ |x| x >= year}
+	index_year_now = cgi_year.index{ |x| x >= valyear}	
+	ci_year_installed = cgi_index[index_install_year]
+	ci_year_now = cgi_index[index_year_now]
+	
+	replace_cost = unit_cost.to_f * on_cost_network.to_f * on_cost_valuation_year.to_f 
+	installation_cost = (ci_year_installed.to_f/ci_year_now.to_f) * unit_cost.to_f * on_cost_network.to_f
+	current_value = (1-(age.to_f/node_lifetime.to_f)) * installation_cost.to_f
+	
+	if current_value < 0
+		current_value_positive = 0
+		current_value_positive_flag = flag_unsure
+	else
+		current_value_positive = current_value.to_i
+		current_value_positive_flag = flag_calc
+	end
+	
+	rehab_cost = replace_cost - current_value_positive
+	
+	mh['install_cost'] = installation_cost
+	mh['current_value'] = current_value_positive
+	mh['replace_cost'] = replace_cost
+	mh['rehab_cost'] = rehab_cost
+	mh['lifetime'] = node_lifetime
+
+	mh['install_cost_flag'] = flag_calc
+	mh['current_value_flag'] = current_value_positive_flag
+	mh['replace_cost_flag'] = flag_calc
+	mh['rehab_cost_flag'] = flag_calc
+	mh['lifetime_flag'] = node_lifetime_flag
+
+mh.write
+
+end
 
 ## final commit
 net.transaction_commit
