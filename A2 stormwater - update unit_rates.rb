@@ -21,6 +21,7 @@ curyear = Time.now.strftime('%Y').to_i	# not used however could be substited for
 valyear = 2024							# valuation year
 unityear = 2022							# unit rates year
 typyear = 2000							# typical year assets are installed
+old_pipes = 1910						# no pipes should beyounger than this age
 on_cost_network = 1.262					# general uplift for below ground assets
 on_cost_facilities = 1.259				# general uplift for above ground assets
 flag_calc = 'VAL'						# data flag used to show where the data has come from
@@ -170,7 +171,7 @@ ro = net.row_objects('cams_pipe').each do |ro|
 
 	if 
 		ro.year_laid == nil ||
-		ro.year_laid.strftime('%Y').to_i < 1901 
+		ro.year_laid.strftime('%Y').to_i < old_pipes 
 			year_installed = typyear
 	else
 		year_installed = ro.year_laid.strftime('%Y').to_i
@@ -220,7 +221,7 @@ ro = net.row_objects('cams_pipe').each do |ro|
 	if size > 0
 		size_nd = size
 	else
-		size_nd = 225
+		size_nd = 400
 	end	
 
 	if pipe_owner == 'PRIVATE'
@@ -317,7 +318,7 @@ cp = net.row_objects('cams_connection_pipe').each do |cp|
 
 	if 		
 		cp.year_laid == nil ||
-		cp.year_laid.strftime('%Y').to_i < 1901 
+		cp.year_laid.strftime('%Y').to_i < old_pipes 
 			year_installed = typyear
 	else
 		year_installed = cp.year_laid.strftime('%Y').to_i
@@ -409,7 +410,7 @@ ch = net.row_objects('cams_channel').each do |ch|
 
 	if 		
 		ch.constr_date == nil ||
-		ch.constr_date.strftime('%Y').to_i < 1901 
+		ch.constr_date.strftime('%Y').to_i < old_pipes
 			year_installed = typyear
 	else
 		year_installed = ch.constr_date.strftime('%Y').to_i
@@ -417,7 +418,7 @@ ch = net.row_objects('cams_channel').each do |ch|
 
 	if 
 		ch.constr_date == nil ||
-		ch.constr_date.strftime('%Y').to_i < 1901 
+		ch.constr_date.strftime('%Y').to_i < old_pipes
 			age = ((curyear + 1) - typyear).to_i
 	else
 		age = (curyear + 1) - year_installed
@@ -560,7 +561,7 @@ mh = net.row_objects('cams_manhole').each do |mh|
 	end
 
 	if mh.year_laid == nil ||
-		mh.year_laid.strftime('%Y').to_i < 1901 
+		mh.year_laid.strftime('%Y').to_i < old_pipes 
 		year = typyear
 		age = valyear - typyear
 	else

@@ -21,6 +21,7 @@ curyear = Time.now.strftime('%Y').to_i	# not used however could be substited for
 valyear = 2024							# valuation year
 unityear = 2022							# unit rates year
 typyear = 2000							# typical year assets are installed
+old_pipes = 1910						# no pipes should beyounger than this age
 on_cost_network = 1.262					# general uplift for below ground assets
 on_cost_facilities = 1.259				# general uplift for above ground assets
 flag_calc = 'VAL'						# data flag used to show where the data has come from
@@ -132,8 +133,10 @@ ro = net.row_objects('cams_pipe').each do |ro|
 		lifetime = 80
 	end
 
-	if ro.year_laid == nil
-		year_installed = typyear
+	if 
+		ro.year_laid == nil ||
+		ro.year_laid.strftime('%Y').to_i < old_pipes 
+			year_installed = typyear
 	else
 		year_installed = ro.year_laid.strftime('%Y').to_i
 	end
@@ -284,8 +287,10 @@ cp = net.row_objects('cams_connection_pipe').each do |cp|
 		lifetime = 80
 	end
 
-	if cp.year_laid == nil
-		year_installed = typyear
+	if 		
+		cp.year_laid == nil ||
+		cp.year_laid.strftime('%Y').to_i < old_pipes 
+			year_installed = typyear		
 	else
 		year_installed = cp.year_laid.strftime('%Y').to_i
 	end
@@ -372,9 +377,11 @@ end
 ## looping and updating each manhole asset
 manhole_ro = net.row_objects('cams_manhole').each do |manhole_ro|
 
-	if manhole_ro.year_laid == nil
-		year = typyear
-		age = valyear - typyear
+	if 
+		manhole_ro.year_laid == nil ||
+		manhole_ro.year_laid.strftime('%Y').to_i < old_pipes
+			year = typyear
+			age = valyear - typyear	
 	else
 		year = manhole_ro.year_laid.strftime('%Y').to_i
 		age = valyear - year

@@ -176,7 +176,7 @@ ro = net.row_objects('wams_pipe').each do |ro|
 		lifetime = 70
 	end
 
-	if ro.date_installed == nil
+	if ro.date_installed == nil || ro.date_installed.strftime('%Y').to_i < 1910
 		year_installed = 2000
 	else
 		year_installed = ro.date_installed.strftime('%Y').to_i
@@ -378,7 +378,7 @@ end
 ## looping and updating each hydrant asset
 hydrant_ro = net.row_objects('wams_hydrant').each do |hydrant_ro|
 
-	if hydrant_ro.date_installed == nil
+	if hydrant_ro.date_installed == nil || hydrant_ro.date_installed.strftime('%Y').to_i < 1910
 		year = 2000
 		age = valyear - 2000
 	else
@@ -421,7 +421,7 @@ end
 ## looping and updating each meter asset
 meter_ro = net.row_objects('wams_meter').each do |meter_ro|
 
-	if meter_ro.date_installed == nil
+	if meter_ro.date_installed == nil || meter_ro.date_installed.strftime('%Y').to_i < 1910
 		year = 2000
 		age = valyear - 2000
 	else
@@ -465,7 +465,7 @@ end
 ## looping and updating each meter asset
 valve_ro = net.row_objects('wams_valve').each do |valve_ro|
 
-	if valve_ro.date_installed == nil
+	if valve_ro.date_installed == nil || valve_ro.date_installed.strftime('%Y').to_i < 1910
 		year = 2000
 		age = valyear - 2000
 	else
