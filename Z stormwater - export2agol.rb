@@ -3,7 +3,7 @@
 
 ## parameters
 folder = 'C:\Github\qldc-pi-ia-iam-prod'
-data = '\fme\imports\iam_network\wastewater'
+data = '\fme\imports\iam_network\stormwater'
 
 ## user interface
 net=WSApplication.current_network
@@ -11,7 +11,7 @@ net=WSApplication.current_network
 # Export GIS files
 gis_options_mif = Hash.new
 gis_options_mif['SkipEmptyTables'] = true
-#net.GIS_export('MIF',gis_options_mif,folder+data+'\MIF')
+net.GIS_export('MIF',gis_options_mif,folder+data+'\MIF')
 
 # Export GDB files for full network
 gis_options_gdb = Hash.new

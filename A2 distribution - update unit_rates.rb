@@ -88,7 +88,7 @@ main_cost_road = [
 	298.91,230.55,282.83,298.91,558.97,
 	562.98,562.98,722.49,664.86,667.54,
 	768.08,857.88,1032.14,1238.57
-	]
+	] 
 
 # unit costs for non-pipe assets
 backflow_nrv = 13273.05
@@ -339,18 +339,23 @@ ro = net.row_objects('wams_pipe').each do |ro|
 		current_value_positive_flag = flag_calc
 	end
 	
-	#### 
+	rehab_cost = replace_cost - current_value_positive
+	
+	# check on ci indexes
+	#ro['user_number_7'] = on_cost_valuation_year
+	
+	#### updates
 	ro['install_cost'] = installation_cost
 	ro['current_value'] = current_value_positive
 	ro['replace_cost'] = replace_cost
+	ro['rehab_cost'] = rehab_cost
 	ro['type'] = type
 	ro['use'] = use
-	# check on ci indexes
-	#ro['user_number_7'] = on_cost_valuation_year
 	
 	ro['install_cost_flag'] = flag_calc
 	ro['current_value_flag'] = current_value_positive_flag
 	ro['replace_cost_flag'] = flag_calc
+	ro['rehab_cost_flag'] = flag_calc
 	ro['type_flag'] = type_flag
 	ro['use_flag'] = use_flag
 	
@@ -364,11 +369,13 @@ fitting_ro = net.row_objects('wams_fitting').each do |fitting_ro|
 	fitting_ro['install_cost'] = 0
 	fitting_ro['current_value'] = 0
 	fitting_ro['replace_cost'] = 0
+	fitting_ro['rehab_cost'] = 0
 	fitting_ro['lifetime'] = fitting_lifetime
 	
 	fitting_ro['install_cost_flag'] = flag_unsure
 	fitting_ro['current_value_flag'] = flag_unsure
 	fitting_ro['replace_cost_flag'] = flag_unsure
+	fitting_ro['rehab_cost_flag'] = flag_unsure
 	fitting_ro['lifetime_flag'] = flag_unsure
 
 fitting_ro.write
@@ -403,15 +410,19 @@ hydrant_ro = net.row_objects('wams_hydrant').each do |hydrant_ro|
 		current_value_positive = current_value.to_i
 		current_value_positive_flag = flag_calc
 	end
+	
+	rehab_cost = replace_cost - current_value_positive
 
 	hydrant_ro['install_cost'] = installation_cost
 	hydrant_ro['current_value'] = current_value_positive
 	hydrant_ro['replace_cost'] = replace_cost
+	hydrant_ro['rehab_cost'] = rehab_cost
 	hydrant_ro['lifetime'] = hydrant_lifetime
 	
 	hydrant_ro['install_cost_flag'] = flag_calc
 	hydrant_ro['current_value_flag'] = current_value_positive_flag
 	hydrant_ro['replace_cost_flag'] = flag_calc
+	hydrant_ro['rehab_cost_flag'] = flag_calc
 	hydrant_ro['lifetime_flag'] = flag_calc
 
 hydrant_ro.write
@@ -447,15 +458,19 @@ meter_ro = net.row_objects('wams_meter').each do |meter_ro|
 		current_value_positive = current_value.to_i
 		current_value_positive_flag = flag_calc
 	end
+
+	rehab_cost = replace_cost - current_value_positive
 	
 	meter_ro['install_cost'] = installation_cost
 	meter_ro['current_value'] = current_value_positive
 	meter_ro['replace_cost'] = replace_cost
+	meter_ro['rehab_cost'] = rehab_cost
 	meter_ro['lifetime'] = meter_lifetime
 
 	meter_ro['install_cost_flag'] = flag_calc
 	meter_ro['current_value_flag'] = current_value_positive_flag
 	meter_ro['replace_cost_flag'] = flag_calc
+	meter_ro['rehab_cost_flag'] = flag_calc
 	meter_ro['lifetime_flag'] = flag_calc
 
 meter_ro.write
@@ -491,15 +506,19 @@ valve_ro = net.row_objects('wams_valve').each do |valve_ro|
 		current_value_positive = current_value.to_i
 		current_value_positive_flag = flag_calc
 	end
+	
+	rehab_cost = replace_cost - current_value_positive
 
 	valve_ro['install_cost'] = installation_cost
 	valve_ro['current_value'] = current_value_positive
 	valve_ro['replace_cost'] = replace_cost
+	valve_ro['rehab_cost'] = rehab_cost
 	valve_ro['lifetime'] = valve_lifetime
 	
 	valve_ro['install_cost_flag'] = flag_calc
 	valve_ro['current_value_flag'] = current_value_positive_flag
 	valve_ro['replace_cost_flag'] = flag_calc
+	valve_ro['rehab_cost_flag'] = flag_calc
 	valve_ro['lifetime_flag'] = flag_calc
 
 valve_ro.write
