@@ -351,18 +351,28 @@ cp = net.row_objects('cams_connection_pipe').each do |cp|
 	if percRUL <= 57
 		cp['lifetime'] = lifetime
 		cp['lifetime_flag'] = flag_calc
+		cp['condition_score'] = 1
+		cp['condition_score_flag'] = flag_calc		
 	elsif percRUL <= 66
 		cp['lifetime'] = lifetime
 		cp['lifetime_flag'] = flag_calc
+		cp['condition_score'] = 2
+		cp['condition_score_flag'] = flag_calc		
 	elsif percRUL <= 75
 		cp['lifetime'] = lifetime
 		cp['lifetime_flag'] = flag_calc
+		cp['condition_score'] = 3
+		cp['condition_score_flag'] = flag_calc		
 	elsif percRUL <= 93
 		cp['lifetime'] = lifetime
 		cp['lifetime_flag'] = flag_calc
+		cp['condition_score'] = 4
+		cp['condition_score_flag'] = flag_calc		
 	else
 		cp['lifetime'] = lifetime
 		cp['lifetime_flag'] = flag_calc
+		cp['condition_score'] = 5
+		cp['condition_score_flag'] = flag_calc		
 	end
 
 	diameter = cp.diameter.to_i
