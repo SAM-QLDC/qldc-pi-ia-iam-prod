@@ -79,24 +79,30 @@ serv_cost = [
 main_size = [
 	100,110,150,200,
 	225,250,300,375,
-	450,600,675,750,
-	900,1050,1200,100000]
+	450,600,675,750,800,
+	900,1050,1200,1350,
+	1500,1770,1800,100000]
 main_cost = [
 	330,446,457,485,
 	613,617,714,801,
-	964,1359,1749,1851,
-	2278,3320,3320,6243]
+	964,1359,1749,1851,1957,
+	2278,3320,3320,4105,
+	4568,5012,6243,6243]
 
 culv_size = [
 	100,150,200,225,
 	250,275,300,375,
-	450,600,750,900,
-	1000000]
+	450,500,600,750,
+	900,1200,1350,1500,
+	1600,1800,2000,2500,
+	3400,1000000]
 culv_cost = [
 	330,457,485,613,
 	617,717,714,801,
-	964,1359,1851,2278,
-	3320]
+	964,1157,1359,1851,
+	2278,3320,4105,4568,
+	5012,6243,6714,7588,
+	8943,8943]
 
 # unit costs for non-pipe assets
 sw_manhole = 6823
@@ -252,7 +258,17 @@ ro = net.row_objects('cams_pipe').each do |ro|
 	
 	rehab_cost = replace_cost - current_value_positive
 	
-	#### 
+	#### checks
+	ro['user_number_30'] = ci_year_installed
+	ro['user_number_31'] = ci_year_now
+	ro['user_number_32'] = ci_valyear
+	ro['user_number_33'] = ci_unityear
+	ro['user_number_34'] = length
+	ro['user_number_35'] = rate
+	ro['user_number_36'] = on_cost_network
+	ro['user_number_37'] = on_cost_valuation_year
+	
+	#### updates
 	ro['install_cost'] = installation_cost.to_i
 	ro['current_value'] = current_value_positive.to_i
 	ro['replace_cost'] = replace_cost.to_i

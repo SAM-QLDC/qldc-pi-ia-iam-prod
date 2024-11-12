@@ -3,7 +3,7 @@
 
 ## parameters
 folder = 'C:\Github\qldc-pi-ia-iam-prod'
-data = '\fme\imports\iam_network\watersupply'
+data = '\fme\imports\iam_network\wastewater'
 
 ## user interface
 net=WSApplication.current_network

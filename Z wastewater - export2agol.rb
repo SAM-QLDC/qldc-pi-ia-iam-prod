@@ -2,7 +2,7 @@
 # ==============================================================
 
 ## parameters
-folder = 'C:\Github\QLDC-PI-IAM-DEV'
+folder = 'C:\Github\qldc-pi-ia-iam-prod'
 data = '\fme\imports\iam_network\wastewater'
 
 ## user interface
@@ -26,7 +26,7 @@ csv_options['Flag Fields '] = true
 csv_options['Multiple Files'] = true
 csv_options['Coordinate Arrays Format'] = 'Packed'
 csv_options['Other Arrays Format'] = 'Separate'
-#net.csv_export(folder+data+'\CSV\network.csv',csv_options)
+net.csv_export(folder+data+'\CSV\network.csv',csv_options)
 
 # Run the second batch file
 #system(folder + '/import_enterprise_network.bat')

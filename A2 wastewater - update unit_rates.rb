@@ -72,8 +72,8 @@ on_cost_valuation_year = (ci_valyear.to_f/ci_unityear.to_f)
 serv_size = [40,50,100,125,10000]
 serv_cost = [214,210,273,452,467]
 
-main_size = [40,50,60,106,110,150,200,250,300,375,10000]
-main_cost = [214,210,259,272,451,466,557,698,776,918,7035]
+main_size = [40,50,60,106,110,150,200,250,300,375,407,450,500,600,675,750,800,10000]
+main_cost = [214,210,259,272,451,466,557,698,776,918,1025,1108,1246,1555,1716,2037,2153,7035]
 
 # unit costs for non-pipe assets
 ww_manhole_mh = 7000
@@ -228,7 +228,17 @@ ro = net.row_objects('cams_pipe').each do |ro|
 	
 	rehab_cost = replace_cost - current_value_positive
 	
-	#### 
+	#### checks
+	ro['user_number_30'] = ci_year_installed
+	ro['user_number_31'] = ci_year_now
+	ro['user_number_32'] = ci_valyear
+	ro['user_number_33'] = ci_unityear
+	ro['user_number_34'] = length
+	ro['user_number_35'] = rate
+	ro['user_number_36'] = on_cost_network
+	ro['user_number_37'] = on_cost_valuation_year
+	
+	#### updates
 	ro['install_cost'] = installation_cost
 	ro['current_value'] = current_value_positive
 	ro['replace_cost'] = replace_cost
