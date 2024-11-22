@@ -29,5 +29,4 @@ csv_options['Other Arrays Format'] = 'Separate'
 net.csv_export(folder+data+'\CSV\network.csv',csv_options)
 
 # Run the second batch file
-#system(folder + '/import_enterprise_network.bat')
-#system(folder + '/import_enterprise_defects.bat')
+system(folder + '\fme\X wastewater - update versioned copy of GIS.bat')
